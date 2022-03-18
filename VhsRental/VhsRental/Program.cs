@@ -1,5 +1,14 @@
 ﻿using VhsRental;
 using VhsRentalBusinessLayer;
+using VhsRentalBusinessLayer.Entities;
+
+Console.CursorSize = 100;
+
+if (Console.WindowWidth < 80)
+    Console.WindowWidth = 80;
+
+if (Console.WindowHeight < 25)
+    Console.WindowHeight = 25;
 
 Console.WriteLine("VHS Rental");
 Console.WriteLine();
@@ -25,7 +34,9 @@ do
 } while (true);
 
 static bool Login()
-{ 
+{
+    Console.WriteLine();
+    Console.WriteLine("Login.");
     Console.Write("Social security number> ");
     var ssn = (Console.ReadLine() ?? "").Trim();
     
@@ -58,10 +69,13 @@ static void MainMenu()
     if (Session.CurrentStaff == null)
         return;
 
-    Console.WriteLine($"Welcome {Session.CurrentStaff.Name}!");
-
     do
     {
+        Console.WriteLine();
+        Console.WriteLine($"Main menu for {Session.CurrentStaff.Name}:");
+        Console.WriteLine();
+        Console.WriteLine("1. Open user interface");
+        Console.WriteLine("2. Cassette overview");
         Console.WriteLine("0. Log out");
         Console.Write("> ");
 
@@ -69,9 +83,44 @@ static void MainMenu()
 
         switch (answer)
         {
+            case "1":
+                // TODO
+                break;
+            case "2":
+                CassetteOverview();
+                break;
             case "0":
                 Session.CurrentStaff = null;
                 return;
         }
+    } while (true);
+}
+
+static void CassetteOverview()
+{
+    var count = Console.WindowHeight - 3;
+    var width = Console.WindowWidth;
+
+    if (count < 5)
+        count = 5;
+
+    if (width < 40)
+        width = 40;
+
+    var cassetteOverview = new CassetteOverview();
+
+    do
+    {
+        Console.Write("Movie title> ");
+        var title = (Console.ReadLine() ?? "").Trim();
+
+        if (string.IsNullOrWhiteSpace(title))
+            return;
+
+        var list = cassetteOverview.GetStringList(count, width, title);
+
+        foreach (var item in list)
+            Console.WriteLine(item);
+
     } while (true);
 }
