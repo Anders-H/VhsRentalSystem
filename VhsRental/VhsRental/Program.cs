@@ -2,14 +2,6 @@
 using VhsRentalBusinessLayer;
 using VhsRentalBusinessLayer.Entities;
 
-Console.CursorSize = 100;
-
-if (Console.WindowWidth < 80)
-    Console.WindowWidth = 80;
-
-if (Console.WindowHeight < 25)
-    Console.WindowHeight = 25;
-
 Console.WriteLine("VHS Rental");
 Console.WriteLine();
 
