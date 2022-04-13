@@ -2,10 +2,10 @@
 
 public class MenuOption
 {
-    public char Key { get; }
+    public ConsoleKeyInfo Key { get; }
     public string Name { get; }
 
-    public MenuOption(char key, string name)
+    public MenuOption(ConsoleKeyInfo key, string name)
     {
         Key = key;
         Name = name;
@@ -26,7 +26,7 @@ public class MenuOption
 
         Console.CursorLeft = 1;
         Console.CursorTop = y;
-        var text = $"{Key}. {Name}";
+        var text = $"{Key.KeyChar}. {Name}";
 
         if (text.Length > width - 4)
             text = text.Substring(0, width - 4);

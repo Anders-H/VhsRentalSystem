@@ -1,29 +1,28 @@
 ﻿using VhsRental;
 using VhsRentalBusinessLayer;
 using VhsRentalBusinessLayer.Entities;
+using VhsRentalGui;
 
-Console.WriteLine("VHS Rental");
+var mainMenu = new Menu("VHS Rental", new List<MenuOption>
+{
+    new(new ConsoleKeyInfo('1', ConsoleKey.D1, false, false, false), "Login"),
+    new(new ConsoleKeyInfo('0', ConsoleKey.D0, false, false, false), "Quit")
+});
+
+Console.WriteLine();
 Console.WriteLine();
 
-do
+var answer = mainMenu.Ask();
+
+switch (answer.Key.KeyChar)
 {
-    Console.WriteLine("1. Login");
-    Console.WriteLine("0. Quit");
-    Console.Write("> ");
-
-    var answer = (Console.ReadLine() ?? "").Trim();
-
-    switch (answer)
-    {
-        case "1":
-            if (Login())
-                MainMenu();
-            break;
-        case "0":
-            return;
-    }
-
-} while (true);
+    case '1':
+        if (Login())
+            MainMenu();
+        break;
+    case '0':
+        return;
+}
 
 static bool Login()
 {

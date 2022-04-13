@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VhsRentalBusinessLayer\VhsRentalBusinessLayer.csproj" />
+    <ProjectReference Include="..\VhsRentalGui\VhsRentalGui.csproj" />
   </ItemGroup>
 
 </Project>
