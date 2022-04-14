@@ -82,9 +82,14 @@ public class Menu
             else if (key.Key == ConsoleKey.UpArrow)
             {
                 selectedIndex--;
-                if (selectedIndex > 0)
+                if (selectedIndex < 0)
                     selectedIndex = _options.Count - 1;
             }
+            else if (key.Key == ConsoleKey.Enter)
+            {
+                return _options[selectedIndex];
+            }
+
         } while (true);
     }
 }
