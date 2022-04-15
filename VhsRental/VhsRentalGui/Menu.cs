@@ -1,4 +1,6 @@
-﻿namespace VhsRentalGui;
+﻿using System.Reflection;
+
+namespace VhsRentalGui;
 
 public class Menu
 {
@@ -31,6 +33,8 @@ public class Menu
         Console.WriteLine(Pad(_title));
         Console.BackgroundColor = ConsoleColor.Black;
         _options = options;
+
+        Console.WriteLine($"Application version: {Assembly.GetExecutingAssembly().GetName().Version}");
     }
 
     private string Pad(string text)
@@ -42,7 +46,7 @@ public class Menu
 
     public MenuOption Ask()
     {
-        var yStart = 2;
+        var yStart = 4;
         var selectedIndex = 0;
 
         do

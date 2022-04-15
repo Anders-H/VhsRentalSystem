@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
 using VhsRentalDataLayer.Entities;
 
 namespace VhsRentalDataLayer;
@@ -9,7 +10,7 @@ public class RentalService
     private readonly int _staffId;
     private readonly DateTime _eventTime;
     private readonly List<PendingRental> _pendingRentals;
-    private SqlConnection _connection;
+    private readonly SqlConnection _connection;
     public int TransactionId { get; private set; }
 
     public RentalService(int customerId, int staffId, DateTime eventTime)
@@ -18,25 +19,89 @@ public class RentalService
         _staffId = staffId;
         _eventTime = eventTime;
         _pendingRentals = new List<PendingRental>();
+        _connection = new SqlConnection(Settings.ConnectionString);
         TransactionId = 0;
     }
 
-    public bool OpenTransaction()
+    public RentalServiceResult OpenTransaction()
     {
-        _connection = new SqlConnection(Settings.ConnectionString);
+        TransactionId = 0;
         _connection.Open();
+        using var cmd = new SqlCommand("dbo.CreateRentalEventTransaction", _connection);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@CustomerID", _customerId);
+        cmd.Parameters.AddWithValue("@StaffID", _staffId);
+        cmd.Parameters.AddWithValue("@EventTime", _eventTime);
+        var r = cmd.ExecuteReader();
+        var id = 0;
+        if (r.Read())
+            id = r.GetInt32(0);
+        r.Close();
+
+        switch (id)
+        {
+            case -4:
+                return RentalServiceResult.CustomerNotFound;
+            case -3:
+                return RentalServiceResult.CustomerBlocked;
+        }
+
+        if (id > 0)
+        {
+            TransactionId = id;
+            return RentalServiceResult.Success;
+        }
+
+        return RentalServiceResult.UnexpectedResult;
     }
 
-    public RentalServiceResult AddRentalToTransaction(int cassetteId, decimal amount)
+    public RentalServiceResult AddRentalToTransaction(int cassetteId, decimal amount, string description)
     {
         _pendingRentals.Add(new PendingRental(cassetteId, amount));
+        using var cmd = new SqlCommand("dbo.CreateRental", _connection);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@TransactionID", TransactionId);
+        cmd.Parameters.AddWithValue("@StaffID", _staffId);
+        cmd.Parameters.AddWithValue("@CustomerID", _customerId);
+        cmd.Parameters.AddWithValue("@CassetteID", cassetteId);
+        cmd.Parameters.AddWithValue("@Amount", amount);
+        cmd.Parameters.AddWithValue("@EventTime", _eventTime);
+        cmd.Parameters.AddWithValue("@Description", description);
+        var r = cmd.ExecuteReader();
+        var id = 0;
+        if (r.Read())
+            id = r.GetInt32(0);
+        r.Close();
 
+        switch (id)
+        {
+            case -5:
+                return RentalServiceResult.StaffInactiveOrNotFound;
+            case -4:
+                return RentalServiceResult.CustomerNotFound;
+            case -3:
+                return RentalServiceResult.CustomerBlocked;
+            case -2:
+                return RentalServiceResult.CassetteNotFound;
+            case -1:
+                return RentalServiceResult.CassetteInactive;
+            case 0:
+                return RentalServiceResult.MovieOrCompanyNotFound;
+        }
+
+        return id > 0
+            ? RentalServiceResult.Success
+            : RentalServiceResult.UnexpectedResult;
     }
 
-    public RentalServiceResult CloseTransaction()
+    public void CloseTransaction(bool canceled)
     {
-
-
+        using var cmd = new SqlCommand("dbo.CloseRentalTransaction", _connection);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@ID", TransactionId);
+        cmd.Parameters.AddWithValue("@Amount", _pendingRentals.Sum(x => x.Amount));
+        cmd.Parameters.AddWithValue("@Canceled", canceled);
+        cmd.ExecuteNonQuery();
         _connection.Close();
         _connection.Dispose();
     }

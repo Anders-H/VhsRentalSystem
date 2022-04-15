@@ -9,5 +9,5 @@ public enum RentalServiceResult
     CassetteNotFound,
     MovieOrCompanyNotFound,
     StaffInactiveOrNotFound,
-    ConnectionError
+    UnexpectedResult
 }
