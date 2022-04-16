@@ -65,7 +65,7 @@ static void MainMenu()
         Console.WriteLine();
         Console.WriteLine($"Main menu for {Session.CurrentStaff.Name}:");
         Console.WriteLine();
-        Console.WriteLine("1. Open user interface");
+        Console.WriteLine("1. Create rental for customer");
         Console.WriteLine("2. Cassette overview");
         Console.WriteLine("0. Log out");
         Console.Write("> ");

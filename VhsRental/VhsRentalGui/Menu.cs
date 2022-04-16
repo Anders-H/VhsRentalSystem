@@ -34,7 +34,8 @@ public class Menu
         Console.BackgroundColor = ConsoleColor.Black;
         _options = options;
 
-        Console.WriteLine($"Application version: {Assembly.GetExecutingAssembly().GetName().Version}");
+        Console.CursorTop = 2;
+        Console.WriteLine($" Application version: {Assembly.GetExecutingAssembly().GetName().Version}");
     }
 
     private string Pad(string text)
@@ -91,6 +92,7 @@ public class Menu
             }
             else if (key.Key == ConsoleKey.Enter)
             {
+                Console.Write($"> {_options[selectedIndex].Key.KeyChar}");
                 return _options[selectedIndex];
             }
 
