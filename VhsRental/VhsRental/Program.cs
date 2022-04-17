@@ -28,9 +28,9 @@ static bool Login()
 {
     Console.WriteLine();
     Console.WriteLine("Login.");
-    Console.Write("Social security number> ");
+    Console.Write("Your social security number> ");
     var ssn = (Console.ReadLine() ?? "").Trim();
-    
+
     if (string.IsNullOrWhiteSpace(ssn))
         return false;
 
@@ -57,61 +57,29 @@ static bool Login()
 
 static void MainMenu()
 {
-    if (Session.CurrentStaff == null)
-        return;
-
     do
     {
-        Console.WriteLine();
-        Console.WriteLine($"Main menu for {Session.CurrentStaff.Name}:");
-        Console.WriteLine();
-        Console.WriteLine("1. Create rental for customer");
-        Console.WriteLine("2. Cassette overview");
-        Console.WriteLine("0. Log out");
-        Console.Write("> ");
 
-        var answer = (Console.ReadLine() ?? "").Trim();
+        if (Session.CurrentStaff == null)
+            return;
 
-        switch (answer)
+        var mainMenuFor = new Menu($"VHS Rental - main menu for {Session.CurrentStaff.Name}", new List<MenuOption>
         {
-            case "1":
-                // TODO
+            new(new ConsoleKeyInfo('1', ConsoleKey.D1, false, false, false), "Create rental for customer"),
+            new(new ConsoleKeyInfo('0', ConsoleKey.D0, false, false, false), "Quit")
+        });
+
+        var answer = mainMenuFor.Ask();
+
+        switch (answer.Key.KeyChar)
+        {
+            case '1':
+                var x = new RentalProcess();
+                x.Run();
                 break;
-            case "2":
-                CassetteOverview();
-                break;
-            case "0":
+            case '0':
                 Session.CurrentStaff = null;
                 return;
         }
-    } while (true);
-}
-
-static void CassetteOverview()
-{
-    var count = Console.WindowHeight - 3;
-    var width = Console.WindowWidth;
-
-    if (count < 5)
-        count = 5;
-
-    if (width < 40)
-        width = 40;
-
-    var cassetteOverview = new CassetteOverview();
-
-    do
-    {
-        Console.Write("Movie title> ");
-        var title = (Console.ReadLine() ?? "").Trim();
-
-        if (string.IsNullOrWhiteSpace(title))
-            return;
-
-        var list = cassetteOverview.GetStringList(count, width, title);
-
-        foreach (var item in list)
-            Console.WriteLine(item);
-
     } while (true);
 }

@@ -2,10 +2,10 @@
 
 namespace VhsRentalGui;
 
-public class Menu
+public class Menu : GuiObject
 {
     private readonly List<MenuOption> _options;
-    private string _title;
+    private readonly string _title;
     private int _width;
 
 
@@ -13,14 +13,6 @@ public class Menu
     {
         _options = options;
         _title = title;
-
-        Console.CursorSize = 100;
-
-        if (Console.WindowWidth < 80)
-            Console.WindowWidth = 80;
-
-        if (Console.WindowHeight < 25)
-            Console.WindowHeight = 25;
 
         _width = Console.WindowWidth;
 
