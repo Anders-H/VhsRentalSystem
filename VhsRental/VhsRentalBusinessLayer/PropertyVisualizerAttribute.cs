@@ -1,4 +1,4 @@
-﻿namespace VhsRentalGui;
+﻿namespace VhsRentalBusinessLayer;
 
 public class PropertyVisualizerAttribute : Attribute
 {

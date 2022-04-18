@@ -3,15 +3,35 @@
 public class CustomerContactInformation
 {
     public int Id { get; set; }
+
+    [PropertyVisualizer(0, "Name")]
     public string Name { get; set; }
+    
+    [PropertyVisualizer(0, "Social security number")]
     public string Ssn { get; set; }
+    
+    [PropertyVisualizer(0, "Address 1")]
     public string Address1 { get; set; }
+    
+    [PropertyVisualizer(0, "Address 2")]
     public string Address2 { get; set; }
+    
+    [PropertyVisualizer(0, "Zip")]
     public string ZipCode { get; set; }
+    
+    [PropertyVisualizer(0, "City")]
     public string City { get; set; }
+    
+    [PropertyVisualizer(0, "Phone")]
     public string Phone { get; set; }
+    
+    [PropertyVisualizer(0, "E-mail")]
     public string EMail { get; set; }
+    
+    [PropertyVisualizer(0, "Customer number")]
     public string CustomerNumber { get; set; }
+    
+    [PropertyVisualizer(0, "Blocked")]
     public bool IsBlocked { get; set; }
 
     public CustomerContactInformation() : this(0, "", "", "", "", "", "", "", "", "", false)

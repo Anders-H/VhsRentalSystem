@@ -1,4 +1,5 @@
 ﻿using VhsRentalBusinessLayer.Entities;
+using VhsRentalGui;
 
 namespace VhsRental;
 
@@ -33,5 +34,10 @@ SelectCustomer:
                     return;
             }
         }
+
+        new EntityVisualizer(customer)
+            .Write();
+
+        Console.ReadLine();
     }
 }
