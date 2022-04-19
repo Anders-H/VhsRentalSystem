@@ -5,17 +5,21 @@ namespace VhsRental;
 
 public class RentalProcess
 {
+    private readonly IConsoleObject _out;
+
+    public RentalProcess(IConsoleObject consoleObject)
+    {
+        _out = consoleObject;
+    }
+
     public void Run()
     {
-        Console.BackgroundColor = ConsoleColor.DarkBlue;
-        Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.Clear();
-        Console.WriteLine("Create rental for customer");
-        Console.WriteLine();
+        _out.Clear(ConsoleColor.DarkBlue, ConsoleColor.Cyan);
+        _out.WriteLine("Create rental for customer");
+        _out.WriteLine();
 
 SelectCustomer:
-        Console.Write("Customer social security number or customer number> ");
-        var custNum = (Console.ReadLine() ?? "").Trim();
+        var custNum = _out.Ask("Customer social security number or customer number> ");
 
         if (string.IsNullOrWhiteSpace(custNum))
             return;
@@ -24,8 +28,7 @@ SelectCustomer:
 
         if (customer == null)
         {
-            Console.Write("Customer not found. [R]etry or [C]ancel? ");
-            var handleMissingCustomer = (Console.ReadLine() ?? "");
+            var handleMissingCustomer = _out.Ask("Customer not found. [R]etry or [C]ancel? ");
             switch (handleMissingCustomer.ToLower())
             {
                 case "r":
@@ -38,6 +41,9 @@ SelectCustomer:
         new EntityVisualizer(customer)
             .Write();
 
-        Console.ReadLine();
+        _out.WriteLine("[A]ccept, [R]etry or [C]ancel? ");
+
+
+        _out.ReadLine();
     }
 }

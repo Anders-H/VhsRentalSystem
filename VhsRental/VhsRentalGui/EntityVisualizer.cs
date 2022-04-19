@@ -51,6 +51,8 @@ public class EntityVisualizer : GuiObject
 
     public void Write()
     {
+        var forecolor = Console.ForegroundColor;
+
         var properties = _object.GetType().GetProperties();
 
         var result = new List<Entity>();
@@ -92,5 +94,7 @@ public class EntityVisualizer : GuiObject
 
         foreach (var r in result.OrderBy(x => x.SortOrder))
             r.Write(requiredLabelWidth, valueWidth);
+
+        Console.ForegroundColor = forecolor;
     }
 }

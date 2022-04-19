@@ -1,7 +1,8 @@
 ﻿using VhsRental;
 using VhsRentalBusinessLayer;
-using VhsRentalBusinessLayer.Entities;
 using VhsRentalGui;
+
+var o = new ConsoleObject();
 
 var mainMenu = new Menu("VHS Rental", new List<MenuOption>
 {
@@ -18,7 +19,7 @@ switch (answer.Key.KeyChar)
 {
     case '1':
         if (Login())
-            MainMenu();
+            MainMenu(o);
         break;
     case '0':
         return;
@@ -55,7 +56,7 @@ static bool Login()
     }
 }
 
-static void MainMenu()
+static void MainMenu(IConsoleObject o)
 {
     do
     {
@@ -74,7 +75,7 @@ static void MainMenu()
         switch (answer.Key.KeyChar)
         {
             case '1':
-                var x = new RentalProcess();
+                var x = new RentalProcess(o);
                 x.Run();
                 break;
             case '0':
