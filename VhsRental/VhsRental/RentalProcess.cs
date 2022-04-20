@@ -28,7 +28,7 @@ SelectCustomer:
 
         if (customer == null)
         {
-            var handleMissingCustomer = _out.Ask("Customer not found. [R]etry or [C]ancel? ");
+            var handleMissingCustomer = _out.Ask("Customer not found. [R]etry or [C]ancel? ", 'R', 'C');
             switch (handleMissingCustomer.ToLower())
             {
                 case "r":
@@ -41,7 +41,8 @@ SelectCustomer:
         new EntityVisualizer(customer)
             .Write();
 
-        _out.WriteLine("[A]ccept, [R]etry or [C]ancel? ");
+        var accept =  _out.Ask("[A]ccept, [R]etry or [C]ancel? ", 'A', 'R', 'C');
+
 
 
         _out.ReadLine();

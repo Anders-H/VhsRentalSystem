@@ -1,8 +1,9 @@
 ﻿using VhsRental;
-using VhsRentalBusinessLayer;
 using VhsRentalGui;
 
 var o = new ConsoleObject();
+
+Start:
 
 var mainMenu = new Menu("VHS Rental", new List<MenuOption>
 {
@@ -18,42 +19,13 @@ var answer = mainMenu.Ask();
 switch (answer.Key.KeyChar)
 {
     case '1':
-        if (Login())
+        if (new LoginProcess(o).Run())
             MainMenu(o);
+        else
+            goto Start;
         break;
     case '0':
         return;
-}
-
-static bool Login()
-{
-    Console.WriteLine();
-    Console.WriteLine("Login.");
-    Console.Write("Your social security number> ");
-    var ssn = (Console.ReadLine() ?? "").Trim();
-
-    if (string.IsNullOrWhiteSpace(ssn))
-        return false;
-
-    var result = VhsRentalBusinessLayer.Login.TryLogin(ssn);
-
-    switch (result.Result)
-    {
-        case LoginResult.Success:
-            Session.CurrentStaff = result.Staff;
-            return true;
-        case LoginResult.StaffInactive:
-            Console.WriteLine("Inactive staff.");
-            return false;
-        case LoginResult.StaffNotFound:
-            Console.WriteLine("Not found.");
-            return false;
-        case LoginResult.ConnectionError:
-            Console.WriteLine("Database connection error");
-            return false;
-        default:
-            throw new ArgumentOutOfRangeException();
-    }
 }
 
 static void MainMenu(IConsoleObject o)
