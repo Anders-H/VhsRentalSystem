@@ -43,8 +43,14 @@ SelectCustomer:
 
         var accept =  _out.Ask("[A]ccept, [R]etry or [C]ancel? ", 'A', 'R', 'C');
 
+        switch (accept)
+        {
+            case "r":
+                goto SelectCustomer;
+            case "c":
+                return;
+        }
 
 
-        _out.ReadLine();
     }
 }
