@@ -2,6 +2,9 @@
 
 public class ConsoleObject : IConsoleObject
 {
+    public ConsoleColor ForeColor { get; set; }
+    public ConsoleColor BackColor { get; set; }
+
     public string Ask(string prompt)
     {
         Console.Write(prompt);
@@ -38,6 +41,18 @@ public class ConsoleObject : IConsoleObject
             Console.Write(messageToShow ? message : prompt);
 
         } while (true);
+    }
+
+    public string Ask(ConsoleColor foreColor, string prompt)
+    {
+        Console.ForegroundColor = foreColor;
+        return Ask(prompt);
+    }
+
+    public string Ask(ConsoleColor foreColor, string prompt, params char[] acceptOnly)
+    {
+        Console.ForegroundColor = foreColor;
+        return Ask(prompt, acceptOnly);
     }
 
     public void Clear(ConsoleColor backColor, ConsoleColor foreColor)

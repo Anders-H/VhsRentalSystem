@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VhsRentalBusinessLayer.Entities;
+﻿namespace VhsRentalBusinessLayer.Entities;
 
 public class AvailableCassette
 {
-    private string StringRepresentation { get; set; }
-
     public int Id { get; set; }
     public string Title { get; set; }
     public short Year { get; set; }
@@ -22,8 +14,6 @@ public class AvailableCassette
 
     public AvailableCassette(int id, string title, short year, decimal customerPrice, int numberOfCopies)
     {
-        StringRepresentation = "";
-
         Id = id;
         Title = title;
         Year = year;
@@ -57,16 +47,6 @@ public class AvailableCassette
         return result;
     }
 
-    public string GetStringRepresentation(int width)
-    {
-        if (StringRepresentation.Length != width)
-            GenerateStringRepresentation(width);
-
-        return StringRepresentation;
-    }
-
-    private void GenerateStringRepresentation(int width)
-    {
-
-    }
+    public override string ToString() =>
+        $"{Id}: {Title} ({Year:0000}), price: {CustomerPrice:n2}, {NumberOfCopies} copies";
 }

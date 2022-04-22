@@ -41,6 +41,13 @@ SelectCustomer:
         new EntityVisualizer(customer)
             .Write();
 
+        if (customer.IsBlocked)
+        {
+            _out.Ask(ConsoleColor.Red, "Customer is blocked. Press Enter to continue. ");
+            return;
+
+        }
+
         var accept =  _out.Ask("[A]ccept, [R]etry or [C]ancel? ", 'A', 'R', 'C');
 
         switch (accept)
