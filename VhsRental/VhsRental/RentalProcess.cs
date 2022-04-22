@@ -58,6 +58,23 @@ SelectCustomer:
                 return;
         }
 
+SelectMovie:
 
+        var ean = _out.AskDecimal("EAN? ");
+
+        if (string.IsNullOrWhiteSpace(ean))
+            return;
+
+        var cassettes = VhsRentalBusinessLayer.Entities.AvailableCassette.GetAvailableCassettesFromMovieEan(ean);
+
+        if (cassettes.Count <= 0)
+        {
+            _out.WriteLine("Movie not available.");
+            goto SelectMovie;
+        }
+
+        var movieMenu = new List<MenuOption>();
+
+        
     }
 }

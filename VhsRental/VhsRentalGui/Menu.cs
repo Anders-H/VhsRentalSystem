@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace VhsRentalGui;
+﻿namespace VhsRentalGui;
 
 public class Menu : GuiObject
 {
@@ -25,9 +23,6 @@ public class Menu : GuiObject
         Console.WriteLine(Pad(_title));
         Console.BackgroundColor = ConsoleColor.Black;
         _options = options;
-
-        Console.CursorTop = 2;
-        Console.WriteLine($" Application version: {Assembly.GetExecutingAssembly().GetName().Version}");
     }
 
     private string Pad(string text)
@@ -39,7 +34,7 @@ public class Menu : GuiObject
 
     public MenuOption Ask()
     {
-        var yStart = 4;
+        var yStart = 2;
         var selectedIndex = 0;
 
         do

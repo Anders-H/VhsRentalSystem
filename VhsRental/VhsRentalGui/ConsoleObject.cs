@@ -70,4 +70,10 @@ public class ConsoleObject : IConsoleObject
 
     public string ReadLine() =>
         (Console.ReadLine() ?? "").Trim();
+
+    public decimal AskDecimal(string prompt)
+    {
+        var s = Ask(prompt);
+        //TODO: Parse and return if correct
+    }
 }

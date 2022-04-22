@@ -8,6 +8,7 @@ public interface IConsoleObject
     string Ask(string prompt, params char[] acceptOnly);
     string Ask(ConsoleColor foreColor, string prompt);
     string Ask(ConsoleColor foreColor, string prompt, params char[] acceptOnly);
+    decimal AskDecimal(string prompt);
     void Clear(ConsoleColor backColor, ConsoleColor foreColor);
     void WriteLine();
     void WriteLine(string output);
