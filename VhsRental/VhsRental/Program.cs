@@ -1,11 +1,15 @@
 ﻿using VhsRental;
 using VhsRentalGui;
 
+Console.Title = "VHS Rental";
+
 var o = new ConsoleObject();
+
+ConsoleEnvironment.FixConsoleWindowSize();
 
 Start:
 
-var mainMenu = new Menu("VHS Rental", new List<MenuOption>
+var mainMenu = new Menu("VHS Rental", ConsoleEnvironment.WindowWidth, ConsoleEnvironment.WindowHeight, new List<MenuOption>
 {
     new(new ConsoleKeyInfo('1', ConsoleKey.D1, false, false, false), "Login"),
     new(new ConsoleKeyInfo('0', ConsoleKey.D0, false, false, false), "Quit")
@@ -36,7 +40,7 @@ static void MainMenu(IConsoleObject o)
         if (Session.CurrentStaff == null)
             return;
 
-        var mainMenuFor = new Menu($"VHS Rental - main menu for {Session.CurrentStaff.Name}", new List<MenuOption>
+        var mainMenuFor = new Menu($"VHS Rental - main menu for {Session.CurrentStaff.Name}", ConsoleEnvironment.WindowWidth, ConsoleEnvironment.WindowHeight, new List<MenuOption>
         {
             new(new ConsoleKeyInfo('1', ConsoleKey.D1, false, false, false), "Create rental for customer"),
             new(new ConsoleKeyInfo('0', ConsoleKey.D0, false, false, false), "Quit")

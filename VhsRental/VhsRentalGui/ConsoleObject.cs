@@ -1,4 +1,6 @@
-﻿namespace VhsRentalGui;
+﻿using System.Globalization;
+
+namespace VhsRentalGui;
 
 public class ConsoleObject : IConsoleObject
 {
@@ -71,9 +73,22 @@ public class ConsoleObject : IConsoleObject
     public string ReadLine() =>
         (Console.ReadLine() ?? "").Trim();
 
-    public decimal AskDecimal(string prompt)
+    public decimal AskDecimal(string prompt) =>
+        AskDecimal(prompt, false)!.Value;
+
+    public decimal? AskDecimal(string prompt, bool canExitOnEnter)
     {
         var s = Ask(prompt);
-        //TODO: Parse and return if correct
+
+        do
+        {
+            if (canExitOnEnter && string.IsNullOrWhiteSpace(s))
+                return null;
+
+            if (decimal.TryParse(s, NumberStyles.Any, CultureInfo.CurrentCulture, out var d))
+                return d;
+
+            s = Ask(canExitOnEnter ? "Enter a numeric value or press Enter to cancel: " : "Enter a numeric value: ");
+        } while (true);
     }
 }

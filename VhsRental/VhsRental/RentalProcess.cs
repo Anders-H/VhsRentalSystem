@@ -60,12 +60,12 @@ SelectCustomer:
 
 SelectMovie:
 
-        var ean = _out.AskDecimal("EAN? ");
+        var ean = _out.AskDecimal("EAN? ", true);
 
-        if (string.IsNullOrWhiteSpace(ean))
+        if (ean == null)
             return;
 
-        var cassettes = VhsRentalBusinessLayer.Entities.AvailableCassette.GetAvailableCassettesFromMovieEan(ean);
+        var cassettes = AvailableCassette.GetAvailableCassettesFromMovieEan(ean.Value);
 
         if (cassettes.Count <= 0)
         {

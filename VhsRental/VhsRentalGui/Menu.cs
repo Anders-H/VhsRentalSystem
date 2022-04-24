@@ -2,17 +2,17 @@
 
 public class Menu : GuiObject
 {
-    private readonly List<MenuOption> _options;
     private readonly string _title;
-    private int _width;
+    private readonly int _width;
+    private readonly int _height;
+    private readonly List<MenuOption> _options;
 
-
-    public Menu(string title, List<MenuOption> options)
+    public Menu(string title, int width, int height, List<MenuOption> options)
     {
         _options = options;
+        _width = width;
+        _height = height;
         _title = title;
-
-        _width = Console.WindowWidth;
 
         Console.BackgroundColor = ConsoleColor.Black;
         Console.Clear();
