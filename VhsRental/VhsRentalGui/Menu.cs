@@ -2,7 +2,6 @@
 
 public class Menu : GuiObject
 {
-    private readonly string _title;
     private readonly int _width;
     private readonly int _height;
     private readonly List<MenuOption> _options;
@@ -12,7 +11,6 @@ public class Menu : GuiObject
         _options = options;
         _width = width;
         _height = height;
-        _title = title;
 
         Console.BackgroundColor = ConsoleColor.Black;
         Console.Clear();
@@ -20,7 +18,7 @@ public class Menu : GuiObject
         Console.ForegroundColor = ConsoleColor.White;
         Console.CursorLeft = 0;
         Console.CursorTop = 0;
-        Console.WriteLine(Pad(_title));
+        Console.WriteLine(Pad(title));
         Console.BackgroundColor = ConsoleColor.Black;
         _options = options;
     }
