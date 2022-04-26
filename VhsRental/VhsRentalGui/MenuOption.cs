@@ -1,15 +1,20 @@
 ﻿namespace VhsRentalGui;
 
-public class MenuOption
+public class MenuOption<T>
 {
     public ConsoleKeyInfo Key { get; }
+    public T Entity { get; }
     public string Name { get; }
 
-    public MenuOption(ConsoleKeyInfo key, string name)
+    public MenuOption(ConsoleKeyInfo key, T entity, string name)
     {
         Key = key;
+        Entity = entity;
         Name = name;
     }
+
+    public static ConsoleKeyInfo GetKey(char keyChar, ConsoleKey key) =>
+        new(keyChar, key, false, false, false);
 
     public void Render(int y, int width, bool selected)
     {
@@ -26,7 +31,16 @@ public class MenuOption
 
         Console.CursorLeft = 1;
         Console.CursorTop = y;
-        var text = $"{Key.KeyChar}. {Name}";
+
+        var k = Key.KeyChar.ToString();
+
+        if (Key.KeyChar == '\u001B')
+            k = "Esc";
+
+        var text = $"{k}. {Name}";
+
+        while (text.Length < width - 4)
+            text += " ";
 
         if (text.Length > width - 4)
             text = text.Substring(0, width - 4);
