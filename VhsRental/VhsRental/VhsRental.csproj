@@ -1,21 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyVersion>1.0</AssemblyVersion>
-    <FileVersion>1.0</FileVersion>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>vhs.ico</ApplicationIcon>
+    <Version>1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+    <Content Include="vhs.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\VhsRentalBusinessLayer\VhsRentalBusinessLayer.csproj" />
-    <ProjectReference Include="..\VhsRentalGui\VhsRentalGui.csproj" />
   </ItemGroup>
 
 </Project>

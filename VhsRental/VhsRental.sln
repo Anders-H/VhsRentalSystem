@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VhsRental", "VhsRental\VhsRental.csproj", "{15108EA6-ABB3-40D1-BD16-05C65AE703E1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VhsRentalDataLayer", "VhsRentalDataLayer\VhsRentalDataLayer.csproj", "{FAAF2C8F-89B7-455B-A48D-21CE336C1543}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VhsRentalBusinessLayer", "VhsRentalBusinessLayer\VhsRentalBusinessLayer.csproj", "{97C9048C-9574-474C-8954-045874CBFD83}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VhsRentalGui", "VhsRentalGui\VhsRentalGui.csproj", "{D148B39B-C3C3-4934-9C02-4E59DBCB9CA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VhsRentalTestDataGenerator", "VhsRentalTestDataGenerator\VhsRentalTestDataGenerator.csproj", "{E424C5D6-E221-4AD5-A0C1-6128E3ABEBAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VhsRentalTestDataGenerator", "VhsRentalTestDataGenerator\VhsRentalTestDataGenerator.csproj", "{E424C5D6-E221-4AD5-A0C1-6128E3ABEBAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VhsRental", "VhsRental\VhsRental.csproj", "{2E29E23F-B056-426C-A952-010E7488D6CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{15108EA6-ABB3-40D1-BD16-05C65AE703E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{15108EA6-ABB3-40D1-BD16-05C65AE703E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{15108EA6-ABB3-40D1-BD16-05C65AE703E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{15108EA6-ABB3-40D1-BD16-05C65AE703E1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FAAF2C8F-89B7-455B-A48D-21CE336C1543}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FAAF2C8F-89B7-455B-A48D-21CE336C1543}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAAF2C8F-89B7-455B-A48D-21CE336C1543}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -31,14 +25,14 @@ Global
 		{97C9048C-9574-474C-8954-045874CBFD83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97C9048C-9574-474C-8954-045874CBFD83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97C9048C-9574-474C-8954-045874CBFD83}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D148B39B-C3C3-4934-9C02-4E59DBCB9CA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D148B39B-C3C3-4934-9C02-4E59DBCB9CA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D148B39B-C3C3-4934-9C02-4E59DBCB9CA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D148B39B-C3C3-4934-9C02-4E59DBCB9CA7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E424C5D6-E221-4AD5-A0C1-6128E3ABEBAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E424C5D6-E221-4AD5-A0C1-6128E3ABEBAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E424C5D6-E221-4AD5-A0C1-6128E3ABEBAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E424C5D6-E221-4AD5-A0C1-6128E3ABEBAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E29E23F-B056-426C-A952-010E7488D6CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E29E23F-B056-426C-A952-010E7488D6CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E29E23F-B056-426C-A952-010E7488D6CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E29E23F-B056-426C-A952-010E7488D6CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

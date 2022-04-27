@@ -18,4 +18,7 @@ public class Staff
     internal Staff(VhsRentalDataLayer.Entities.Staff staff) : this(staff.Id, staff.Name, staff.Ssn, staff.Active)
     {
     }
+
+    public override string ToString() =>
+        string.IsNullOrWhiteSpace(Name) ? $"Employee {Id}" : Name.Trim();
 }

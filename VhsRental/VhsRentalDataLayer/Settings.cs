@@ -5,5 +5,5 @@ namespace VhsRentalDataLayer;
 public static class Settings
 {
     public static string ConnectionString =>
-        ConfigurationManager.ConnectionStrings["StandardConnection"].ConnectionString;
+        ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
 }
