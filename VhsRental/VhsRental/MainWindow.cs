@@ -1,12 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using VhsRental.Screens;
 
 namespace VhsRental;
@@ -21,10 +12,10 @@ public partial class MainWindow : Form
     private void MainWindow_Shown(object sender, EventArgs e)
     {
         Refresh();
-        var m = GetScreen<MainMenuScreen>();
+        GetScreen<MainMenuScreen>();
     }
 
-    private T GetScreen<T>() where T : UserControl, IScreen, new()
+    public T GetScreen<T>() where T : UserControl, IScreen, new()
     {
         T? ret = default;
 
@@ -34,6 +25,7 @@ public partial class MainWindow : Form
             {
                 control.Enabled = true;
                 control.BringToFront();
+                control.Focus();
                 ret = control;
                 continue;
             }
@@ -43,7 +35,7 @@ public partial class MainWindow : Form
 
         if (ret != null)
         {
-            ((IScreen)ret).Initialize();
+            ret.Initialize();
             return ret;
         }
 
@@ -51,7 +43,8 @@ public partial class MainWindow : Form
         ret.Dock = DockStyle.Fill;
         Controls.Add(ret);
         ret.BringToFront();
-        ((IScreen)ret).Initialize();
+        ret.Initialize();
+        ret.Focus();
         return ret;
     }
 }

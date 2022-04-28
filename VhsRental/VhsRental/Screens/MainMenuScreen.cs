@@ -1,6 +1,4 @@
-﻿using VhsRentalBusinessLayer.Entities;
-
-namespace VhsRental.Screens;
+﻿namespace VhsRental.Screens;
 
 public partial class MainMenuScreen : UserControl, IScreen
 {
@@ -37,5 +35,16 @@ public partial class MainMenuScreen : UserControl, IScreen
         Initialize();
         Refresh();
         MessageBox.Show($@"{u} has logged out.", ParentForm!.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+    }
+
+    private void btnCreateRental_Click(object sender, EventArgs e)
+    {
+        if (Context.CurrentStaff == null)
+        {
+            MessageBox.Show(@"You need to log in first.", ParentForm!.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
+        ((MainWindow)ParentForm).GetScreen<CreateRentalScreen>();
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.btnLogIn = new System.Windows.Forms.Button();
+            this.btnCreateRental = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLogIn
@@ -41,12 +42,23 @@
             this.btnLogIn.UseVisualStyleBackColor = true;
             this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
+            // btnCreateRental
+            // 
+            this.btnCreateRental.Location = new System.Drawing.Point(8, 36);
+            this.btnCreateRental.Name = "btnCreateRental";
+            this.btnCreateRental.Size = new System.Drawing.Size(332, 23);
+            this.btnCreateRental.TabIndex = 1;
+            this.btnCreateRental.Text = "Create rental";
+            this.btnCreateRental.UseVisualStyleBackColor = true;
+            this.btnCreateRental.Click += new System.EventHandler(this.btnCreateRental_Click);
+            // 
             // MainMenuScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(4, 4);
+            this.Controls.Add(this.btnCreateRental);
             this.Controls.Add(this.btnLogIn);
             this.Name = "MainMenuScreen";
             this.Size = new System.Drawing.Size(347, 474);
@@ -57,5 +69,6 @@
         #endregion
 
         private Button btnLogIn;
+        private Button btnCreateRental;
     }
 }

@@ -84,4 +84,7 @@ public class CustomerContactInformation
             return null;
         }
     }
+
+    public override string ToString() =>
+        $"{(string.IsNullOrWhiteSpace(Name) ? Id : Name)}{(IsBlocked ? " (BLOCKED)" : "")}";
 }

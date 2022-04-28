@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using VhsRental.Screens;
 using VhsRentalBusinessLayer;
 using VhsRentalBusinessLayer.Entities;
 
@@ -33,7 +25,11 @@ namespace VhsRental
                 return;
             }
 
+            this.SetToWaitMode(true);
+
             var staff = Login.TryLogin(ssn);
+
+            this.SetToWaitMode(false);
 
             switch (staff.Result)
             {
