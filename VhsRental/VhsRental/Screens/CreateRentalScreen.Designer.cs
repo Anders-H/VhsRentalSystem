@@ -53,7 +53,7 @@
             this.txtPrice3 = new System.Windows.Forms.TextBox();
             this.txtPrice4 = new System.Windows.Forms.TextBox();
             this.txtPrice5 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSum = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnSave
@@ -135,6 +135,7 @@
             this.txtCassetteEan1.Name = "txtCassetteEan1";
             this.txtCassetteEan1.Size = new System.Drawing.Size(124, 23);
             this.txtCassetteEan1.TabIndex = 10;
+            this.txtCassetteEan1.Enter += new System.EventHandler(this.txtCassetteEan1_Enter);
             this.txtCassetteEan1.Leave += new System.EventHandler(this.txtCassetteEan1_Leave);
             // 
             // label3
@@ -171,6 +172,7 @@
             this.txtCassetteEan2.Name = "txtCassetteEan2";
             this.txtCassetteEan2.Size = new System.Drawing.Size(124, 23);
             this.txtCassetteEan2.TabIndex = 13;
+            this.txtCassetteEan2.Enter += new System.EventHandler(this.txtCassetteEan2_Enter);
             this.txtCassetteEan2.Leave += new System.EventHandler(this.txtCassetteEan2_Leave);
             // 
             // txtCassetteInfo3
@@ -189,6 +191,7 @@
             this.txtCassetteEan3.Name = "txtCassetteEan3";
             this.txtCassetteEan3.Size = new System.Drawing.Size(124, 23);
             this.txtCassetteEan3.TabIndex = 16;
+            this.txtCassetteEan3.Enter += new System.EventHandler(this.txtCassetteEan3_Enter);
             this.txtCassetteEan3.Leave += new System.EventHandler(this.txtCassetteEan3_Leave);
             // 
             // txtCassetteInfo4
@@ -207,6 +210,7 @@
             this.txtCassetteEan4.Name = "txtCassetteEan4";
             this.txtCassetteEan4.Size = new System.Drawing.Size(124, 23);
             this.txtCassetteEan4.TabIndex = 19;
+            this.txtCassetteEan4.Enter += new System.EventHandler(this.txtCassetteEan4_Enter);
             this.txtCassetteEan4.Leave += new System.EventHandler(this.txtCassetteEan4_Leave);
             // 
             // txtCassetteInfo5
@@ -225,6 +229,7 @@
             this.txtCassetteEan5.Name = "txtCassetteEan5";
             this.txtCassetteEan5.Size = new System.Drawing.Size(124, 23);
             this.txtCassetteEan5.TabIndex = 22;
+            this.txtCassetteEan5.Enter += new System.EventHandler(this.txtCassetteEan5_Enter);
             this.txtCassetteEan5.Leave += new System.EventHandler(this.txtCassetteEan5_Leave);
             // 
             // label5
@@ -244,6 +249,8 @@
             this.txtPrice1.Size = new System.Drawing.Size(64, 23);
             this.txtPrice1.TabIndex = 11;
             this.txtPrice1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPrice1.TextChanged += new System.EventHandler(this.txtPrice1_TextChanged);
+            this.txtPrice1.Validated += new System.EventHandler(this.txtPrice1_Validated);
             // 
             // txtPrice2
             // 
@@ -253,6 +260,8 @@
             this.txtPrice2.Size = new System.Drawing.Size(64, 23);
             this.txtPrice2.TabIndex = 14;
             this.txtPrice2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPrice2.TextChanged += new System.EventHandler(this.txtPrice2_TextChanged);
+            this.txtPrice2.Validated += new System.EventHandler(this.txtPrice2_Validated);
             // 
             // txtPrice3
             // 
@@ -262,6 +271,8 @@
             this.txtPrice3.Size = new System.Drawing.Size(64, 23);
             this.txtPrice3.TabIndex = 17;
             this.txtPrice3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPrice3.TextChanged += new System.EventHandler(this.txtPrice3_TextChanged);
+            this.txtPrice3.Validated += new System.EventHandler(this.txtPrice3_Validated);
             // 
             // txtPrice4
             // 
@@ -271,6 +282,8 @@
             this.txtPrice4.Size = new System.Drawing.Size(64, 23);
             this.txtPrice4.TabIndex = 20;
             this.txtPrice4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPrice4.TextChanged += new System.EventHandler(this.txtPrice4_TextChanged);
+            this.txtPrice4.Validated += new System.EventHandler(this.txtPrice4_Validated);
             // 
             // txtPrice5
             // 
@@ -280,17 +293,19 @@
             this.txtPrice5.Size = new System.Drawing.Size(64, 23);
             this.txtPrice5.TabIndex = 23;
             this.txtPrice5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPrice5.TextChanged += new System.EventHandler(this.txtPrice5_TextChanged);
+            this.txtPrice5.Validated += new System.EventHandler(this.txtPrice5_Validated);
             // 
-            // textBox1
+            // txtSum
             // 
-            this.textBox1.Location = new System.Drawing.Point(136, 232);
-            this.textBox1.MaxLength = 16;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(64, 23);
-            this.textBox1.TabIndex = 25;
-            this.textBox1.TabStop = false;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSum.Location = new System.Drawing.Point(136, 232);
+            this.txtSum.MaxLength = 16;
+            this.txtSum.Name = "txtSum";
+            this.txtSum.ReadOnly = true;
+            this.txtSum.Size = new System.Drawing.Size(64, 23);
+            this.txtSum.TabIndex = 25;
+            this.txtSum.TabStop = false;
+            this.txtSum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // CreateRentalScreen
             // 
@@ -298,7 +313,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(4, 4);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtSum);
             this.Controls.Add(this.txtPrice5);
             this.Controls.Add(this.txtPrice4);
             this.Controls.Add(this.txtPrice3);
@@ -358,6 +373,6 @@
         private TextBox txtPrice3;
         private TextBox txtPrice4;
         private TextBox txtPrice5;
-        private TextBox textBox1;
+        private TextBox txtSum;
     }
 }

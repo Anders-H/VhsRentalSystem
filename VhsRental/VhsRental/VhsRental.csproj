@@ -18,4 +18,8 @@
     <ProjectReference Include="..\VhsRentalBusinessLayer\VhsRentalBusinessLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CustomControls\" />
+  </ItemGroup>
+
 </Project>

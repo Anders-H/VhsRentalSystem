@@ -47,6 +47,39 @@ public class AvailableCassette
         return result;
     }
 
+    public static List<AvailableCassette> GetCassetteFromEan(decimal ean)
+    {
+        var result = new List<AvailableCassette>();
+
+        try
+        {
+            var sourceList = VhsRentalDataLayer.Entities.AvailableCassette.GetCassetteFromEan(ean);
+            result.AddRange(sourceList.Select(s => new AvailableCassette(s)));
+        }
+        catch
+        {
+            // ignored
+        }
+
+        return result;
+    }
+
+    public static AvailableCassette? GetUnavailableCassettesFromMovieEan(decimal ean)
+    {
+        try
+        {
+            var result = VhsRentalDataLayer.Entities.AvailableCassette.GetUnavailableCassettesFromMovieEan(ean);
+            
+            return result == null
+                ? null
+                : new AvailableCassette(result);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     public override string ToString() =>
         $"{Id}: {Title} ({Year:0000}), price: {CustomerPrice:n2}, {NumberOfCopies} copies";
 }

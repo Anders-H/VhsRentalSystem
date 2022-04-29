@@ -20,11 +20,20 @@ public class AvailableCassette
         NumberOfCopies = numberOfCopies;
     }
 
-    public static List<AvailableCassette> GetAvailableCassettesFromMovieEan(decimal ean)
+    public static List<AvailableCassette> GetAvailableCassettesFromMovieEan(decimal ean) =>
+        GetCassettes(ean, "dbo.GetAvailableCassettesFromMovieEAN");
+
+    public static List<AvailableCassette> GetCassetteFromEan(decimal ean) =>
+        GetCassettes(ean, "dbo.GetCassetteFromEAN");
+
+    public static AvailableCassette? GetUnavailableCassettesFromMovieEan(decimal ean) =>
+        GetCassettes(ean, "dbo.GetUnavailableCassettesFromMovieEAN").FirstOrDefault();
+
+    private static List<AvailableCassette> GetCassettes(decimal ean, string proc)
     {
         using var cn = new SqlConnection(Settings.ConnectionString);
         cn.Open();
-        using var cmd = new SqlCommand("dbo.GetAvailableCassettesFromMovieEAN", cn);
+        using var cmd = new SqlCommand(proc, cn);
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.Parameters.AddWithValue("@EAN", ean);
         var r = cmd.ExecuteReader();
@@ -35,7 +44,7 @@ public class AvailableCassette
         var ordinalNumberOfCopies = r.GetOrdinal("NumberOfCopies");
 
         var result = new List<AvailableCassette>();
-        
+
         while (r.Read())
             result.Add(
                 new AvailableCassette(

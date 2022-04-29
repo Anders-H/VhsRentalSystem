@@ -1,4 +1,5 @@
 using VhsRental.Screens;
+using VhsRentalBusinessLayer.Entities;
 
 namespace VhsRental;
 
@@ -11,6 +12,9 @@ public partial class MainWindow : Form
 
     private void MainWindow_Shown(object sender, EventArgs e)
     {
+#if DEBUG
+        Context.CurrentStaff = new Staff(1, "Andy McAndy", "334455-6677", true);
+#endif
         Refresh();
         GetScreen<MainMenuScreen>();
     }
