@@ -73,6 +73,7 @@
             this.btnAbandon.TabIndex = 1;
             this.btnAbandon.Text = "Abandon";
             this.btnAbandon.UseVisualStyleBackColor = true;
+            this.btnAbandon.Click += new System.EventHandler(this.btnAbandon_Click);
             // 
             // btnOpenCustomer
             // 
@@ -82,6 +83,7 @@
             this.btnOpenCustomer.TabIndex = 2;
             this.btnOpenCustomer.Text = "Open customer";
             this.btnOpenCustomer.UseVisualStyleBackColor = true;
+            this.btnOpenCustomer.Click += new System.EventHandler(this.btnOpenCustomer_Click);
             // 
             // label1
             // 

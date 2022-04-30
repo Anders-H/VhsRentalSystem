@@ -65,4 +65,34 @@ public class CustomerContactInformation
         cn.Close();
         return result;
     }
+
+    public static CustomerContactInformation? Get(int id)
+    {
+        CustomerContactInformation? result = null;
+        using var cn = new SqlConnection(Settings.ConnectionString);
+        cn.Open();
+        using var cmd = new SqlCommand("dbo.GetCustomerContactInformationByID", cn);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@ID", id);
+        var r = cmd.ExecuteReader();
+        if (r.Read())
+        {
+            result = new CustomerContactInformation(
+                r.GetInt32(r.GetOrdinal("ID")),
+                r.GetString(r.GetOrdinal("Name")),
+                r.GetString(r.GetOrdinal("SSN")),
+                r.GetString(r.GetOrdinal("Address1")),
+                r.GetString(r.GetOrdinal("Address2")),
+                r.GetString(r.GetOrdinal("ZipCode")),
+                r.GetString(r.GetOrdinal("City")),
+                r.GetString(r.GetOrdinal("Phone")),
+                r.GetString(r.GetOrdinal("EMail")),
+                r.GetString(r.GetOrdinal("CustomerNumber")),
+                r.GetBoolean(r.GetOrdinal("IsBlocked"))
+            );
+        }
+        r.Close();
+        cn.Close();
+        return result;
+    }
 }

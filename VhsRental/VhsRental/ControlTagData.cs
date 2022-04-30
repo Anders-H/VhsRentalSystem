@@ -14,4 +14,12 @@ public class ControlTagData
         EntityId = 0;
         Money = 0m;
     }
+
+    public void Clear()
+    {
+        OriginalText = "";
+        Enabled = true;
+        EntityId = 0;
+        Money = 0m;
+    }
 }

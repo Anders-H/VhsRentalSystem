@@ -13,6 +13,16 @@ public partial class CreateRentalScreen : UserControl, IScreen
 
     public void Initialize()
     {
+        foreach (Control control in Controls)
+        {
+            if (control is not TextBox)
+                continue;
+
+            control.Text = "";
+            control.GetTag().Clear();
+        }
+
+        txtSum.Text = 0m.ToString("n2");
     }
 
     private void txtCustomerSSN_Leave(object sender, EventArgs e)
@@ -114,7 +124,7 @@ public partial class CreateRentalScreen : UserControl, IScreen
         }
         else
         {
-            if (string.Compare((tag.OriginalText ?? "").Trim(), eanTextBox.Text.Trim(), StringComparison.CurrentCultureIgnoreCase) == 0)
+            if (string.Compare(tag.OriginalText.Trim(), eanTextBox.Text.Trim(), StringComparison.CurrentCultureIgnoreCase) == 0)
                 return;
 
             using var x = new PromptCassetteDialog();
@@ -219,4 +229,58 @@ public partial class CreateRentalScreen : UserControl, IScreen
 
     private void txtCassetteEan5_Enter(object sender, EventArgs e) =>
         txtCassetteEan5.GetTag().OriginalText = txtCassetteEan5.Text;
+
+    private void btnAbandon_Click(object sender, EventArgs e)
+    {
+        if (HasCustomer() || HasAnyCassette())
+            if (MessageBox.Show(@"Abandon this rental an return to main menu?", ParentForm!.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+                return;
+
+        ((MainWindow)ParentForm).GetScreen<MainMenuScreen>();
+    }
+
+    private bool HasCustomer() =>
+        txtCustomerSSN.GetTag().EntityId > 0;
+
+    private bool HasAnyCassette() =>
+        txtCassetteEan1.GetTag().EntityId > 0
+        || txtCassetteEan2.GetTag().EntityId > 0
+        || txtCassetteEan3.GetTag().EntityId > 0
+        || txtCassetteEan4.GetTag().EntityId > 0
+        || txtCassetteEan5.GetTag().EntityId > 0;
+
+    private void btnOpenCustomer_Click(object sender, EventArgs e)
+    {
+        using var x = new CustomerDialog();
+        x.CurrentCustomerId = txtCustomerSSN.GetTag().EntityId;
+
+        if (x.ShowDialog() == DialogResult.OK)
+        {
+            this.SetToWaitMode(true);
+            
+            txtCustomerSSN.GetTag().EntityId = x.CurrentCustomerId;
+
+            if (x.CurrentCustomerId <= 0)
+            {
+
+            }
+            else
+            {
+                var customer = CustomerContactInformation.Get(x.CurrentCustomerId);
+
+                if (customer == null)
+                {
+                    txtCustomerSSN.Text = "";
+                    txtCustomerName.Text = "";
+                }
+                else
+                {
+                    txtCustomerSSN.Text = customer.Ssn;
+                    txtCustomerName.Text = customer.ToString();
+                }
+            }
+
+            this.SetToWaitMode(false);
+        }
+    }
 }

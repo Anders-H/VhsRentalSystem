@@ -85,6 +85,23 @@ public class CustomerContactInformation
         }
     }
 
+    public static CustomerContactInformation? Get(int id)
+    {
+        try
+        {
+            var result = VhsRentalDataLayer.Entities.CustomerContactInformation.Get(id);
+
+            if (result == null)
+                return null;
+
+            return new CustomerContactInformation(result);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     public override string ToString() =>
         $"{(string.IsNullOrWhiteSpace(Name) ? Id : Name)}{(IsBlocked ? " (BLOCKED)" : "")}";
 }
