@@ -31,6 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cboCustomerSsn = new System.Windows.Forms.ComboBox();
             this.customerCoreDataControl1 = new VhsRental.CustomControls.CustomerCoreDataControl();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -57,11 +59,33 @@
             this.customerCoreDataControl1.Size = new System.Drawing.Size(771, 252);
             this.customerCoreDataControl1.TabIndex = 2;
             // 
+            // btnOk
+            // 
+            this.btnOk.Location = new System.Drawing.Point(616, 288);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.TabIndex = 3;
+            this.btnOk.Text = "OK";
+            this.btnOk.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(696, 288);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
             // CustomerDialog
             // 
+            this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(777, 365);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(777, 315);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOk);
             this.Controls.Add(this.customerCoreDataControl1);
             this.Controls.Add(this.cboCustomerSsn);
             this.Controls.Add(this.label1);
@@ -82,5 +106,7 @@
         private Label label1;
         private ComboBox cboCustomerSsn;
         private CustomControls.CustomerCoreDataControl customerCoreDataControl1;
+        private Button btnOk;
+        private Button btnCancel;
     }
 }
