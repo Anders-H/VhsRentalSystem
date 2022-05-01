@@ -283,4 +283,21 @@ public partial class CreateRentalScreen : UserControl, IScreen
             this.SetToWaitMode(false);
         }
     }
+
+    private void btnSave_Click(object sender, EventArgs e)
+    {
+        if (!HasCustomer())
+        {
+            MessageBox.Show(@"No customer is selected.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
+        if (!HasAnyCassette())
+        {
+            MessageBox.Show(@"No customer is selected.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
+
+    }
 }
