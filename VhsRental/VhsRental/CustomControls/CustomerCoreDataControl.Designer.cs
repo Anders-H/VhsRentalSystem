@@ -45,7 +45,7 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtLastActivity = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtCassettesOutNow = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -217,7 +217,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.txtLastActivity);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.txtCassettesOutNow);
             this.groupBox2.Controls.Add(this.label13);
@@ -239,14 +239,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Other information";
             // 
-            // textBox1
+            // txtLastActivity
             // 
-            this.textBox1.Location = new System.Drawing.Point(208, 224);
-            this.textBox1.MaxLength = 50;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(120, 23);
-            this.textBox1.TabIndex = 14;
+            this.txtLastActivity.Location = new System.Drawing.Point(208, 224);
+            this.txtLastActivity.MaxLength = 50;
+            this.txtLastActivity.Name = "txtLastActivity";
+            this.txtLastActivity.ReadOnly = true;
+            this.txtLastActivity.Size = new System.Drawing.Size(120, 23);
+            this.txtLastActivity.TabIndex = 14;
+            this.txtLastActivity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label14
             // 
@@ -265,6 +266,7 @@
             this.txtCassettesOutNow.ReadOnly = true;
             this.txtCassettesOutNow.Size = new System.Drawing.Size(120, 23);
             this.txtCassettesOutNow.TabIndex = 12;
+            this.txtCassettesOutNow.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label13
             // 
@@ -283,6 +285,7 @@
             this.txtTotalNumberOfRentals.ReadOnly = true;
             this.txtTotalNumberOfRentals.Size = new System.Drawing.Size(120, 23);
             this.txtTotalNumberOfRentals.TabIndex = 10;
+            this.txtTotalNumberOfRentals.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label12
             // 
@@ -360,7 +363,7 @@
             // txtCustomerNumber
             // 
             this.txtCustomerNumber.Location = new System.Drawing.Point(8, 30);
-            this.txtCustomerNumber.MaxLength = 50;
+            this.txtCustomerNumber.MaxLength = 12;
             this.txtCustomerNumber.Name = "txtCustomerNumber";
             this.txtCustomerNumber.ReadOnly = true;
             this.txtCustomerNumber.Size = new System.Drawing.Size(152, 23);
@@ -424,7 +427,7 @@
         private Label label13;
         private TextBox txtTotalNumberOfRentals;
         private Label label12;
-        private TextBox textBox1;
+        private TextBox txtLastActivity;
         private Label label14;
     }
 }
