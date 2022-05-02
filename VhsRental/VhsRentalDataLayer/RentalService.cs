@@ -105,4 +105,9 @@ public class RentalService
         _connection.Close();
         _connection.Dispose();
     }
+
+    public static void ReturnCassette(int cassetteId, int staffId, string description)
+    {
+
+    }
 }

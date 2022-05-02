@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using VhsRental.Dialogs;
+using VhsRentalBusinessLayer;
 using VhsRentalBusinessLayer.Entities;
 
 namespace VhsRental.Screens;
@@ -249,6 +250,22 @@ public partial class CreateRentalScreen : UserControl, IScreen
         || txtCassetteEan4.GetTag().EntityId > 0
         || txtCassetteEan5.GetTag().EntityId > 0;
 
+    private IEnumerable<int> GetCassetteIds()
+    {
+        var s = new List<int>();
+        if (txtCassetteEan1.GetTag().EntityId > 0)
+            s.Add(txtCassetteEan1.GetTag().EntityId);
+        if (txtCassetteEan2.GetTag().EntityId > 0)
+            s.Add(txtCassetteEan2.GetTag().EntityId);
+        if (txtCassetteEan3.GetTag().EntityId > 0)
+            s.Add(txtCassetteEan3.GetTag().EntityId);
+        if (txtCassetteEan4.GetTag().EntityId > 0)
+            s.Add(txtCassetteEan4.GetTag().EntityId);
+        if (txtCassetteEan5.GetTag().EntityId > 0)
+            s.Add(txtCassetteEan5.GetTag().EntityId);
+        return s;
+    }
+
     private void btnOpenCustomer_Click(object sender, EventArgs e)
     {
         using var x = new CustomerDialog();
@@ -262,7 +279,7 @@ public partial class CreateRentalScreen : UserControl, IScreen
 
             if (x.CurrentCustomerId <= 0)
             {
-
+                // TODO: Perhaps browse?
             }
             else
             {
@@ -298,6 +315,17 @@ public partial class CreateRentalScreen : UserControl, IScreen
             return;
         }
 
+        var cassettes = GetCassetteIds();
 
+        foreach (var cassetteId in cassettes)
+        {
+            if (AvailableCassette.CassetteIsOut(cassetteId))
+            {
+                // TODO: Collect inspection information.
+                RentalService.ReturnCassette(cassetteId, Context.CurrentStaff?.Id ?? 0, description);
+            }
+        }
+
+        // TODO: Perform rental process.
     }
 }

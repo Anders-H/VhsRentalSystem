@@ -66,6 +66,26 @@ public class RentalService
 
     public void CloseTransaction(bool canceled)
     {
+        try
+        {
+            _rentalService.CloseTransaction(canceled);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 
+    public static void ReturnCassette(int cassetteId, int staffId, string description)
+    {
+        try
+        {
+            VhsRentalDataLayer.RentalService.ReturnCassette(cassetteId, staffId, description);
+        }
+        catch
+        {
+            // ignored
+        }
     }
 }
