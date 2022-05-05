@@ -241,7 +241,10 @@ public partial class CreateRentalScreen : UserControl, IScreen
     }
 
     private bool HasCustomer() =>
-        txtCustomerSSN.GetTag().EntityId > 0;
+        CustomerId > 0;
+
+    public int CustomerId =>
+        txtCustomerSSN.GetTag().EntityId;
 
     private bool HasAnyCassette() =>
         txtCassetteEan1.GetTag().EntityId > 0
@@ -315,17 +318,54 @@ public partial class CreateRentalScreen : UserControl, IScreen
             return;
         }
 
-        var cassettes = GetCassetteIds();
+        var cassettes = GetCassetteIds().ToList();
+        using var cassetteService = new CassetteService();
 
         foreach (var cassetteId in cassettes)
         {
-            if (AvailableCassette.CassetteIsOut(cassetteId))
+            if (cassetteService.CassetteIsOut(cassetteId))
             {
                 // TODO: Collect inspection information.
                 RentalService.ReturnCassette(cassetteId, Context.CurrentStaff?.Id ?? 0, description);
             }
         }
 
-        // TODO: Perform rental process.
+        var cassettesToRental = new List<CassetteToRental>();
+
+        foreach (var cassetteId in cassettes)
+        {
+            var cassette = cassetteService.GetCassetteToRental(cassetteId);
+            // TODO: Offer a possibility to change price and add comment.
+            cassettesToRental.Add(cassette);
+        }
+
+        var rentalService = new RentalService(CustomerId, Context.CurrentStaff!.Id);
+        var createRentalEventTransactionResult = rentalService.CreateRentalEventTransaction();
+
+        switch (createRentalEventTransactionResult)
+        {
+            case RentalServiceOpenRentalEventResult.CustomerNotFound:
+                MessageBox.Show(@"Customer not found.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                rentalService.CloseTransaction(true);
+                return;
+            case RentalServiceOpenRentalEventResult.CustomerBlocked:
+                MessageBox.Show(@"Customer is blocked.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                rentalService.CloseTransaction(true);
+                return;
+            case RentalServiceOpenRentalEventResult.Success:
+                break;
+            default:
+                MessageBox.Show(@"Unknown error.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                rentalService.CloseTransaction(true);
+                return;
+        }
+
+        foreach (var cassette in cassettes)
+        {
+            var result = rentalService.AddRentalToTransaction(cassette.CassetteId, cassette.Amount, cassette.Description);
+            // TODO: Check result.
+        }
+
+        // TODO: Close the transaction.
     }
-}
+} 

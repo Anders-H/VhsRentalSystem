@@ -108,6 +108,14 @@ public class RentalService
 
     public static void ReturnCassette(int cassetteId, int staffId, string description)
     {
-
+        using var cn = new SqlConnection(Settings.ConnectionString);
+        cn.Open();
+        using var cmd = new SqlCommand("dbo.ReturnCassette", cn);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@ID", cassetteId);
+        cmd.Parameters.AddWithValue("@StaffID", staffId);
+        cmd.Parameters.AddWithValue("@Description", description);
+        cmd.ExecuteNonQuery();
+        cn.Close();
     }
 }

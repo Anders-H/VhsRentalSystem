@@ -68,12 +68,11 @@ public class RentalService
     {
         try
         {
-            _rentalService.CloseTransaction(canceled);
+            _rentalService!.CloseTransaction(canceled);
         }
-        catch (Exception e)
+        catch
         {
-            Console.WriteLine(e);
-            throw;
+            // ignored
         }
     }
 
