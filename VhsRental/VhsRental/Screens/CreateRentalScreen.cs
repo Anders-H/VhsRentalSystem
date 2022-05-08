@@ -360,7 +360,7 @@ public partial class CreateRentalScreen : UserControl, IScreen
                 return;
         }
 
-        foreach (var cassette in cassettes)
+        foreach (var cassette in cassettesToRental)
         {
             var result = rentalService.AddRentalToTransaction(cassette.CassetteId, cassette.Amount, cassette.Description);
             // TODO: Check result.
