@@ -330,11 +330,11 @@ public partial class CreateRentalScreen : UserControl, IScreen
             }
         }
 
-        var cassettesToRental = new List<CassetteToRental>();
+        var cassettesToRental = new List<RentalCassette>();
 
         foreach (var cassetteId in cassettes)
         {
-            var cassette = cassetteService.GetCassetteToRental(cassetteId);
+            var cassette = cassetteService.GetCassetteForRental(cassetteId);
             // TODO: Offer a possibility to change price and add comment.
             cassettesToRental.Add(cassette);
         }

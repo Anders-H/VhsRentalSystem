@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using VhsRentalDataLayer.Entities;
 
 namespace VhsRentalDataLayer;
 
@@ -12,7 +13,17 @@ public class CassetteService : IDisposable
         _connection.Open();
     }
 
+    public bool CassetteIsOut(int cassetteId)
+    {
+        // dbo.IsCassetteOut
+    }
+
     public void ReturnCassette(int cassetteId, int staffId, string description)
+    {
+
+    }
+
+    public RentalCassette? GetCassetteForRental(int cassetteId)
     {
 
     }
