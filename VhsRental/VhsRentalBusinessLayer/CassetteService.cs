@@ -21,14 +21,20 @@ public class CassetteService : IDisposable
         _cassetteService.ReturnCassette(cassetteId, staffId, description);
     }
 
-    public RentalCassette? GetCassetteForRental(int cassetteId)
+    public RentalCassette GetCassetteForRental(int cassetteId)
     {
         var result = _cassetteService.GetCassetteForRental(cassetteId);
 
-        if (result == null)
-            return null;
-
         return new RentalCassette(result.CassetteId, result.Amount, "");
+    }
+
+    public CassetteBasicInformation? GetBasicCassetteInformation(int cassetteId)
+    {
+        var result = _cassetteService.GetBasicCassetteInformation(cassetteId);
+
+        return result == null
+            ? null
+            : new CassetteBasicInformation(result);
     }
 
     public void Dispose()

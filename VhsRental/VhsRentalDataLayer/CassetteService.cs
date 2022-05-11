@@ -19,7 +19,7 @@ public class CassetteService : IDisposable
         using var cmd = new SqlCommand("dbo.IsCassetteOut", _connection);
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.Parameters.AddWithValue("@ID", cassetteId);
-        return (int)cmd.ExecuteScalar() > 0;
+        return (bool)cmd.ExecuteScalar();
     }
 
     public void ReturnCassette(int cassetteId, int staffId, string description)
@@ -32,9 +32,36 @@ public class CassetteService : IDisposable
         cmd.ExecuteNonQuery();
     }
 
-    public RentalCassette? GetCassetteForRental(int cassetteId)
+    public RentalCassette GetCassetteForRental(int cassetteId)
     {
-        //dbo.SuggestPrice
+        using var cmd = new SqlCommand("dbo.SuggestPrice", _connection);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@CassetteID", cassetteId);
+        var price = (decimal)cmd.ExecuteScalar();
+        return new RentalCassette(cassetteId, price);
+    }
+
+    public CassetteBasicInformation? GetBasicCassetteInformation(int cassetteId)
+    {
+        using var cmd = new SqlCommand("dbo.GetBasicCassetteInformation", _connection);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@CassetteID", cassetteId);
+
+        CassetteBasicInformation? result = null;
+
+        var r = cmd.ExecuteReader();
+        if (r.Read())
+            result = new CassetteBasicInformation(
+                r.GetInt32(r.GetOrdinal("ID")),
+                r.GetDecimal(r.GetOrdinal("MovieEAN")),
+                r.GetDecimal(r.GetOrdinal("CassetteEAN")),
+                r.GetString(r.GetOrdinal("Title")),
+                r.GetInt16(r.GetOrdinal("Year"))
+            );
+
+        r.Close();
+
+        return result;
     }
 
     public void Dispose()

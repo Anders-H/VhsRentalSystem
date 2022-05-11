@@ -237,7 +237,7 @@ public partial class CreateRentalScreen : UserControl, IScreen
             if (MessageBox.Show(@"Abandon this rental an return to main menu?", ParentForm!.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 return;
 
-        ((MainWindow)ParentForm).GetScreen<MainMenuScreen>();
+        ((MainWindow)ParentForm!).GetScreen<MainMenuScreen>();
     }
 
     private bool HasCustomer() =>
@@ -318,6 +318,8 @@ public partial class CreateRentalScreen : UserControl, IScreen
             return;
         }
 
+        this.SetToWaitMode(true);
+
         var cassettes = GetCassetteIds().ToList();
         using var cassetteService = new CassetteService();
 
@@ -325,8 +327,23 @@ public partial class CreateRentalScreen : UserControl, IScreen
         {
             if (cassetteService.CassetteIsOut(cassetteId))
             {
-                // TODO: Collect inspection information.
-                RentalService.ReturnCassette(cassetteId, Context.CurrentStaff?.Id ?? 0, description);
+                var cassetteBasic = cassetteService.GetBasicCassetteInformation(cassetteId);
+                if (cassetteBasic == null)
+                {
+                    RentalService.ReturnCassette(cassetteId, Context.CurrentStaff?.Id ?? 0, "");
+                }
+                else
+                {
+
+                    var x = new ReturnOnTheFlyDialog();
+                    x.Cassette = cassetteBasic;
+                    var description = "";
+                    
+                    if (x.ShowDialog(this) == DialogResult.OK)
+                        description = x.Description;
+
+                    RentalService.ReturnCassette(cassetteId, Context.CurrentStaff?.Id ?? 0, description);
+                }
             }
         }
 
@@ -335,7 +352,6 @@ public partial class CreateRentalScreen : UserControl, IScreen
         foreach (var cassetteId in cassettes)
         {
             var cassette = cassetteService.GetCassetteForRental(cassetteId);
-            // TODO: Offer a possibility to change price and add comment.
             cassettesToRental.Add(cassette);
         }
 
@@ -345,16 +361,20 @@ public partial class CreateRentalScreen : UserControl, IScreen
         switch (createRentalEventTransactionResult)
         {
             case RentalServiceOpenRentalEventResult.CustomerNotFound:
+                this.SetToWaitMode(false);
                 MessageBox.Show(@"Customer not found.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 rentalService.CloseTransaction(true);
                 return;
             case RentalServiceOpenRentalEventResult.CustomerBlocked:
+                this.SetToWaitMode(false);
                 MessageBox.Show(@"Customer is blocked.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 rentalService.CloseTransaction(true);
+                ((MainWindow)ParentForm!).GetScreen<MainMenuScreen>();
                 return;
             case RentalServiceOpenRentalEventResult.Success:
                 break;
             default:
+                this.SetToWaitMode(false);
                 MessageBox.Show(@"Unknown error.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 rentalService.CloseTransaction(true);
                 return;
@@ -363,9 +383,52 @@ public partial class CreateRentalScreen : UserControl, IScreen
         foreach (var cassette in cassettesToRental)
         {
             var result = rentalService.AddRentalToTransaction(cassette.CassetteId, cassette.Amount, cassette.Description);
-            // TODO: Check result.
+            switch (result)
+            {
+                case RentalServiceResult.Success:
+                    break;
+                case RentalServiceResult.CustomerBlocked:
+                    this.SetToWaitMode(false);
+                    MessageBox.Show(@"Customer is blocked.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    rentalService.CloseTransaction(true);
+                    ((MainWindow)ParentForm!).GetScreen<MainMenuScreen>();
+                    return;
+                case RentalServiceResult.CustomerNotFound:
+                    this.SetToWaitMode(false);
+                    MessageBox.Show(@"Customer is not registered.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    rentalService.CloseTransaction(true);
+                    return;
+                case RentalServiceResult.CassetteInactive:
+                    this.SetToWaitMode(false);
+                    MessageBox.Show(@"Cassette is inactive.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    rentalService.CloseTransaction(true);
+                    return;
+                case RentalServiceResult.CassetteNotFound:
+                    this.SetToWaitMode(false);
+                    MessageBox.Show(@"Cassette not found.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    rentalService.CloseTransaction(true);
+                    return;
+                case RentalServiceResult.MovieOrCompanyNotFound:
+                    this.SetToWaitMode(false);
+                    MessageBox.Show(@"Movie or company not found.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    rentalService.CloseTransaction(true);
+                    return;
+                case RentalServiceResult.StaffInactiveOrNotFound:
+                    this.SetToWaitMode(false);
+                    MessageBox.Show(@"Staff inactive or not found.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    rentalService.CloseTransaction(true);
+                    ((MainWindow)ParentForm!).GetScreen<MainMenuScreen>();
+                    return;
+                default:
+                    this.SetToWaitMode(false);
+                    MessageBox.Show(@"Unknown error.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    rentalService.CloseTransaction(true);
+                    return;
+            }
         }
 
-        // TODO: Close the transaction.
+        rentalService.CloseTransaction(false);
+        this.SetToWaitMode(false);
+        ((MainWindow)ParentForm!).GetScreen<MainMenuScreen>();
     }
 } 

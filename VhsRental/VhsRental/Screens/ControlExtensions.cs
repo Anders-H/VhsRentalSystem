@@ -21,9 +21,7 @@ public static class ControlExtensions
 
         foreach (Control control in me.Controls)
         {
-            var tag = GetTag(me);
-
-            if (tag == null)
+            if (me.Tag is not ControlTagData tag)
                 continue;
 
             control.Enabled = tag.Enabled;
