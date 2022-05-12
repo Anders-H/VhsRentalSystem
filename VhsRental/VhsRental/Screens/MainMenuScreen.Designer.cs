@@ -61,7 +61,7 @@
             this.Controls.Add(this.btnCreateRental);
             this.Controls.Add(this.btnLogIn);
             this.Name = "MainMenuScreen";
-            this.Size = new System.Drawing.Size(347, 474);
+            this.Size = new System.Drawing.Size(569, 474);
             this.ResumeLayout(false);
 
         }

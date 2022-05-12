@@ -76,6 +76,7 @@
             this.txtCustomerSsn.Name = "txtCustomerSsn";
             this.txtCustomerSsn.Size = new System.Drawing.Size(172, 23);
             this.txtCustomerSsn.TabIndex = 1;
+            this.txtCustomerSsn.Leave += new System.EventHandler(this.txtCustomerSsn_Leave);
             // 
             // CustomerDialog
             // 

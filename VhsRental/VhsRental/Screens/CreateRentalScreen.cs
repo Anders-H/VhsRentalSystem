@@ -299,7 +299,7 @@ public partial class CreateRentalScreen : UserControl, IScreen
                     txtCustomerName.Text = customer.ToString();
                 }
             }
-
+            txtCustomerSSN_Leave(sender, e);
             this.SetToWaitMode(false);
         }
     }
@@ -431,4 +431,4 @@ public partial class CreateRentalScreen : UserControl, IScreen
         this.SetToWaitMode(false);
         ((MainWindow)ParentForm!).GetScreen<MainMenuScreen>();
     }
-} 
+}

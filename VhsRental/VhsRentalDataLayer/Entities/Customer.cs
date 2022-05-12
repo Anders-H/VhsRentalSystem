@@ -54,14 +54,34 @@ public class Customer
 
     public static Customer? Get(int id)
     {
-        Customer? result = null;
         using var cn = new SqlConnection(Settings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand("dbo.GetCustomer", cn);
         cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.AddWithValue("@SID", id);
+        cmd.Parameters.AddWithValue("@ID", id);
         var r = cmd.ExecuteReader();
+        var result = GetFromReader(r);
+        r.Close();
+        cn.Close();
+        return result;
+    }
 
+    public static Customer? Get(string ssn)
+    {
+        using var cn = new SqlConnection(Settings.ConnectionString);
+        cn.Open();
+        using var cmd = new SqlCommand("dbo.GetCustomerFromSSN", cn);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@SSN", ssn);
+        var r = cmd.ExecuteReader();
+        var result = GetFromReader(r);
+        r.Close();
+        cn.Close();
+        return result;
+    }
+
+    private static Customer? GetFromReader(SqlDataReader r)
+    {
         var lastCassetteOrdinal = r.GetOrdinal("LastCassette");
         var cassetteEanOrdinal = r.GetOrdinal("CassetteEAN");
         var cassetteLastCustomerIdOrdinal = r.GetOrdinal("CassetteLastCustomerID");
@@ -73,7 +93,7 @@ public class Customer
 
         if (r.Read())
         {
-            result = new Customer(
+            return new Customer(
                 r.GetInt32(r.GetOrdinal("ID")),
                 r.GetString(r.GetOrdinal("Name")),
                 r.GetString(r.GetOrdinal("SSN")),
@@ -97,8 +117,7 @@ public class Customer
                 r.IsDBNull(lastActivityOrdinal) ? null : r.GetDateTime(lastActivityOrdinal)
             );
         }
-        r.Close();
-        cn.Close();
-        return result;
+
+        return null;
     }
 }

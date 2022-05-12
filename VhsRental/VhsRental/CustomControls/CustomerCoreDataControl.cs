@@ -64,7 +64,7 @@ namespace VhsRental.CustomControls
             txtLastActivity.Text = "";
         }
 
-        public void WriteBack(Customer target)
+        public void WriteBack(ref Customer target)
         {
             target.Name = txtName.Text.Trim();
             target.Ssn = txtSsn.Text.Trim();
@@ -75,6 +75,12 @@ namespace VhsRental.CustomControls
             target.Phone = txtPhone.Text.Trim();
             target.EMail = txtEMail.Text.Trim();
             target.IsBlocked = chkBlocked.Checked;
+        }
+
+        public bool ValidateCustomer()
+        {
+            // TODO!!!
+            return true;
         }
     }
 }

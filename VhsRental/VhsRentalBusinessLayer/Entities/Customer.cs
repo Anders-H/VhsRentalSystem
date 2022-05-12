@@ -94,4 +94,26 @@ public class Customer
             return null;
         }
     }
+
+    public static Customer? Get(string ssn)
+    {
+        try
+        {
+            var result = VhsRentalDataLayer.Entities.Customer.Get(ssn);
+
+            if (result == null)
+                return null;
+
+            return new Customer(result);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public static void Set(Customer customer)
+    {
+        // TODO
+    }
 }
