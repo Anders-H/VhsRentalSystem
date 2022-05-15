@@ -114,6 +114,13 @@ public class Customer
 
     public static void Set(Customer customer)
     {
-        // TODO
+        try
+        {
+            VhsRentalDataLayer.Entities.Customer.Set(customer);
+        }
+        catch
+        {
+            // ignored
+        }
     }
 }
