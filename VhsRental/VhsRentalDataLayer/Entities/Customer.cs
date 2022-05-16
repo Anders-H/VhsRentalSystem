@@ -113,11 +113,29 @@ public class Customer
                 r.IsDBNull(lastMovieEanOrdinal) ? 0m : r.GetDecimal(lastMovieEanOrdinal),
                 r.IsDBNull(lastMovieTitleOrdinal) ? "" : r.GetString(lastMovieTitleOrdinal),
                 r.GetInt32(r.GetOrdinal("TotalNumberOfRentals")),
-                r.GetInt32(r.GetOrdinal("CassettesOut")),
+                r.GetInt32(r.GetOrdinal("CassettesOutNow")),
                 r.IsDBNull(lastActivityOrdinal) ? null : r.GetDateTime(lastActivityOrdinal)
             );
         }
 
         return null;
+    }
+
+    public static void Set(int id, string name, string address1, string address2, string zipCode, string city, string phone, string eMail, bool isBlocked)
+    {
+        using var cn = new SqlConnection(Settings.ConnectionString);
+        cn.Open();
+        using var cmd = new SqlCommand("dbo.UpdateCustomer", cn);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@ID", id);
+        cmd.Parameters.AddWithValue("@Name", name);
+        cmd.Parameters.AddWithValue("@Address1", address1);
+        cmd.Parameters.AddWithValue("@Address2", address2);
+        cmd.Parameters.AddWithValue("@ZipCode", zipCode);
+        cmd.Parameters.AddWithValue("@City", city);
+        cmd.Parameters.AddWithValue("@Phone", phone);
+        cmd.Parameters.AddWithValue("@EMail", eMail);
+        cmd.Parameters.AddWithValue("@IsBlocked", isBlocked);
+        cmd.ExecuteNonQuery();
     }
 }

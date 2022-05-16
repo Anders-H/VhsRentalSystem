@@ -64,6 +64,11 @@ namespace VhsRental.CustomControls
             txtLastActivity.Text = "";
         }
 
+        public void NewCustomer(string ssn)
+        {
+            // TODO
+        }
+
         public void WriteBack(ref Customer target)
         {
             target.Name = txtName.Text.Trim();
@@ -79,7 +84,16 @@ namespace VhsRental.CustomControls
 
         public bool ValidateCustomer()
         {
-            // TODO!!!
+            // TODO: This must be improved.
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show("The field Name cannot be empty.", Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtSsn.Text))
+                return false;
+
             return true;
         }
     }

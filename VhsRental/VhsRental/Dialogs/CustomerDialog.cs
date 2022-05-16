@@ -82,6 +82,7 @@ public partial class CustomerDialog : Form
         if (customer == null)
         {
             ClearForm();
+            customerCoreDataControl1.NewCustomer(txtCustomerSsn.Text);
             return;
         }
 

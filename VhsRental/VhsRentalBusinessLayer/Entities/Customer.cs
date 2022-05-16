@@ -116,7 +116,17 @@ public class Customer
     {
         try
         {
-            VhsRentalDataLayer.Entities.Customer.Set(customer);
+            VhsRentalDataLayer.Entities.Customer.Set(
+                customer.Id,
+                customer.Name,
+                customer.Address1,
+                customer.Address2,
+                customer.ZipCode,
+                customer.City,
+                customer.Phone,
+                customer.EMail,
+                customer.IsBlocked
+            );
         }
         catch
         {

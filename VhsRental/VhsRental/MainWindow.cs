@@ -16,7 +16,7 @@ public partial class MainWindow : Form
         Context.CurrentStaff = new Staff(1, "Andy McAndy", "334455-6677", true);
 #endif
         Refresh();
-        GetScreen<MainMenuScreen>();
+        GetScreen<MainMenuScreen>().Initialize();
     }
 
     public T GetScreen<T>() where T : UserControl, IScreen, new()
@@ -39,7 +39,9 @@ public partial class MainWindow : Form
 
         if (ret != null)
         {
-            ret.Initialize();
+            if (ret is not MainMenuScreen)
+                ret.Initialize();
+
             return ret;
         }
 

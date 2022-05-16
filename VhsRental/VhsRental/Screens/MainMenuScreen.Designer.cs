@@ -30,27 +30,37 @@
         {
             this.btnLogIn = new System.Windows.Forms.Button();
             this.btnCreateRental = new System.Windows.Forms.Button();
+            this.btnCustomers = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLogIn
             // 
-            this.btnLogIn.Location = new System.Drawing.Point(8, 8);
+            this.btnLogIn.Location = new System.Drawing.Point(8, 64);
             this.btnLogIn.Name = "btnLogIn";
             this.btnLogIn.Size = new System.Drawing.Size(332, 23);
-            this.btnLogIn.TabIndex = 0;
+            this.btnLogIn.TabIndex = 2;
             this.btnLogIn.Text = "Log in";
             this.btnLogIn.UseVisualStyleBackColor = true;
             this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
             // btnCreateRental
             // 
-            this.btnCreateRental.Location = new System.Drawing.Point(8, 36);
+            this.btnCreateRental.Location = new System.Drawing.Point(8, 8);
             this.btnCreateRental.Name = "btnCreateRental";
             this.btnCreateRental.Size = new System.Drawing.Size(332, 23);
-            this.btnCreateRental.TabIndex = 1;
+            this.btnCreateRental.TabIndex = 0;
             this.btnCreateRental.Text = "Create rental";
             this.btnCreateRental.UseVisualStyleBackColor = true;
             this.btnCreateRental.Click += new System.EventHandler(this.btnCreateRental_Click);
+            // 
+            // btnCustomers
+            // 
+            this.btnCustomers.Location = new System.Drawing.Point(8, 36);
+            this.btnCustomers.Name = "btnCustomers";
+            this.btnCustomers.Size = new System.Drawing.Size(332, 23);
+            this.btnCustomers.TabIndex = 1;
+            this.btnCustomers.Text = "Customers";
+            this.btnCustomers.UseVisualStyleBackColor = true;
             // 
             // MainMenuScreen
             // 
@@ -58,6 +68,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(4, 4);
+            this.Controls.Add(this.btnCustomers);
             this.Controls.Add(this.btnCreateRental);
             this.Controls.Add(this.btnLogIn);
             this.Name = "MainMenuScreen";
@@ -70,5 +81,6 @@
 
         private Button btnLogIn;
         private Button btnCreateRental;
+        private Button btnCustomers;
     }
 }
