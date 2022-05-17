@@ -7,10 +7,12 @@ public partial class CustomerDialog : Form
 {
     private Customer? _customer;
     public int CurrentCustomerId { get; set; }
+    private bool AddMode { get; set; }
 
     public CustomerDialog()
     {
         InitializeComponent();
+        AddMode = false;
     }
 
     private void CustomerDialog_Shown(object sender, EventArgs e)
@@ -26,6 +28,8 @@ public partial class CustomerDialog : Form
         {
             _customer = null;
             ClearForm();
+            AddMode = true;
+            btnOk.Text = @"Add";
         }
         else
         {
@@ -34,10 +38,14 @@ public partial class CustomerDialog : Form
             {
                 CurrentCustomerId = 0;
                 ClearForm();
+                AddMode = true;
+                btnOk.Text = @"Add";
             }
             else
             {
                 PopulateForm();
+                AddMode = false;
+                btnOk.Text = @"Update";
             }
         }
 
@@ -60,32 +68,53 @@ public partial class CustomerDialog : Form
 
     private void btnOk_Click(object sender, EventArgs e)
     {
-        if (CurrentCustomerId <= 0 || _customer == null)
+        if (!customerCoreDataControl1.ValidateCustomer())
+            return;
+
+        if (AddMode)
         {
-            MessageBox.Show(@"No customer is selected.", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            var response = MessageBox.Show(@"Add a new customer?", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (response == DialogResult.Yes)
+            {
+                customerCoreDataControl1.NewCustomer(txtCustomerSsn.Text.Trim());
+                _customer = new Customer();
+                customerCoreDataControl1.WriteBack(ref _customer);
+                Customer.Add(_customer);
+                DialogResult = DialogResult.OK;
+                return;
+            }
+
             return;
         }
 
-        if (!customerCoreDataControl1.ValidateCustomer())
+        if (_customer == null || _customer.Id <= 0)
+        {
+            MessageBox.Show(@"Unexpected error.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
+        }
 
         customerCoreDataControl1.WriteBack(ref _customer);
         Customer.Set(_customer);
         DialogResult = DialogResult.OK;
     }
 
-    private void txtCustomerSsn_Leave(object sender, EventArgs e)
+    private void txtCustomerSsn_Validating(object sender, System.ComponentModel.CancelEventArgs e)
     {
+        var ssn = txtCustomerSsn.Text.Trim();
+        txtCustomerSsn.Text = ssn;
+
         var customer = Customer
             .Get(txtCustomerSsn.Text);
 
         if (customer == null)
         {
-            ClearForm();
-            customerCoreDataControl1.NewCustomer(txtCustomerSsn.Text);
+            _customer = null;
+            customerCoreDataControl1.ClearForm();
+            btnOk.Text = @"Add";
             return;
         }
 
+        btnOk.Text = @"Update";
         _customer = customer;
         PopulateForm();
     }

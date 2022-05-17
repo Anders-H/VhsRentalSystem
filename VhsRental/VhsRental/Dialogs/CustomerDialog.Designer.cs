@@ -63,6 +63,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.CausesValidation = false;
             this.btnCancel.Location = new System.Drawing.Point(696, 288);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -76,7 +77,7 @@
             this.txtCustomerSsn.Name = "txtCustomerSsn";
             this.txtCustomerSsn.Size = new System.Drawing.Size(172, 23);
             this.txtCustomerSsn.TabIndex = 1;
-            this.txtCustomerSsn.Leave += new System.EventHandler(this.txtCustomerSsn_Leave);
+            this.txtCustomerSsn.Validating += new System.ComponentModel.CancelEventHandler(this.txtCustomerSsn_Validating);
             // 
             // CustomerDialog
             // 
