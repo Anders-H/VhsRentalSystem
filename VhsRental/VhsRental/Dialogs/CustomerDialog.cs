@@ -7,6 +7,7 @@ public partial class CustomerDialog : Form
 {
     private Customer? _customer;
     public int CurrentCustomerId { get; set; }
+    public string? CurrentSsn { get; set; }
     private bool AddMode { get; set; }
 
     public CustomerDialog()
@@ -23,13 +24,15 @@ public partial class CustomerDialog : Form
     private void InitializeGui()
     {
         this.SetToWaitMode(true);
-
+        
         if (CurrentCustomerId <= 0)
         {
             _customer = null;
             ClearForm();
             AddMode = true;
             btnOk.Text = @"Add";
+            txtCustomerSsn.Text = (CurrentSsn ?? "").Trim();
+            customerCoreDataControl1.DisableSsn(txtCustomerSsn.Text);
         }
         else
         {
@@ -40,12 +43,15 @@ public partial class CustomerDialog : Form
                 ClearForm();
                 AddMode = true;
                 btnOk.Text = @"Add";
+                txtCustomerSsn.Text = (CurrentSsn ?? "").Trim();
+                customerCoreDataControl1.DisableSsn(txtCustomerSsn.Text);
             }
             else
             {
                 PopulateForm();
                 AddMode = false;
                 btnOk.Text = @"Update";
+                customerCoreDataControl1.EnableSsn(CurrentSsn ?? "");
             }
         }
 
@@ -79,7 +85,14 @@ public partial class CustomerDialog : Form
                 customerCoreDataControl1.NewCustomer(txtCustomerSsn.Text.Trim());
                 _customer = new Customer();
                 customerCoreDataControl1.WriteBack(ref _customer);
-                Customer.Add(_customer);
+                CurrentCustomerId = Customer.Add(_customer);
+
+                if (CurrentCustomerId <= 0)
+                {
+                    MessageBox.Show(@"Add customer failed.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 DialogResult = DialogResult.OK;
                 return;
             }
@@ -111,11 +124,15 @@ public partial class CustomerDialog : Form
             _customer = null;
             customerCoreDataControl1.ClearForm();
             btnOk.Text = @"Add";
+            AddMode = true;
+            customerCoreDataControl1.DisableSsn(txtCustomerSsn.Text.Trim());
             return;
         }
 
         btnOk.Text = @"Update";
+        AddMode = false;
         _customer = customer;
+        customerCoreDataControl1.EnableSsn();
         PopulateForm();
     }
 }

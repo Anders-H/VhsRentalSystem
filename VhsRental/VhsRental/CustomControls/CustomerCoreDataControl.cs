@@ -66,7 +66,8 @@ namespace VhsRental.CustomControls
 
         public void NewCustomer(string ssn)
         {
-            // TODO
+            ClearForm();
+            txtSsn.Text = ssn;
         }
 
         public void WriteBack(ref Customer target)
@@ -82,17 +83,36 @@ namespace VhsRental.CustomControls
             target.IsBlocked = chkBlocked.Checked;
         }
 
+        public void DisableSsn(string ssn)
+        {
+            txtSsn.Enabled = false;
+            txtSsn.Text = ssn;
+        }
+
+        public void EnableSsn(string ssn)
+        {
+            txtSsn.Enabled = true;
+            txtSsn.Text = ssn;
+        }
+
+        public void EnableSsn() =>
+            txtSsn.Enabled = true;
+
         public bool ValidateCustomer()
         {
-            // TODO: This must be improved.
             if (string.IsNullOrWhiteSpace(txtName.Text))
             {
-                MessageBox.Show("The field Name cannot be empty.", Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtName.Focus();
+                MessageBox.Show(@"The field Name cannot be empty.", Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(txtSsn.Text))
+            {
+                txtSsn.Focus();
+                MessageBox.Show(@"The field Social security number cannot be empty.", Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
+            }
 
             return true;
         }

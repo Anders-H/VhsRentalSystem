@@ -273,6 +273,7 @@ public partial class CreateRentalScreen : UserControl, IScreen
     {
         using var x = new CustomerDialog();
         x.CurrentCustomerId = txtCustomerSSN.GetTag().EntityId;
+        x.CurrentSsn = txtCustomerSSN.Text.Trim();
 
         if (x.ShowDialog() == DialogResult.OK)
         {

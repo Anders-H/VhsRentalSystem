@@ -133,4 +133,25 @@ public class Customer
             // ignored
         }
     }
+
+    public static int Add(Customer customer)
+    {
+        try
+        {
+            return VhsRentalDataLayer.Entities.Customer.Add(
+                customer.Name,
+                customer.Ssn,
+                customer.Address1,
+                customer.Address2,
+                customer.ZipCode,
+                customer.City,
+                customer.Phone,
+                customer.EMail
+            );
+        }
+        catch
+        {
+            return 0;
+        }
+    }
 }
