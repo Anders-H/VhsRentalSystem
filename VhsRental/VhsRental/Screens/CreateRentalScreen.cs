@@ -283,7 +283,8 @@ public partial class CreateRentalScreen : UserControl, IScreen
 
             if (x.CurrentCustomerId <= 0)
             {
-                // TODO: Perhaps browse?
+                txtCustomerSSN.Text = "";
+                txtCustomerName.Text = "";
             }
             else
             {
@@ -335,8 +336,7 @@ public partial class CreateRentalScreen : UserControl, IScreen
                 }
                 else
                 {
-
-                    var x = new ReturnOnTheFlyDialog();
+                    using var x = new ReturnOnTheFlyDialog();
                     x.Cassette = cassetteBasic;
                     var description = "";
                     

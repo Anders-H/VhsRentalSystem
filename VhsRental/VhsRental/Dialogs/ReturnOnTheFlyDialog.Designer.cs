@@ -140,7 +140,8 @@
             this.Name = "ReturnOnTheFlyDialog";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Tape is out";
+            this.Text = "Cassette is out";
+            this.Load += new System.EventHandler(this.ReturnOnTheFlyDialog_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

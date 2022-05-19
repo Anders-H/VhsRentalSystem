@@ -82,7 +82,6 @@ public partial class CustomerDialog : Form
             var response = MessageBox.Show(@"Add a new customer?", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (response == DialogResult.Yes)
             {
-                customerCoreDataControl1.NewCustomer(txtCustomerSsn.Text.Trim());
                 _customer = new Customer();
                 customerCoreDataControl1.WriteBack(ref _customer);
                 CurrentCustomerId = Customer.Add(_customer);

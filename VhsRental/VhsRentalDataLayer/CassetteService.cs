@@ -28,7 +28,7 @@ public class CassetteService : IDisposable
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.Parameters.AddWithValue("@ID", cassetteId);
         cmd.Parameters.AddWithValue("@StaffID", staffId);
-        cmd.Parameters.AddWithValue("@ID", cassetteId);
+        cmd.Parameters.AddWithValue("@Description", description);
         cmd.ExecuteNonQuery();
     }
 
@@ -45,7 +45,7 @@ public class CassetteService : IDisposable
     {
         using var cmd = new SqlCommand("dbo.GetBasicCassetteInformation", _connection);
         cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.AddWithValue("@CassetteID", cassetteId);
+        cmd.Parameters.AddWithValue("@ID", cassetteId);
 
         CassetteBasicInformation? result = null;
 

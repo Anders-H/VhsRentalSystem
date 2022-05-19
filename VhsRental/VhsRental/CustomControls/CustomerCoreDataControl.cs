@@ -64,12 +64,6 @@ namespace VhsRental.CustomControls
             txtLastActivity.Text = "";
         }
 
-        public void NewCustomer(string ssn)
-        {
-            ClearForm();
-            txtSsn.Text = ssn;
-        }
-
         public void WriteBack(ref Customer target)
         {
             target.Name = txtName.Text.Trim();

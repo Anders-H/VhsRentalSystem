@@ -1,4 +1,5 @@
-﻿using VhsRentalBusinessLayer.Entities;
+﻿using System.Globalization;
+using VhsRentalBusinessLayer.Entities;
 
 namespace VhsRental.Dialogs;
 
@@ -17,5 +18,12 @@ public partial class ReturnOnTheFlyDialog : Form
     {
         Description = txtDescription.Text.Trim();
         DialogResult = DialogResult.OK;
+    }
+
+    private void ReturnOnTheFlyDialog_Load(object sender, EventArgs e)
+    {
+        txtEan.Text = Cassette?.Ean.ToString(CultureInfo.InvariantCulture) ?? "";
+        txtTitle.Text = Cassette?.Title ?? "";
+        txtYear.Text = Cassette?.Year.ToString() ?? "";
     }
 }
