@@ -37,14 +37,28 @@ public partial class MainMenuScreen : UserControl, IScreen
         MessageBox.Show($@"{u} has logged out.", ParentForm!.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
+    private bool IsLoggedIn()
+    {
+        if (Context.CurrentStaff != null)
+            return true;
+
+        MessageBox.Show(@"You need to log in first.", ParentForm!.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        return false;
+    }
+
     private void btnCreateRental_Click(object sender, EventArgs e)
     {
-        if (Context.CurrentStaff == null)
-        {
-            MessageBox.Show(@"You need to log in first.", ParentForm!.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        if (!IsLoggedIn())
             return;
-        }
 
         ((MainWindow)ParentForm).GetScreen<CreateRentalScreen>();
+    }
+
+    private void btnCustomers_Click(object sender, EventArgs e)
+    {
+        if (!IsLoggedIn())
+            return;
+
+        ((MainWindow)ParentForm).GetScreen<CustomersScreen>();
     }
 }
