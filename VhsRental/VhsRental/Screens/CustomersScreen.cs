@@ -33,10 +33,28 @@ public partial class CustomersScreen : UserControl, IScreen
     {
         this.SetToWaitMode(true);
         lv.BeginUpdate();
+        lv.Items.Clear();
 
         var result = VhsRentalBusinessLayer.Entities.CustomerSearchResultEntity.Search(search);
 
+        foreach (var c in result)
+        {
+            var li = lv.Items.Add(c.Name);
+            li.Tag = c.Id;
+            li.SubItems.Add(c.Ssn);
+            li.SubItems.Add(c.IsBlocked ? "Yes" : "No");
+            li.SubItems.Add(c.LastMovieTitle);
+            li.SubItems.Add(c.TotalNumberOfRentals.ToString()).Tag = c.TotalNumberOfRentals;
+            li.SubItems.Add(c.CassettesOutNow.ToString()).Tag = c.CassettesOutNow;
+            li.SubItems.Add(c.LastActivity == null ? "" : c.LastActivity.Value.ToString("yyyy-MM-dd"));
+        }
+
         lv.EndUpdate();
         this.SetToWaitMode(false);
+    }
+
+    private void btnHome_Click(object sender, EventArgs e)
+    {
+        ((MainWindow)ParentForm!).GetScreen<MainMenuScreen>();
     }
 }

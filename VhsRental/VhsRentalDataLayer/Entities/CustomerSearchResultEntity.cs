@@ -38,12 +38,12 @@ public class CustomerSearchResultEntity
 
         var idOrdinal = r.GetOrdinal("ID");
         var nameOrdinal = r.GetOrdinal("Name");
-        var ssnOrdinal = r.GetOrdinal("Name");
-        var isBlockedOrdinal = r.GetOrdinal("Name");
-        var lastMovieTitleOrdinal = r.GetOrdinal("Name");
-        var totalNumberOfRentalsOrdinal = r.GetOrdinal("Name");
-        var cassettesOutNowOrdinal = r.GetOrdinal("Name");
-        var lastActivityOrdinal = r.GetOrdinal("Name");
+        var ssnOrdinal = r.GetOrdinal("SSN");
+        var isBlockedOrdinal = r.GetOrdinal("IsBlocked");
+        var lastMovieTitleOrdinal = r.GetOrdinal("LastMovieTitle");
+        var totalNumberOfRentalsOrdinal = r.GetOrdinal("TotalNumberOfRentals");
+        var cassettesOutNowOrdinal = r.GetOrdinal("CassettesOutNow");
+        var lastActivityOrdinal = r.GetOrdinal("LastActivity");
 
         while (r.Read())
             result.Add(
