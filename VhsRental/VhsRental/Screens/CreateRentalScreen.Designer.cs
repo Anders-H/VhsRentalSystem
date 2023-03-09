@@ -344,6 +344,7 @@
             this.Controls.Add(this.btnSave);
             this.Name = "CreateRentalScreen";
             this.Size = new System.Drawing.Size(650, 484);
+            this.Load += new System.EventHandler(this.CreateRentalScreen_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

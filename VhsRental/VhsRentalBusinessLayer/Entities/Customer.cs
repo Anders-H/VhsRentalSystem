@@ -112,7 +112,7 @@ public class Customer
         }
     }
 
-    public static void Set(Customer customer)
+    public static bool Set(Customer customer)
     {
         try
         {
@@ -127,27 +127,22 @@ public class Customer
                 customer.EMail,
                 customer.IsBlocked
             );
+
+            return true;
         }
         catch
         {
-            // ignored
+            return false;
         }
     }
 
-    public static int Add(Customer customer)
+    public static int Add(string name, string ssn, string address1, string address2, string zipCode, string city, string phone, string eMail)
     {
         try
         {
-            return VhsRentalDataLayer.Entities.CustomerDto.Add(
-                customer.Name,
-                customer.Ssn,
-                customer.Address1,
-                customer.Address2,
-                customer.ZipCode,
-                customer.City,
-                customer.Phone,
-                customer.EMail
-            );
+            var id = VhsRentalDataLayer.Entities.CustomerDto.Add(name, ssn, address1, address2, zipCode, city, phone, eMail);
+            
+            return id;
         }
         catch
         {

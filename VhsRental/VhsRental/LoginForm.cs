@@ -1,6 +1,5 @@
 ﻿using VhsRental.Screens;
 using VhsRentalBusinessLayer;
-using VhsRentalBusinessLayer.Entities;
 
 namespace VhsRental;
 

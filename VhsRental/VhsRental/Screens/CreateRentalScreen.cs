@@ -432,4 +432,9 @@ public partial class CreateRentalScreen : UserControl, IScreen
         this.SetToWaitMode(false);
         ((MainWindow)ParentForm!).GetScreen<MainMenuScreen>();
     }
+
+    private void CreateRentalScreen_Load(object sender, EventArgs e)
+    {
+        txtCustomerSSN.Focus();
+    }
 }

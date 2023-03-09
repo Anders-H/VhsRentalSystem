@@ -137,10 +137,12 @@ public class CustomerDto
         cmd.Parameters.AddWithValue("@EMail", eMail);
         cmd.Parameters.AddWithValue("@IsBlocked", isBlocked);
         cmd.ExecuteNonQuery();
+        cn.Close();
     }
 
     public static int Add(string name, string ssn, string address1, string address2, string zipCode, string city, string phone, string eMail)
     {
+        var id = 0;
         using var cn = new SqlConnection(Settings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand("dbo.RegisterCustomer", cn);
@@ -153,6 +155,8 @@ public class CustomerDto
         cmd.Parameters.AddWithValue("@City", city);
         cmd.Parameters.AddWithValue("@Phone", phone);
         cmd.Parameters.AddWithValue("@EMail", eMail);
-        return (int)cmd.ExecuteScalar();
+        id = (int)cmd.ExecuteScalar();
+        cn.Close();
+        return id;
     }
 }

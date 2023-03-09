@@ -84,7 +84,7 @@ public partial class CustomerDialog : Form
             {
                 _customer = new Customer();
                 customerCoreDataControl1.WriteBack(ref _customer);
-                CurrentCustomerId = Customer.Add(_customer);
+                CurrentCustomerId = Customer.Add(_customer.Name, _customer.Ssn, _customer.Address1, _customer.Address2, _customer.ZipCode, _customer.ZipCode, _customer.Phone, _customer.EMail);
 
                 if (CurrentCustomerId <= 0)
                 {
