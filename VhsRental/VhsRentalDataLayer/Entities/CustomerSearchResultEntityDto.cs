@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 
 namespace VhsRentalDataLayer.Entities;
 
-public class CustomerSearchResultEntity
+public class CustomerSearchResultEntityDto
 {
     public int Id { get; }
     public string Name { get; }
@@ -14,7 +14,7 @@ public class CustomerSearchResultEntity
     public int CassettesOutNow { get; }
     public DateTime? LastActivity { get; }
 
-    public CustomerSearchResultEntity(int id, string name, string ssn, bool isBlocked, string lastMovieTitle, int totalNumberOfRentals, int cassettesOutNow, DateTime? lastActivity)
+    public CustomerSearchResultEntityDto(int id, string name, string ssn, bool isBlocked, string lastMovieTitle, int totalNumberOfRentals, int cassettesOutNow, DateTime? lastActivity)
     {
         Id = id;
         Name = name;
@@ -26,9 +26,9 @@ public class CustomerSearchResultEntity
         LastActivity = lastActivity;
     }
 
-    public static List<CustomerSearchResultEntity> Search(string s)
+    public static List<CustomerSearchResultEntityDto> Search(string s)
     {
-        var result = new List<CustomerSearchResultEntity>();
+        var result = new List<CustomerSearchResultEntityDto>();
         using var cn = new SqlConnection(Settings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand("dbo.SearchCustomer", cn);
@@ -47,7 +47,7 @@ public class CustomerSearchResultEntity
 
         while (r.Read())
             result.Add(
-                new CustomerSearchResultEntity(
+                new CustomerSearchResultEntityDto(
                     r.GetInt32(idOrdinal),
                     r.GetString(nameOrdinal),
                     r.GetString(ssnOrdinal),

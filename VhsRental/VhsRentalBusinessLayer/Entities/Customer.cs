@@ -53,7 +53,7 @@ public class Customer
         LastActivity = lastActivity;
     }
 
-    private Customer(VhsRentalDataLayer.Entities.Customer customer)
+    private Customer(VhsRentalDataLayer.Entities.CustomerDto customer)
     {
         Id = customer.Id;
         Name = customer.Name;
@@ -82,7 +82,7 @@ public class Customer
     {
         try
         {
-            var result = VhsRentalDataLayer.Entities.Customer.Get(id);
+            var result = VhsRentalDataLayer.Entities.CustomerDto.Get(id);
 
             if (result == null)
                 return null;
@@ -99,7 +99,7 @@ public class Customer
     {
         try
         {
-            var result = VhsRentalDataLayer.Entities.Customer.Get(ssn);
+            var result = VhsRentalDataLayer.Entities.CustomerDto.Get(ssn);
 
             if (result == null)
                 return null;
@@ -116,7 +116,7 @@ public class Customer
     {
         try
         {
-            VhsRentalDataLayer.Entities.Customer.Set(
+            VhsRentalDataLayer.Entities.CustomerDto.Set(
                 customer.Id,
                 customer.Name,
                 customer.Address1,
@@ -138,7 +138,7 @@ public class Customer
     {
         try
         {
-            return VhsRentalDataLayer.Entities.Customer.Add(
+            return VhsRentalDataLayer.Entities.CustomerDto.Add(
                 customer.Name,
                 customer.Ssn,
                 customer.Address1,

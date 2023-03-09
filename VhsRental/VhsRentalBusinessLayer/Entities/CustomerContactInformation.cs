@@ -38,7 +38,7 @@ public class CustomerContactInformation
     {
     }
 
-    private CustomerContactInformation(VhsRentalDataLayer.Entities.CustomerContactInformation data)
+    private CustomerContactInformation(VhsRentalDataLayer.Entities.CustomerContactInformationDto data)
     {
         Id = data.Id;
         Name = data.Name;
@@ -72,7 +72,7 @@ public class CustomerContactInformation
     {
         try
         {
-            var result = VhsRentalDataLayer.Entities.CustomerContactInformation.Get(ssn);
+            var result = VhsRentalDataLayer.Entities.CustomerContactInformationDto.Get(ssn);
 
             if (result == null)
                 return null;
@@ -89,7 +89,7 @@ public class CustomerContactInformation
     {
         try
         {
-            var result = VhsRentalDataLayer.Entities.CustomerContactInformation.Get(id);
+            var result = VhsRentalDataLayer.Entities.CustomerContactInformationDto.Get(id);
 
             if (result == null)
                 return null;

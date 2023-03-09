@@ -17,7 +17,7 @@ public class Login
     {
         try
         {
-            var dataStaff = VhsRentalDataLayer.Entities.Staff.GetBySsn(ssn);
+            var dataStaff = VhsRentalDataLayer.Entities.StaffDto.GetBySsn(ssn);
 
             if (dataStaff == null)
                 return new Login(null, LoginResult.StaffNotFound);

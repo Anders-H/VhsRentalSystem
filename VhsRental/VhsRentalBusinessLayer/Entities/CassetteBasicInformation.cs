@@ -17,7 +17,7 @@ public class CassetteBasicInformation
         Year = year;
     }
 
-    internal CassetteBasicInformation(VhsRentalDataLayer.Entities.CassetteBasicInformation cassette)
+    internal CassetteBasicInformation(VhsRentalDataLayer.Entities.CassetteBasicInformationDto cassette)
     {
         Id = cassette.Id;
         MovieEan = cassette.MovieEan;

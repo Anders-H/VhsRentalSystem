@@ -23,7 +23,7 @@ public class CustomerSearchResultEntity
         LastActivity = lastActivity;
     }
 
-    internal CustomerSearchResultEntity(VhsRentalDataLayer.Entities.CustomerSearchResultEntity customer)
+    internal CustomerSearchResultEntity(VhsRentalDataLayer.Entities.CustomerSearchResultEntityDto customer)
     {
         Id = customer.Id;
         Name = customer.Name;
@@ -39,7 +39,7 @@ public class CustomerSearchResultEntity
     {
         try
         {
-            var hits = VhsRentalDataLayer.Entities.CustomerSearchResultEntity.Search(s);
+            var hits = VhsRentalDataLayer.Entities.CustomerSearchResultEntityDto.Search(s);
 
             return hits
                 .Select(customerSearchResultEntity => new CustomerSearchResultEntity(customerSearchResultEntity))

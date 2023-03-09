@@ -32,26 +32,26 @@ public class CassetteService : IDisposable
         cmd.ExecuteNonQuery();
     }
 
-    public RentalCassette GetCassetteForRental(int cassetteId)
+    public RentalCassetteDto GetCassetteForRental(int cassetteId)
     {
         using var cmd = new SqlCommand("dbo.SuggestPrice", _connection);
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.Parameters.AddWithValue("@CassetteID", cassetteId);
         var price = (decimal)cmd.ExecuteScalar();
-        return new RentalCassette(cassetteId, price);
+        return new RentalCassetteDto(cassetteId, price);
     }
 
-    public CassetteBasicInformation? GetBasicCassetteInformation(int cassetteId)
+    public CassetteBasicInformationDto? GetBasicCassetteInformation(int cassetteId)
     {
         using var cmd = new SqlCommand("dbo.GetBasicCassetteInformation", _connection);
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.Parameters.AddWithValue("@ID", cassetteId);
 
-        CassetteBasicInformation? result = null;
+        CassetteBasicInformationDto? result = null;
 
         var r = cmd.ExecuteReader();
         if (r.Read())
-            result = new CassetteBasicInformation(
+            result = new CassetteBasicInformationDto(
                 r.GetInt32(r.GetOrdinal("ID")),
                 r.GetDecimal(r.GetOrdinal("MovieEAN")),
                 r.GetDecimal(r.GetOrdinal("CassetteEAN")),

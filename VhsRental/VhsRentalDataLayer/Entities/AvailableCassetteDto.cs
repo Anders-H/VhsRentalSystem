@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 
 namespace VhsRentalDataLayer.Entities;
 
-public class AvailableCassette
+public class AvailableCassetteDto
 {
     public int Id { get; set; }
     public string Title { get; set; }
@@ -11,7 +11,7 @@ public class AvailableCassette
     public decimal CustomerPrice { get; set; }
     public int NumberOfCopies { get; set; }
 
-    public AvailableCassette(int id, string title, short year, decimal customerPrice, int numberOfCopies)
+    public AvailableCassetteDto(int id, string title, short year, decimal customerPrice, int numberOfCopies)
     {
         Id = id;
         Title = title;
@@ -20,16 +20,16 @@ public class AvailableCassette
         NumberOfCopies = numberOfCopies;
     }
 
-    public static List<AvailableCassette> GetAvailableCassettesFromMovieEan(decimal ean) =>
+    public static List<AvailableCassetteDto> GetAvailableCassettesFromMovieEan(decimal ean) =>
         GetCassettes(ean, "dbo.GetAvailableCassettesFromMovieEAN");
 
-    public static List<AvailableCassette> GetCassetteFromEan(decimal ean) =>
+    public static List<AvailableCassetteDto> GetCassetteFromEan(decimal ean) =>
         GetCassettes(ean, "dbo.GetCassetteFromEAN");
 
-    public static AvailableCassette? GetUnavailableCassettesFromMovieEan(decimal ean) =>
+    public static AvailableCassetteDto? GetUnavailableCassettesFromMovieEan(decimal ean) =>
         GetCassettes(ean, "dbo.GetUnavailableCassettesFromMovieEAN").FirstOrDefault();
 
-    private static List<AvailableCassette> GetCassettes(decimal ean, string proc)
+    private static List<AvailableCassetteDto> GetCassettes(decimal ean, string proc)
     {
         using var cn = new SqlConnection(Settings.ConnectionString);
         cn.Open();
@@ -43,11 +43,11 @@ public class AvailableCassette
         var ordinalCustomerPrice = r.GetOrdinal("CustomerPrice");
         var ordinalNumberOfCopies = r.GetOrdinal("NumberOfCopies");
 
-        var result = new List<AvailableCassette>();
+        var result = new List<AvailableCassetteDto>();
 
         while (r.Read())
             result.Add(
-                new AvailableCassette(
+                new AvailableCassetteDto(
                     r.GetInt32(ordinalId),
                     r.GetString(ordinalTitle),
                     r.GetInt16(ordinalYear),

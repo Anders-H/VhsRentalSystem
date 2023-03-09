@@ -1,6 +1,6 @@
 ﻿namespace VhsRentalDataLayer.Entities;
 
-public class CassetteBasicInformation
+public class CassetteBasicInformationDto
 {
     public int Id { get; }
     public decimal MovieEan { get; }
@@ -8,7 +8,7 @@ public class CassetteBasicInformation
     public string Title { get; }
     public short Year { get; }
 
-    public CassetteBasicInformation(int id, decimal movieEan, decimal cassetteEan, string title, short year)
+    public CassetteBasicInformationDto(int id, decimal movieEan, decimal cassetteEan, string title, short year)
     {
         Id = id;
         MovieEan = movieEan;

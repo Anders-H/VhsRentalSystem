@@ -21,7 +21,7 @@ public class AvailableCassette
         NumberOfCopies = numberOfCopies;
     }
 
-    private AvailableCassette(VhsRentalDataLayer.Entities.AvailableCassette data)
+    private AvailableCassette(VhsRentalDataLayer.Entities.AvailableCassetteDto data)
     {
         Id = data.Id;
         Title = data.Title;
@@ -36,7 +36,7 @@ public class AvailableCassette
 
         try
         {
-            var sourceList = VhsRentalDataLayer.Entities.AvailableCassette.GetAvailableCassettesFromMovieEan(ean);
+            var sourceList = VhsRentalDataLayer.Entities.AvailableCassetteDto.GetAvailableCassettesFromMovieEan(ean);
             result.AddRange(sourceList.Select(s => new AvailableCassette(s)));
         }
         catch
@@ -53,7 +53,7 @@ public class AvailableCassette
 
         try
         {
-            var sourceList = VhsRentalDataLayer.Entities.AvailableCassette.GetCassetteFromEan(ean);
+            var sourceList = VhsRentalDataLayer.Entities.AvailableCassetteDto.GetCassetteFromEan(ean);
             result.AddRange(sourceList.Select(s => new AvailableCassette(s)));
         }
         catch
@@ -68,7 +68,7 @@ public class AvailableCassette
     {
         try
         {
-            var result = VhsRentalDataLayer.Entities.AvailableCassette.GetUnavailableCassettesFromMovieEan(ean);
+            var result = VhsRentalDataLayer.Entities.AvailableCassetteDto.GetUnavailableCassettesFromMovieEan(ean);
             
             return result == null
                 ? null

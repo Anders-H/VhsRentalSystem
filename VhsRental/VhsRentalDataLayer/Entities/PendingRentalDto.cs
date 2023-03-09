@@ -1,11 +1,11 @@
 ﻿namespace VhsRentalDataLayer.Entities;
 
-public class RentalCassette
+public class PendingRentalDto
 {
     public int CassetteId { get; }
     public decimal Amount { get; }
 
-    public RentalCassette(int cassetteId, decimal amount)
+    public PendingRentalDto(int cassetteId, decimal amount)
     {
         CassetteId = cassetteId;
         Amount = amount;

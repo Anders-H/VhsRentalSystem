@@ -9,7 +9,7 @@ public class RentalService
     private readonly int _customerId;
     private readonly int _staffId;
     private readonly DateTime _eventTime;
-    private readonly List<PendingRental> _pendingRentals;
+    private readonly List<PendingRentalDto> _pendingRentals;
     private readonly SqlConnection _connection;
     public int TransactionId { get; private set; }
 
@@ -18,7 +18,7 @@ public class RentalService
         _customerId = customerId;
         _staffId = staffId;
         _eventTime = eventTime;
-        _pendingRentals = new List<PendingRental>();
+        _pendingRentals = new List<PendingRentalDto>();
         _connection = new SqlConnection(Settings.ConnectionString);
         TransactionId = 0;
     }
@@ -57,7 +57,7 @@ public class RentalService
 
     public RentalServiceResult AddRentalToTransaction(int cassetteId, decimal amount, string description)
     {
-        _pendingRentals.Add(new PendingRental(cassetteId, amount));
+        _pendingRentals.Add(new PendingRentalDto(cassetteId, amount));
         using var cmd = new SqlCommand("dbo.CreateRental", _connection);
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.Parameters.AddWithValue("@TransactionID", TransactionId);

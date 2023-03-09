@@ -15,10 +15,22 @@ public class Staff
         Active = active;
     }
 
-    internal Staff(VhsRentalDataLayer.Entities.Staff staff) : this(staff.Id, staff.Name, staff.Ssn, staff.Active)
+    internal Staff(VhsRentalDataLayer.Entities.StaffDto staff) : this(staff.Id, staff.Name, staff.Ssn, staff.Active)
     {
     }
 
     public override string ToString() =>
         string.IsNullOrWhiteSpace(Name) ? $"Employee {Id}" : Name.Trim();
+
+    public static Staff? RegisterStaff(string name, string ssn)
+    {
+        var id = VhsRentalDataLayer.Entities.StaffDto.RegisterStaff(name, ssn);
+
+        if (id <= 0)
+            return null;
+
+        var staff = VhsRentalDataLayer.Entities.StaffDto.GetById(id);
+
+        return staff == null ? null : new Staff(staff);
+    }
 }

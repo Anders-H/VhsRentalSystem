@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 
 namespace VhsRentalDataLayer.Entities;
 
-public class Customer
+public class CustomerDto
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -27,7 +27,7 @@ public class Customer
     public int CassettesOutNow { get; set; }
     public DateTime? LastActivity { get; set; }
 
-    public Customer(int id, string name, string ssn, string address1, string address2, string zipCode, string city, string phone, string eMail, string customerNumber, bool isBlocked, int lastCassette, decimal cassetteEan, int cassetteLastCustomerId, string cassetteLastCustomerName, int lastMovieId, decimal lastMovieEan, string lastMovieTitle, int totalNumberOfRentals, int cassettesOutNow, DateTime? lastActivity)
+    public CustomerDto(int id, string name, string ssn, string address1, string address2, string zipCode, string city, string phone, string eMail, string customerNumber, bool isBlocked, int lastCassette, decimal cassetteEan, int cassetteLastCustomerId, string cassetteLastCustomerName, int lastMovieId, decimal lastMovieEan, string lastMovieTitle, int totalNumberOfRentals, int cassettesOutNow, DateTime? lastActivity)
     {
         Id = id;
         Name = name;
@@ -52,7 +52,7 @@ public class Customer
         LastActivity = lastActivity;
     }
 
-    public static Customer? Get(int id)
+    public static CustomerDto? Get(int id)
     {
         using var cn = new SqlConnection(Settings.ConnectionString);
         cn.Open();
@@ -66,7 +66,7 @@ public class Customer
         return result;
     }
 
-    public static Customer? Get(string ssn)
+    public static CustomerDto? Get(string ssn)
     {
         using var cn = new SqlConnection(Settings.ConnectionString);
         cn.Open();
@@ -80,7 +80,7 @@ public class Customer
         return result;
     }
 
-    private static Customer? GetFromReader(SqlDataReader r)
+    private static CustomerDto? GetFromReader(SqlDataReader r)
     {
         var lastCassetteOrdinal = r.GetOrdinal("LastCassette");
         var cassetteEanOrdinal = r.GetOrdinal("CassetteEAN");
@@ -93,7 +93,7 @@ public class Customer
 
         if (r.Read())
         {
-            return new Customer(
+            return new CustomerDto(
                 r.GetInt32(r.GetOrdinal("ID")),
                 r.GetString(r.GetOrdinal("Name")),
                 r.GetString(r.GetOrdinal("SSN")),

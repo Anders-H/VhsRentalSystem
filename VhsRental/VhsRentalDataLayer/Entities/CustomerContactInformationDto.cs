@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 
 namespace VhsRentalDataLayer.Entities;
 
-public class CustomerContactInformation
+public class CustomerContactInformationDto
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -17,11 +17,11 @@ public class CustomerContactInformation
     public string CustomerNumber { get; set; }
     public bool IsBlocked { get; set; }
 
-    public CustomerContactInformation() : this(0, "", "", "", "", "", "", "", "", "", false)
+    public CustomerContactInformationDto() : this(0, "", "", "", "", "", "", "", "", "", false)
     {
     }
 
-    public CustomerContactInformation(int id, string name, string ssn, string address1, string address2, string zipCode, string city, string phone, string eMail, string customerNumber, bool isBlocked)
+    public CustomerContactInformationDto(int id, string name, string ssn, string address1, string address2, string zipCode, string city, string phone, string eMail, string customerNumber, bool isBlocked)
     {
         Id = id;
         Name = name;
@@ -36,9 +36,9 @@ public class CustomerContactInformation
         IsBlocked = isBlocked;
     }
 
-    public static CustomerContactInformation? Get(string ssn)
+    public static CustomerContactInformationDto? Get(string ssn)
     {
-        CustomerContactInformation? result = null;
+        CustomerContactInformationDto? result = null;
         using var cn = new SqlConnection(Settings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand("dbo.GetCustomerContactInformation", cn);
@@ -47,7 +47,7 @@ public class CustomerContactInformation
         var r = cmd.ExecuteReader();
         if (r.Read())
         {
-            result = new CustomerContactInformation(
+            result = new CustomerContactInformationDto(
                 r.GetInt32(r.GetOrdinal("ID")),
                 r.GetString(r.GetOrdinal("Name")),
                 r.GetString(r.GetOrdinal("SSN")),
@@ -66,9 +66,9 @@ public class CustomerContactInformation
         return result;
     }
 
-    public static CustomerContactInformation? Get(int id)
+    public static CustomerContactInformationDto? Get(int id)
     {
-        CustomerContactInformation? result = null;
+        CustomerContactInformationDto? result = null;
         using var cn = new SqlConnection(Settings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand("dbo.GetCustomerContactInformationByID", cn);
@@ -77,7 +77,7 @@ public class CustomerContactInformation
         var r = cmd.ExecuteReader();
         if (r.Read())
         {
-            result = new CustomerContactInformation(
+            result = new CustomerContactInformationDto(
                 r.GetInt32(r.GetOrdinal("ID")),
                 r.GetString(r.GetOrdinal("Name")),
                 r.GetString(r.GetOrdinal("SSN")),

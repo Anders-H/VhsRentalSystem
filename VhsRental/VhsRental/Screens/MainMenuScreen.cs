@@ -51,7 +51,7 @@ public partial class MainMenuScreen : UserControl, IScreen
         if (!IsLoggedIn())
             return;
 
-        ((MainWindow)ParentForm).GetScreen<CreateRentalScreen>();
+        ((MainWindow)ParentForm!).GetScreen<CreateRentalScreen>();
     }
 
     private void btnCustomers_Click(object sender, EventArgs e)
@@ -59,6 +59,6 @@ public partial class MainMenuScreen : UserControl, IScreen
         if (!IsLoggedIn())
             return;
 
-        ((MainWindow)ParentForm).GetScreen<CustomersScreen>();
+        ((MainWindow)ParentForm!).GetScreen<CustomersScreen>();
     }
 }
