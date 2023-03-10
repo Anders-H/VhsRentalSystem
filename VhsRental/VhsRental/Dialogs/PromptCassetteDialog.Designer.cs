@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PromptCassetteDialog));
-            this.lv = new System.Windows.Forms.ListView();
+            this.lv = new SelectListLibrary.SelectList();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
@@ -55,12 +55,13 @@
             this.lv.Location = new System.Drawing.Point(4, 4);
             this.lv.MultiSelect = false;
             this.lv.Name = "lv";
+            this.lv.SelectedItem = null;
             this.lv.Size = new System.Drawing.Size(508, 208);
             this.lv.SmallImageList = this.imageList1;
             this.lv.TabIndex = 0;
             this.lv.UseCompatibleStateImageBehavior = false;
             this.lv.View = System.Windows.Forms.View.Details;
-            this.lv.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lv_MouseDoubleClick);
+            this.lv.ItemSelected += new SelectListLibrary.ItemSelectedHandler(this.lv_ItemSelected);
             // 
             // columnHeader1
             // 
@@ -139,7 +140,7 @@
 
         #endregion
 
-        private ListView lv;
+        private SelectListLibrary.SelectList lv;
         private Button btnOk;
         private Button btnCancel;
         private ImageList imageList1;

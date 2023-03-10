@@ -57,4 +57,14 @@ public partial class CustomersScreen : UserControl, IScreen
     {
         ((MainWindow)ParentForm!).GetScreen<MainMenuScreen>();
     }
+
+    private void btnAdd_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void lv_ItemSelected(object sender, SelectListLibrary.ItemSelectedEventArgs eventArgs)
+    {
+        btnSearch_Click(this, EventArgs.Empty);
+    }
 }

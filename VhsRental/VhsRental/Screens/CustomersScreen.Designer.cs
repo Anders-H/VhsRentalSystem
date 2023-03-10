@@ -33,7 +33,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.lv = new System.Windows.Forms.ListView();
+            this.lv = new SelectListLibrary.SelectList();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
@@ -76,6 +76,7 @@
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Add...";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtSearch
             // 
@@ -115,10 +116,12 @@
             this.lv.Location = new System.Drawing.Point(0, 32);
             this.lv.MultiSelect = false;
             this.lv.Name = "lv";
+            this.lv.SelectedItem = null;
             this.lv.Size = new System.Drawing.Size(668, 347);
             this.lv.TabIndex = 1;
             this.lv.UseCompatibleStateImageBehavior = false;
             this.lv.View = System.Windows.Forms.View.Details;
+            this.lv.ItemSelected += new SelectListLibrary.ItemSelectedHandler(this.lv_ItemSelected);
             // 
             // columnHeader1
             // 
@@ -177,7 +180,7 @@
         private Panel panel1;
         private TextBox txtSearch;
         private Button btnSearch;
-        private ListView lv;
+        private SelectListLibrary.SelectList lv;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;

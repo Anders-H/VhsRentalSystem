@@ -31,7 +31,7 @@ public partial class PromptCassetteDialog : Form
 
     private void btnOk_Click(object sender, EventArgs e)
     {
-        if (lv.SelectedItems.Count <= 0)
+        if (lv.SelectedItem == null)
         {
             MessageBox.Show(@"No cassette is selected.", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
@@ -41,17 +41,8 @@ public partial class PromptCassetteDialog : Form
         DialogResult = DialogResult.OK;
     }
 
-    private void lv_MouseDoubleClick(object sender, MouseEventArgs e)
+    private void lv_ItemSelected(object sender, SelectListLibrary.ItemSelectedEventArgs eventArgs)
     {
-        lv.SelectedItems.Clear();
-
-        var i = lv.GetItemAt(e.X, e.Y);
-
-        if (i == null)
-            return;
-
-        i.Selected = true;
-        SelectedCassette = (AvailableCassette)lv.SelectedItems[0].Tag;
-        DialogResult = DialogResult.OK;
+        btnOk_Click(sender, eventArgs);
     }
 }

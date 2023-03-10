@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="SelectListLibrary" Version="1.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\VhsRentalBusinessLayer\VhsRentalBusinessLayer.csproj" />
   </ItemGroup>
 

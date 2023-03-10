@@ -74,10 +74,7 @@ public class CustomerContactInformation
         {
             var result = VhsRentalDataLayer.Entities.CustomerContactInformationDto.Get(ssn);
 
-            if (result == null)
-                return null;
-
-            return new CustomerContactInformation(result);
+            return result == null ? null : new CustomerContactInformation(result);
         }
         catch
         {
@@ -91,10 +88,7 @@ public class CustomerContactInformation
         {
             var result = VhsRentalDataLayer.Entities.CustomerContactInformationDto.GetByName(name);
 
-            if (result == null)
-                return null;
-
-            return new CustomerContactInformation(result);
+            return result == null ? null : new CustomerContactInformation(result);
         }
         catch
         {
@@ -108,10 +102,7 @@ public class CustomerContactInformation
         {
             var result = VhsRentalDataLayer.Entities.CustomerContactInformationDto.Get(id);
 
-            if (result == null)
-                return null;
-
-            return new CustomerContactInformation(result);
+            return result == null ? null : new CustomerContactInformation(result);
         }
         catch
         {
