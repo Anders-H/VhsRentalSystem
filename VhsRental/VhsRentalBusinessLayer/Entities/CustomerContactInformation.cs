@@ -85,6 +85,23 @@ public class CustomerContactInformation
         }
     }
 
+    public static CustomerContactInformation? GetByName(string name)
+    {
+        try
+        {
+            var result = VhsRentalDataLayer.Entities.CustomerContactInformationDto.GetByName(name);
+
+            if (result == null)
+                return null;
+
+            return new CustomerContactInformation(result);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     public static CustomerContactInformation? Get(int id)
     {
         try

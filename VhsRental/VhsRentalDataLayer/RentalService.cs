@@ -19,7 +19,7 @@ public class RentalService
         _staffId = staffId;
         _eventTime = eventTime;
         _pendingRentals = new List<PendingRentalDto>();
-        _connection = new SqlConnection(Settings.ConnectionString);
+        _connection = new SqlConnection(DataSettings.ConnectionString);
         TransactionId = 0;
     }
 
@@ -108,7 +108,7 @@ public class RentalService
 
     public static void ReturnCassette(int cassetteId, int staffId, string description)
     {
-        using var cn = new SqlConnection(Settings.ConnectionString);
+        using var cn = new SqlConnection(DataSettings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand("dbo.ReturnCassette", cn);
         cmd.CommandType = CommandType.StoredProcedure;

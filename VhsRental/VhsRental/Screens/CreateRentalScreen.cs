@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.ComponentModel;
+using System.Globalization;
 using VhsRental.Dialogs;
 using VhsRentalBusinessLayer;
 using VhsRentalBusinessLayer.Entities;
@@ -24,40 +25,6 @@ public partial class CreateRentalScreen : UserControl, IScreen
         }
 
         txtSum.Text = 0m.ToString("n2");
-    }
-
-    private void txtCustomerSSN_Leave(object sender, EventArgs e)
-    {
-        var ssn = txtCustomerSSN.Text.Trim();
-        txtCustomerSSN.Text = ssn;
-
-        if (string.IsNullOrWhiteSpace(ssn))
-        {
-            txtCustomerSSN.GetTag().EntityId = 0;
-            txtCustomerName.Text = "";
-            return;
-        }
-
-        this.SetToWaitMode(true);
-
-        var customer = CustomerContactInformation
-            .Get(txtCustomerSSN.Text);
-
-        var tag = txtCustomerSSN.GetTag();
-
-        if (customer == null)
-        {
-            tag.EntityId = 0;
-            txtCustomerName.Text = "";
-        }
-        else
-        {
-            tag.EntityId = customer.Id;
-            txtCustomerSSN.Text = customer.Ssn;
-            txtCustomerName.Text = customer.ToString();
-        }
-
-        this.SetToWaitMode(false);
     }
 
     private void txtCassetteEan1_Leave(object sender, EventArgs e) =>
@@ -301,7 +268,7 @@ public partial class CreateRentalScreen : UserControl, IScreen
                     txtCustomerName.Text = customer.ToString();
                 }
             }
-            txtCustomerSSN_Leave(sender, e);
+            txtCustomerSSN_Validating(sender, new CancelEventArgs());
             this.SetToWaitMode(false);
         }
     }
@@ -316,7 +283,7 @@ public partial class CreateRentalScreen : UserControl, IScreen
 
         if (!HasAnyCassette())
         {
-            MessageBox.Show(@"No customer is selected.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(@"No cassettes are selected.", @"Cannot create rental", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
         }
 
@@ -436,5 +403,44 @@ public partial class CreateRentalScreen : UserControl, IScreen
     private void CreateRentalScreen_Load(object sender, EventArgs e)
     {
         txtCustomerSSN.Focus();
+    }
+
+    private void txtCustomerSSN_Validating(object sender, CancelEventArgs e)
+    {
+        var ssn = txtCustomerSSN.Text.Trim();
+        txtCustomerSSN.Text = ssn;
+        btnOpenCustomer.Enabled = !string.IsNullOrWhiteSpace(ssn);
+
+        if (string.IsNullOrWhiteSpace(ssn))
+        {
+            txtCustomerSSN.GetTag().EntityId = 0;
+            txtCustomerName.Text = "";
+            return;
+        }
+
+        this.SetToWaitMode(true);
+
+        var customer = CustomerContactInformation.Get(ssn) ?? CustomerContactInformation.GetByName(ssn);
+
+        var tag = txtCustomerSSN.GetTag();
+
+        if (customer == null)
+        {
+            tag.EntityId = 0;
+            txtCustomerName.Text = "";
+        }
+        else
+        {
+            tag.EntityId = customer.Id;
+            txtCustomerSSN.Text = customer.Ssn;
+            txtCustomerName.Text = customer.ToString();
+        }
+
+        this.SetToWaitMode(false);
+    }
+
+    private void txtCustomerSSN_TextChanged(object sender, EventArgs e)
+    {
+        btnOpenCustomer.Enabled = !string.IsNullOrWhiteSpace(txtCustomerSSN.Text);
     }
 }

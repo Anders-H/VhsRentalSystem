@@ -39,7 +39,7 @@ public class CustomerContactInformationDto
     public static CustomerContactInformationDto? Get(string ssn)
     {
         CustomerContactInformationDto? result = null;
-        using var cn = new SqlConnection(Settings.ConnectionString);
+        using var cn = new SqlConnection(DataSettings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand("dbo.GetCustomerContactInformation", cn);
         cmd.CommandType = CommandType.StoredProcedure;
@@ -66,10 +66,40 @@ public class CustomerContactInformationDto
         return result;
     }
 
+    public static CustomerContactInformationDto? GetByName(string name)
+    {
+        CustomerContactInformationDto? result = null;
+        using var cn = new SqlConnection(DataSettings.ConnectionString);
+        cn.Open();
+        using var cmd = new SqlCommand("dbo.GetCustomerContactInformationByName", cn);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@Name", name);
+        var r = cmd.ExecuteReader();
+        if (r.Read())
+        {
+            result = new CustomerContactInformationDto(
+                r.GetInt32(r.GetOrdinal("ID")),
+                r.GetString(r.GetOrdinal("Name")),
+                r.GetString(r.GetOrdinal("SSN")),
+                r.GetString(r.GetOrdinal("Address1")),
+                r.GetString(r.GetOrdinal("Address2")),
+                r.GetString(r.GetOrdinal("ZipCode")),
+                r.GetString(r.GetOrdinal("City")),
+                r.GetString(r.GetOrdinal("Phone")),
+                r.GetString(r.GetOrdinal("EMail")),
+                r.GetString(r.GetOrdinal("CustomerNumber")),
+                r.GetBoolean(r.GetOrdinal("IsBlocked"))
+            );
+        }
+        r.Close();
+        cn.Close();
+        return result;
+    }
+
     public static CustomerContactInformationDto? Get(int id)
     {
         CustomerContactInformationDto? result = null;
-        using var cn = new SqlConnection(Settings.ConnectionString);
+        using var cn = new SqlConnection(DataSettings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand("dbo.GetCustomerContactInformationByID", cn);
         cmd.CommandType = CommandType.StoredProcedure;

@@ -33,13 +33,11 @@ public static class ControlExtensions
 
     public static ControlTagData GetTag(this Control me)
     {
-        var tag = me.Tag as ControlTagData;
+        if (me.Tag is ControlTagData tag)
+            return tag;
 
-        if (tag == null)
-        {
-            tag = new ControlTagData();
-            me.Tag = tag;
-        }
+        tag = new ControlTagData();
+        me.Tag = tag;
 
         return tag;
     }

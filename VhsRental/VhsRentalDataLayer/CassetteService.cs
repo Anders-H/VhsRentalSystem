@@ -10,7 +10,7 @@ public class CassetteService : IDisposable
 
     public CassetteService()
     {
-        _connection = new SqlConnection(Settings.ConnectionString);
+        _connection = new SqlConnection(DataSettings.ConnectionString);
         _connection.Open();
     }
 

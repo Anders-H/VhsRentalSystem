@@ -35,12 +35,15 @@ public partial class LoginForm : Form
                 DialogResult = DialogResult.OK;
                 break;
             case LoginResult.StaffInactive:
+                textBox1.Focus();
                 MessageBox.Show(@"Inactive staff.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 break;
             case LoginResult.StaffNotFound:
+                textBox1.Focus();
                 MessageBox.Show(@"Staff not found.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 break;
             case LoginResult.ConnectionError:
+                textBox1.Focus();
                 MessageBox.Show(@"Database connection error.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 break;
             default:

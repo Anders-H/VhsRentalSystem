@@ -29,7 +29,7 @@ public class CustomerSearchResultEntityDto
     public static List<CustomerSearchResultEntityDto> Search(string s)
     {
         var result = new List<CustomerSearchResultEntityDto>();
-        using var cn = new SqlConnection(Settings.ConnectionString);
+        using var cn = new SqlConnection(DataSettings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand("dbo.SearchCustomer", cn);
         cmd.CommandType = CommandType.StoredProcedure;

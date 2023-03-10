@@ -2,11 +2,11 @@
 
 namespace VhsRentalDataLayer;
 
-public class Administrative
+public class AdministrativeService
 {
     public static void ClearAllData()
     {
-        using var cn = new SqlConnection(Settings.ConnectionString);
+        using var cn = new SqlConnection(DataSettings.ConnectionString);
         cn.Open();
 
         using var cmd = new SqlCommand(@"
@@ -27,7 +27,7 @@ DELETE FROM dbo.Staff
 
     public static void SetSetting(string settingName, string stringValue, decimal moneyValue, int intValue)
     {
-        using var cn = new SqlConnection(Settings.ConnectionString);
+        using var cn = new SqlConnection(DataSettings.ConnectionString);
         cn.Open();
 
         using var cmd = new SqlCommand("dbo.SetSetting", cn);

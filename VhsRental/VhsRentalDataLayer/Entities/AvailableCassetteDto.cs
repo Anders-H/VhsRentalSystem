@@ -31,7 +31,7 @@ public class AvailableCassetteDto
 
     private static List<AvailableCassetteDto> GetCassettes(decimal ean, string proc)
     {
-        using var cn = new SqlConnection(Settings.ConnectionString);
+        using var cn = new SqlConnection(DataSettings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand(proc, cn);
         cmd.CommandType = CommandType.StoredProcedure;

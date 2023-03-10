@@ -115,6 +115,9 @@ public partial class CustomerDialog : Form
         var ssn = txtCustomerSsn.Text.Trim();
         txtCustomerSsn.Text = ssn;
 
+        if (AddMode)
+            return;
+
         var customer = Customer
             .Get(txtCustomerSsn.Text);
 

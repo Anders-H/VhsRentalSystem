@@ -28,7 +28,7 @@ public class StaffDto
 
         var id = 0;
 
-        using var cn = new SqlConnection(Settings.ConnectionString);
+        using var cn = new SqlConnection(DataSettings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand("dbo.RegisterStaff", cn);
         cmd.CommandType = CommandType.StoredProcedure;
@@ -45,7 +45,7 @@ public class StaffDto
     public static StaffDto? GetBySsn(string ssn)
     {
         StaffDto? result = null;
-        using var cn = new SqlConnection(Settings.ConnectionString);
+        using var cn = new SqlConnection(DataSettings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand("dbo.GetStaffFromSSN", cn);
         cmd.CommandType = CommandType.StoredProcedure;
@@ -63,7 +63,7 @@ public class StaffDto
     public static StaffDto? GetById(int id)
     {
         StaffDto? result = null;
-        using var cn = new SqlConnection(Settings.ConnectionString);
+        using var cn = new SqlConnection(DataSettings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand("dbo.GetStaffFromID", cn);
         cmd.CommandType = CommandType.StoredProcedure;

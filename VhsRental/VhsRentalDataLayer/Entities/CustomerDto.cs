@@ -54,7 +54,7 @@ public class CustomerDto
 
     public static CustomerDto? Get(int id)
     {
-        using var cn = new SqlConnection(Settings.ConnectionString);
+        using var cn = new SqlConnection(DataSettings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand("dbo.GetCustomer", cn);
         cmd.CommandType = CommandType.StoredProcedure;
@@ -68,7 +68,7 @@ public class CustomerDto
 
     public static CustomerDto? Get(string ssn)
     {
-        using var cn = new SqlConnection(Settings.ConnectionString);
+        using var cn = new SqlConnection(DataSettings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand("dbo.GetCustomerFromSSN", cn);
         cmd.CommandType = CommandType.StoredProcedure;
@@ -123,7 +123,7 @@ public class CustomerDto
 
     public static void Set(int id, string name, string address1, string address2, string zipCode, string city, string phone, string eMail, bool isBlocked)
     {
-        using var cn = new SqlConnection(Settings.ConnectionString);
+        using var cn = new SqlConnection(DataSettings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand("dbo.UpdateCustomer", cn);
         cmd.CommandType = CommandType.StoredProcedure;
@@ -143,7 +143,7 @@ public class CustomerDto
     public static int Add(string name, string ssn, string address1, string address2, string zipCode, string city, string phone, string eMail)
     {
         var id = 0;
-        using var cn = new SqlConnection(Settings.ConnectionString);
+        using var cn = new SqlConnection(DataSettings.ConnectionString);
         cn.Open();
         using var cmd = new SqlCommand("dbo.RegisterCustomer", cn);
         cmd.CommandType = CommandType.StoredProcedure;
