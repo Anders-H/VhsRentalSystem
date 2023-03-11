@@ -1,8 +1,9 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
 
 namespace VhsRentalDataLayer;
 
-public class AdministrativeService
+public class AdministrativeDataService
 {
     public static void ClearAllData()
     {
@@ -31,6 +32,7 @@ DELETE FROM dbo.Staff
         cn.Open();
 
         using var cmd = new SqlCommand("dbo.SetSetting", cn);
+        cmd.CommandType = CommandType.StoredProcedure;
         cmd.Parameters.AddWithValue("@SettingName", settingName);
         cmd.Parameters.AddWithValue("@StringValue", stringValue);
         cmd.Parameters.AddWithValue("@MoneyValue", moneyValue);

@@ -4,7 +4,7 @@ using VhsRentalDataLayer.Entities;
 
 namespace VhsRentalDataLayer;
 
-public class RentalService
+public class RentalDataService
 {
     private readonly int _customerId;
     private readonly int _staffId;
@@ -13,7 +13,7 @@ public class RentalService
     private readonly SqlConnection _connection;
     public int TransactionId { get; private set; }
 
-    public RentalService(int customerId, int staffId, DateTime eventTime)
+    public RentalDataService(int customerId, int staffId, DateTime eventTime)
     {
         _customerId = customerId;
         _staffId = staffId;
@@ -23,7 +23,7 @@ public class RentalService
         TransactionId = 0;
     }
 
-    public RentalServiceResult OpenTransaction()
+    public RentalDataServiceResult OpenTransaction()
     {
         TransactionId = 0;
         _connection.Open();
@@ -41,21 +41,21 @@ public class RentalService
         switch (id)
         {
             case -4:
-                return RentalServiceResult.CustomerNotFound;
+                return RentalDataServiceResult.CustomerNotFound;
             case -3:
-                return RentalServiceResult.CustomerBlocked;
+                return RentalDataServiceResult.CustomerBlocked;
         }
 
         if (id > 0)
         {
             TransactionId = id;
-            return RentalServiceResult.Success;
+            return RentalDataServiceResult.Success;
         }
 
-        return RentalServiceResult.UnexpectedResult;
+        return RentalDataServiceResult.UnexpectedResult;
     }
 
-    public RentalServiceResult AddRentalToTransaction(int cassetteId, decimal amount, string description)
+    public RentalDataServiceResult AddRentalToTransaction(int cassetteId, decimal amount, string description)
     {
         _pendingRentals.Add(new PendingRentalDto(cassetteId, amount));
         using var cmd = new SqlCommand("dbo.CreateRental", _connection);
@@ -76,22 +76,22 @@ public class RentalService
         switch (id)
         {
             case -5:
-                return RentalServiceResult.StaffInactiveOrNotFound;
+                return RentalDataServiceResult.StaffInactiveOrNotFound;
             case -4:
-                return RentalServiceResult.CustomerNotFound;
+                return RentalDataServiceResult.CustomerNotFound;
             case -3:
-                return RentalServiceResult.CustomerBlocked;
+                return RentalDataServiceResult.CustomerBlocked;
             case -2:
-                return RentalServiceResult.CassetteNotFound;
+                return RentalDataServiceResult.CassetteNotFound;
             case -1:
-                return RentalServiceResult.CassetteInactive;
+                return RentalDataServiceResult.CassetteInactive;
             case 0:
-                return RentalServiceResult.MovieOrCompanyNotFound;
+                return RentalDataServiceResult.MovieOrCompanyNotFound;
         }
 
         return id > 0
-            ? RentalServiceResult.Success
-            : RentalServiceResult.UnexpectedResult;
+            ? RentalDataServiceResult.Success
+            : RentalDataServiceResult.UnexpectedResult;
     }
 
     public void CloseTransaction(bool canceled)

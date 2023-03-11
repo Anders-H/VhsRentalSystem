@@ -4,11 +4,11 @@ using VhsRentalDataLayer.Entities;
 
 namespace VhsRentalDataLayer;
 
-public class CassetteService : IDisposable
+public class CassetteDataService : IDisposable
 {
     private readonly SqlConnection _connection;
 
-    public CassetteService()
+    public CassetteDataService()
     {
         _connection = new SqlConnection(DataSettings.ConnectionString);
         _connection.Open();
@@ -62,6 +62,26 @@ public class CassetteService : IDisposable
         r.Close();
 
         return result;
+    }
+
+    public List<int> GetAllCassetteIds()
+    {
+        var result = new List<int>();
+        using var cmd = new SqlCommand("SELECT ID FROM dbo.Cassette", _connection);
+        var r = cmd.ExecuteReader();
+        while (r.Read())
+            result.Add(r.GetInt32(0));
+        r.Close();
+        return result;
+    }
+
+    public bool AssignEanToCassette(int id, decimal ean)
+    {
+        using var cmd = new SqlCommand("dbo.AssignEanToCassette", _connection);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@ID", id);
+        cmd.Parameters.AddWithValue("@EAN", ean);
+        return (int)cmd.ExecuteScalar() > 0;
     }
 
     public void Dispose()

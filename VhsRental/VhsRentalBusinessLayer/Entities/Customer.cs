@@ -1,4 +1,6 @@
-﻿namespace VhsRentalBusinessLayer.Entities;
+﻿using VhsRentalDataLayer.Entities;
+
+namespace VhsRentalBusinessLayer.Entities;
 
 public class Customer
 {
@@ -53,7 +55,7 @@ public class Customer
         LastActivity = lastActivity;
     }
 
-    private Customer(VhsRentalDataLayer.Entities.CustomerDto customer)
+    private Customer(CustomerDto customer)
     {
         Id = customer.Id;
         Name = customer.Name;
@@ -82,7 +84,7 @@ public class Customer
     {
         try
         {
-            var result = VhsRentalDataLayer.Entities.CustomerDto.Get(id);
+            var result = CustomerDto.Get(id);
 
             if (result == null)
                 return null;
@@ -99,7 +101,7 @@ public class Customer
     {
         try
         {
-            var result = VhsRentalDataLayer.Entities.CustomerDto.Get(ssn);
+            var result = CustomerDto.Get(ssn);
 
             if (result == null)
                 return null;
@@ -116,7 +118,7 @@ public class Customer
     {
         try
         {
-            VhsRentalDataLayer.Entities.CustomerDto.Set(
+            CustomerDto.Set(
                 customer.Id,
                 customer.Name,
                 customer.Address1,
@@ -140,7 +142,7 @@ public class Customer
     {
         try
         {
-            var id = VhsRentalDataLayer.Entities.CustomerDto.Add(name, ssn, address1, address2, zipCode, city, phone, eMail);
+            var id = CustomerDto.Add(name, ssn, address1, address2, zipCode, city, phone, eMail);
             
             return id;
         }

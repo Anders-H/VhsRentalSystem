@@ -6,7 +6,7 @@ public class Administrative
     {
         try
         {
-            VhsRentalDataLayer.AdministrativeService.ClearAllData();
+            VhsRentalDataLayer.AdministrativeDataService.ClearAllData();
             return true;
         }
         catch
@@ -19,7 +19,7 @@ public class Administrative
     {
         try
         {
-            VhsRentalDataLayer.AdministrativeService.SetSetting(settingName, stringValue, moneyValue, intValue);
+            VhsRentalDataLayer.AdministrativeDataService.SetSetting(settingName, stringValue, moneyValue, intValue);
             return true;
         }
         catch

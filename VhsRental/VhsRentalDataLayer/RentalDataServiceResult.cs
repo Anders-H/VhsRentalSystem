@@ -1,6 +1,6 @@
 ﻿namespace VhsRentalDataLayer;
 
-public enum RentalServiceResult
+public enum RentalDataServiceResult
 {
     Success,
     CustomerBlocked,
