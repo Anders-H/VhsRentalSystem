@@ -158,4 +158,17 @@ public class CustomerDto
         cn.Close();
         return id;
     }
+
+    public static bool UpdateSsn(int id, string ssn)
+    {
+        using var cn = new SqlConnection(DataSettings.ConnectionString);
+        cn.Open();
+        using var cmd = new SqlCommand("dbo.UpdateCustomerSsn", cn);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.AddWithValue("@ID", id);
+        cmd.Parameters.AddWithValue("@SSN", ssn);
+        var result = (int)cmd.ExecuteScalar();
+        cn.Close();
+        return result > 0;
+    }
 }

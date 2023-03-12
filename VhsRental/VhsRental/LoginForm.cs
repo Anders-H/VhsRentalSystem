@@ -12,11 +12,13 @@ public partial class LoginForm : Form
 
     private void btnOk_Click(object sender, EventArgs e)
     {
+        Cursor = Cursors.WaitCursor;
         var ssn = textBox1.Text.Trim();
         textBox1.Text = ssn;
             
         if (string.IsNullOrWhiteSpace(ssn))
         {
+            Cursor = Cursors.Default;
             MessageBox.Show(@"Enter your social security number.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             textBox1.Focus();
             return;
@@ -27,6 +29,7 @@ public partial class LoginForm : Form
         var staff = Login.TryLogin(ssn);
 
         this.SetToWaitMode(false);
+        Cursor = Cursors.Default;
 
         switch (staff.Result)
         {

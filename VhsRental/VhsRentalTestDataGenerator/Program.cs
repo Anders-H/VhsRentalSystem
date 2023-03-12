@@ -55,8 +55,12 @@ decimal GetEan()
     {
         again = false;
         ean = rnd.Next(10000, 99999);
+        
         if (eans.Exists(x => x == ean))
             again = true;
+        else
+            eans.Add(ean);
+
     } while (again);
 
     return ean;

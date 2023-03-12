@@ -1,4 +1,6 @@
-﻿namespace VhsRental.Screens;
+﻿using VhsRental.Dialogs;
+
+namespace VhsRental.Screens;
 
 public partial class CustomersScreen : UserControl, IScreen
 {
@@ -65,6 +67,14 @@ public partial class CustomersScreen : UserControl, IScreen
 
     private void lv_ItemSelected(object sender, SelectListLibrary.ItemSelectedEventArgs eventArgs)
     {
-        btnSearch_Click(this, EventArgs.Empty);
+        using var x = new CustomerDialog();
+        x.CurrentCustomerId = (int)eventArgs.SelectedItem.Tag;
+        x.AllowChangeCustomer = false;
+
+        if (x.ShowDialog(this) == DialogResult.OK)
+        {
+            btnSearch_Click(sender, EventArgs.Empty);
+            lv.Select(i => (int)i.Tag == x.CurrentCustomerId);
+        }
     }
 }

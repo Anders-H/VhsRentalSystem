@@ -142,13 +142,23 @@ public class Customer
     {
         try
         {
-            var id = CustomerDto.Add(name, ssn, address1, address2, zipCode, city, phone, eMail);
-            
-            return id;
+            return CustomerDto.Add(name, ssn, address1, address2, zipCode, city, phone, eMail);
         }
         catch
         {
             return 0;
+        }
+    }
+
+    public static bool UpdateSsn(int id, string ssn)
+    {
+        try
+        {
+            return CustomerDto.UpdateSsn(id, ssn);
+        }
+        catch
+        {
+            return false;
         }
     }
 }

@@ -6,18 +6,21 @@ namespace VhsRental.Dialogs;
 public partial class CustomerDialog : Form
 {
     private Customer? _customer;
+    private bool AddMode { get; set; }
     public int CurrentCustomerId { get; set; }
     public string? CurrentSsn { get; set; }
-    private bool AddMode { get; set; }
+    public bool AllowChangeCustomer { get; set; }
 
     public CustomerDialog()
     {
         InitializeComponent();
         AddMode = false;
+        AllowChangeCustomer = true;
     }
 
     private void CustomerDialog_Shown(object sender, EventArgs e)
     {
+        txtCustomerSsn.Enabled = AllowChangeCustomer;
         InitializeGui();
     }
 
@@ -48,6 +51,7 @@ public partial class CustomerDialog : Form
             }
             else
             {
+                CurrentSsn = _customer.Ssn;
                 PopulateForm();
                 AddMode = false;
                 btnOk.Text = @"Update";
@@ -56,6 +60,7 @@ public partial class CustomerDialog : Form
         }
 
         this.SetToWaitMode(false);
+        txtCustomerSsn.Enabled = AllowChangeCustomer;
     }
 
     private void PopulateForm()
@@ -106,8 +111,30 @@ public partial class CustomerDialog : Form
         }
 
         customerCoreDataControl1.WriteBack(ref _customer);
+
+        if (HasChangedSsn())
+        {
+            if (!Customer.UpdateSsn(_customer.Id, _customer.Ssn))
+            {
+                MessageBox.Show(@"The social security number could not be updated because it is not unique.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
         Customer.Set(_customer);
+
         DialogResult = DialogResult.OK;
+    }
+
+    private bool HasChangedSsn()
+    {
+        if (_customer == null)
+            return false;
+
+        if (string.IsNullOrWhiteSpace(_customer.Ssn) || string.IsNullOrWhiteSpace(CurrentSsn))
+            return false;
+
+        return _customer.Ssn != CurrentSsn;
     }
 
     private void txtCustomerSsn_Validating(object sender, System.ComponentModel.CancelEventArgs e)
