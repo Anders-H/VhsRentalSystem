@@ -92,6 +92,11 @@ public partial class CustomerCoreDataControl : UserControl
     public void EnableSsn() =>
         txtSsn.Enabled = true;
 
+    public void SetSsn(string ssn)
+    {
+        txtSsn.Text = ssn;
+    }
+
     public bool ValidateCustomer()
     {
         if (string.IsNullOrWhiteSpace(txtName.Text))

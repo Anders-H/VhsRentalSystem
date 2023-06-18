@@ -5,8 +5,9 @@ namespace VhsRental.Dialogs;
 
 public partial class CustomerDialog : Form
 {
-    private Customer? _customer;
     private bool AddMode { get; set; }
+    public bool PromptOnAdd { get; set; }
+    public Customer? Customer { get; private set; }
     public int CurrentCustomerId { get; set; }
     public string? CurrentSsn { get; set; }
     public bool AllowChangeCustomer { get; set; }
@@ -15,6 +16,7 @@ public partial class CustomerDialog : Form
     {
         InitializeComponent();
         AddMode = false;
+        PromptOnAdd = true;
         AllowChangeCustomer = true;
     }
 
@@ -27,10 +29,10 @@ public partial class CustomerDialog : Form
     private void InitializeGui()
     {
         this.SetToWaitMode(true);
-        
+
         if (CurrentCustomerId <= 0)
         {
-            _customer = null;
+            Customer = null;
             ClearForm();
             AddMode = true;
             btnOk.Text = @"Add";
@@ -39,8 +41,8 @@ public partial class CustomerDialog : Form
         }
         else
         {
-            _customer = Customer.Get(CurrentCustomerId);
-            if (_customer == null)
+            Customer = Customer.Get(CurrentCustomerId);
+            if (Customer == null)
             {
                 CurrentCustomerId = 0;
                 ClearForm();
@@ -51,7 +53,7 @@ public partial class CustomerDialog : Form
             }
             else
             {
-                CurrentSsn = _customer.Ssn;
+                CurrentSsn = Customer.Ssn;
                 PopulateForm();
                 AddMode = false;
                 btnOk.Text = @"Update";
@@ -65,9 +67,9 @@ public partial class CustomerDialog : Form
 
     private void PopulateForm()
     {
-        txtCustomerSsn.Text = _customer?.Ssn ?? "";
-        customerCoreDataControl1.SetData(_customer);
-        CurrentCustomerId = _customer?.Id ?? 0;
+        txtCustomerSsn.Text = Customer?.Ssn ?? "";
+        customerCoreDataControl1.SetData(Customer);
+        CurrentCustomerId = Customer?.Id ?? 0;
     }
 
     private void ClearForm()
@@ -84,57 +86,55 @@ public partial class CustomerDialog : Form
 
         if (AddMode)
         {
-            var response = MessageBox.Show(@"Add a new customer?", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-            if (response == DialogResult.Yes)
+            if (PromptOnAdd && MessageBox.Show(@"Add a new customer?", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+                return;
+
+            Customer = new Customer();
+            var c = Customer;
+            customerCoreDataControl1.WriteBack(ref c);
+            Customer = c;
+            CurrentCustomerId = Customer.Add(Customer.Name, Customer.Ssn, Customer.Address1, Customer.Address2, Customer.ZipCode, Customer.ZipCode, Customer.Phone, Customer.EMail);
+
+            if (CurrentCustomerId <= 0)
             {
-                _customer = new Customer();
-                customerCoreDataControl1.WriteBack(ref _customer);
-                CurrentCustomerId = Customer.Add(_customer.Name, _customer.Ssn, _customer.Address1, _customer.Address2, _customer.ZipCode, _customer.ZipCode, _customer.Phone, _customer.EMail);
-
-                if (CurrentCustomerId <= 0)
-                {
-                    MessageBox.Show(@"Add customer failed.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                DialogResult = DialogResult.OK;
+                MessageBox.Show(@"Add customer failed.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            DialogResult = DialogResult.OK;
             return;
         }
 
-        if (_customer == null || _customer.Id <= 0)
+        if (Customer is not { Id: > 0 })
         {
             MessageBox.Show(@"Unexpected error.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
-        customerCoreDataControl1.WriteBack(ref _customer);
+        var cst = Customer;
+        customerCoreDataControl1.WriteBack(ref cst);
+        Customer = cst;
 
-        if (HasChangedSsn())
+        if (HasChangedSsn() && !Customer.UpdateSsn(Customer.Id, Customer.Ssn))
         {
-            if (!Customer.UpdateSsn(_customer.Id, _customer.Ssn))
-            {
-                MessageBox.Show(@"The social security number could not be updated because it is not unique.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            MessageBox.Show(@"The social security number could not be updated because it is not unique.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
         }
 
-        Customer.Set(_customer);
+        Customer.Set(Customer);
 
         DialogResult = DialogResult.OK;
     }
 
     private bool HasChangedSsn()
     {
-        if (_customer == null)
+        if (Customer == null)
             return false;
 
-        if (string.IsNullOrWhiteSpace(_customer.Ssn) || string.IsNullOrWhiteSpace(CurrentSsn))
+        if (string.IsNullOrWhiteSpace(Customer.Ssn) || string.IsNullOrWhiteSpace(CurrentSsn))
             return false;
 
-        return _customer.Ssn != CurrentSsn;
+        return Customer.Ssn != CurrentSsn;
     }
 
     private void txtCustomerSsn_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -150,7 +150,7 @@ public partial class CustomerDialog : Form
 
         if (customer == null)
         {
-            _customer = null;
+            Customer = null;
             customerCoreDataControl1.ClearForm();
             btnOk.Text = @"Add";
             AddMode = true;
@@ -160,8 +160,14 @@ public partial class CustomerDialog : Form
 
         btnOk.Text = @"Update";
         AddMode = false;
-        _customer = customer;
+        Customer = customer;
         customerCoreDataControl1.EnableSsn();
         PopulateForm();
+    }
+
+    private void txtCustomerSsn_TextChanged(object sender, EventArgs e)
+    {
+        if (AddMode)
+            customerCoreDataControl1.SetSsn(txtCustomerSsn.Text.Trim());
     }
 }

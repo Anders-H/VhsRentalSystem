@@ -28,80 +28,80 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.customerCoreDataControl1 = new VhsRental.CustomControls.CustomerCoreDataControl();
-            this.btnOk = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.txtCustomerSsn = new System.Windows.Forms.TextBox();
-            this.SuspendLayout();
+            label1 = new Label();
+            customerCoreDataControl1 = new CustomControls.CustomerCoreDataControl();
+            btnOk = new Button();
+            btnCancel = new Button();
+            txtCustomerSsn = new TextBox();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Selected customer:";
+            label1.AutoSize = true;
+            label1.Location = new Point(8, 8);
+            label1.Name = "label1";
+            label1.Size = new Size(107, 15);
+            label1.TabIndex = 0;
+            label1.Text = "Selected customer:";
             // 
             // customerCoreDataControl1
             // 
-            this.customerCoreDataControl1.Location = new System.Drawing.Point(4, 32);
-            this.customerCoreDataControl1.Name = "customerCoreDataControl1";
-            this.customerCoreDataControl1.Size = new System.Drawing.Size(771, 252);
-            this.customerCoreDataControl1.TabIndex = 2;
+            customerCoreDataControl1.Location = new Point(4, 32);
+            customerCoreDataControl1.Name = "customerCoreDataControl1";
+            customerCoreDataControl1.Size = new Size(771, 252);
+            customerCoreDataControl1.TabIndex = 2;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(616, 288);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 3;
-            this.btnOk.Text = "OK";
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            btnOk.Location = new Point(616, 288);
+            btnOk.Name = "btnOk";
+            btnOk.Size = new Size(75, 23);
+            btnOk.TabIndex = 3;
+            btnOk.Text = "OK";
+            btnOk.UseVisualStyleBackColor = true;
+            btnOk.Click += btnOk_Click;
             // 
             // btnCancel
             // 
-            this.btnCancel.CausesValidation = false;
-            this.btnCancel.Location = new System.Drawing.Point(696, 288);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 4;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.CausesValidation = false;
+            btnCancel.Location = new Point(696, 288);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(75, 23);
+            btnCancel.TabIndex = 4;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
             // 
             // txtCustomerSsn
             // 
-            this.txtCustomerSsn.Location = new System.Drawing.Point(120, 4);
-            this.txtCustomerSsn.Name = "txtCustomerSsn";
-            this.txtCustomerSsn.Size = new System.Drawing.Size(172, 23);
-            this.txtCustomerSsn.TabIndex = 1;
-            this.txtCustomerSsn.Validating += new System.ComponentModel.CancelEventHandler(this.txtCustomerSsn_Validating);
+            txtCustomerSsn.Location = new Point(120, 4);
+            txtCustomerSsn.Name = "txtCustomerSsn";
+            txtCustomerSsn.Size = new Size(172, 23);
+            txtCustomerSsn.TabIndex = 1;
+            txtCustomerSsn.TextChanged += txtCustomerSsn_TextChanged;
+            txtCustomerSsn.Validating += txtCustomerSsn_Validating;
             // 
             // CustomerDialog
             // 
-            this.AcceptButton = this.btnOk;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(777, 315);
-            this.Controls.Add(this.txtCustomerSsn);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.customerCoreDataControl1);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "CustomerDialog";
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Customer";
-            this.Shown += new System.EventHandler(this.CustomerDialog_Shown);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AcceptButton = btnOk;
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnCancel;
+            ClientSize = new Size(777, 315);
+            Controls.Add(txtCustomerSsn);
+            Controls.Add(btnCancel);
+            Controls.Add(btnOk);
+            Controls.Add(customerCoreDataControl1);
+            Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "CustomerDialog";
+            ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Customer";
+            Shown += CustomerDialog_Shown;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

@@ -55,6 +55,24 @@ public partial class CustomersScreen : UserControl, IScreen
         this.SetToWaitMode(false);
     }
 
+    private void HighlightCustomer(int customerId)
+    {
+        if (customerId < 0)
+            return;
+
+        foreach (ListViewItem listViewItem in lv.Items)
+        {
+            var id = (int)listViewItem.Tag;
+
+            if (id != customerId)
+                continue;
+
+            lv.SelectedItem = listViewItem;
+            listViewItem.EnsureVisible();
+            return;
+        }
+    }
+
     private void btnHome_Click(object sender, EventArgs e)
     {
         ((MainWindow)ParentForm!).GetScreen<MainMenuScreen>();
@@ -62,7 +80,14 @@ public partial class CustomersScreen : UserControl, IScreen
 
     private void btnAdd_Click(object sender, EventArgs e)
     {
+        using var x = new CustomerDialog();
+        x.PromptOnAdd = false;
 
+        if (x.ShowDialog(this) == DialogResult.OK)
+        {
+            LoadCustomers(x.CurrentSsn ?? "");
+            HighlightCustomer(x.Customer?.Id ?? 0);
+        }
     }
 
     private void lv_ItemSelected(object sender, SelectListLibrary.ItemSelectedEventArgs eventArgs)
