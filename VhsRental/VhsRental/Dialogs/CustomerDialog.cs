@@ -1,5 +1,6 @@
 ﻿using VhsRental.Screens;
 using VhsRentalBusinessLayer.Entities;
+using System.ComponentModel;
 
 namespace VhsRental.Dialogs;
 
