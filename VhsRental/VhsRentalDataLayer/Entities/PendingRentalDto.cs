@@ -3,11 +3,13 @@
 public class PendingRentalDto
 {
     public int CassetteId { get; }
-    public decimal Amount { get; }
+    public decimal DefaultAmount { get; }
+    public decimal ActualAmount { get; }
 
-    public PendingRentalDto(int cassetteId, decimal amount)
+    public PendingRentalDto(int cassetteId, decimal defaultAmount, decimal actualAmount)
     {
         CassetteId = cassetteId;
-        Amount = amount;
+        DefaultAmount = defaultAmount;
+        ActualAmount = actualAmount;
     }
 }

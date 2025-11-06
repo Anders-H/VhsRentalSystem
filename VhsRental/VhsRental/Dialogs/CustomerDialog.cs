@@ -1,16 +1,28 @@
 ﻿using VhsRental.Screens;
 using VhsRentalBusinessLayer.Entities;
-using System.ComponentModel;
 
 namespace VhsRental.Dialogs;
 
 public partial class CustomerDialog : Form
 {
     private bool AddMode { get; set; }
+
+    [System.ComponentModel.Browsable(false)]
+    [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
     public bool PromptOnAdd { get; set; }
+
     public Customer? Customer { get; private set; }
+
+    [System.ComponentModel.Browsable(false)]
+    [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
     public int CurrentCustomerId { get; set; }
+
+    [System.ComponentModel.Browsable(false)]
+    [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
     public string? CurrentSsn { get; set; }
+
+    [System.ComponentModel.Browsable(false)]
+    [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
     public bool AllowChangeCustomer { get; set; }
 
     public CustomerDialog()

@@ -36,12 +36,12 @@ public class RentalService
         }
     }
 
-    public RentalServiceResult AddRentalToTransaction(int cassetteId, decimal amount, string description)
+    public RentalServiceResult AddRentalToTransaction(int cassetteId, decimal defaultPrice, decimal actualPrice, string description)
     {
         if (TransactionId <= 0)
             throw new SystemException();
 
-        var result = _rentalService!.AddRentalToTransaction(cassetteId, amount, description);
+        var result = _rentalService!.AddRentalToTransaction(cassetteId, defaultPrice, actualPrice, description);
 
         switch (result)
         {

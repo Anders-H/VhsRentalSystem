@@ -350,7 +350,7 @@ public partial class CreateRentalScreen : UserControl, IScreen
 
         foreach (var cassette in cassettesToRental)
         {
-            var result = rentalService.AddRentalToTransaction(cassette.CassetteId, cassette.Amount, cassette.Description);
+            var result = rentalService.AddRentalToTransaction(cassette.CassetteId, cassette.DefaultPrice, cassette.ActualPrice, cassette.Description);
             switch (result)
             {
                 case RentalServiceResult.Success:

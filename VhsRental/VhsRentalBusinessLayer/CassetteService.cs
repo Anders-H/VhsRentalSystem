@@ -25,7 +25,7 @@ public class CassetteService : IDisposable
     {
         var result = _cassetteDataService.GetCassetteForRental(cassetteId);
 
-        return new RentalCassette(result.CassetteId, result.Amount, "");
+        return new RentalCassette(result.CassetteId, 0,0, "");
     }
 
     public CassetteBasicInformation? GetBasicCassetteInformation(int cassetteId)

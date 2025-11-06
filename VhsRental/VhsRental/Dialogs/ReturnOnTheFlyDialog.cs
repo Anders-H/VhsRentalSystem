@@ -5,7 +5,12 @@ namespace VhsRental.Dialogs;
 
 public partial class ReturnOnTheFlyDialog : Form
 {
+    [System.ComponentModel.Browsable(false)]
+    [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
     public string Description { get; set; }
+
+    [System.ComponentModel.Browsable(false)]
+    [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
     public CassetteBasicInformation? Cassette { get; set; }
 
     public ReturnOnTheFlyDialog()

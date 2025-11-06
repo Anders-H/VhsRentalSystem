@@ -4,7 +4,12 @@ namespace VhsRental.Dialogs;
 
 public partial class PromptCassetteDialog : Form
 {
+    [System.ComponentModel.Browsable(false)]
+    [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
     public List<AvailableCassette>? Cassettes { get; set; }
+
+    [System.ComponentModel.Browsable(false)]
+    [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
     public AvailableCassette? SelectedCassette { get; set; }
 
     public PromptCassetteDialog()

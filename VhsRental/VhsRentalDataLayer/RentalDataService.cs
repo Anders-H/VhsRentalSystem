@@ -55,16 +55,17 @@ public class RentalDataService
         return RentalDataServiceResult.UnexpectedResult;
     }
 
-    public RentalDataServiceResult AddRentalToTransaction(int cassetteId, decimal amount, string description)
+    public RentalDataServiceResult AddRentalToTransaction(int cassetteId, decimal defaultAmount, decimal actualAmount, string description)
     {
-        _pendingRentals.Add(new PendingRentalDto(cassetteId, amount));
+        _pendingRentals.Add(new PendingRentalDto(cassetteId, defaultAmount, actualAmount));
         using var cmd = new SqlCommand("dbo.CreateRental", _connection);
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.Parameters.AddWithValue("@TransactionID", TransactionId);
         cmd.Parameters.AddWithValue("@StaffID", _staffId);
         cmd.Parameters.AddWithValue("@CustomerID", _customerId);
         cmd.Parameters.AddWithValue("@CassetteID", cassetteId);
-        cmd.Parameters.AddWithValue("@Amount", amount);
+        cmd.Parameters.AddWithValue("@DefaultAmount", defaultAmount);
+        cmd.Parameters.AddWithValue("@ActualAmount", actualAmount);
         cmd.Parameters.AddWithValue("@EventTime", _eventTime);
         cmd.Parameters.AddWithValue("@Description", description);
         var r = cmd.ExecuteReader();
@@ -99,7 +100,8 @@ public class RentalDataService
         using var cmd = new SqlCommand("dbo.CloseRentalTransaction", _connection);
         cmd.CommandType = CommandType.StoredProcedure;
         cmd.Parameters.AddWithValue("@ID", TransactionId);
-        cmd.Parameters.AddWithValue("@Amount", _pendingRentals.Sum(x => x.Amount));
+        cmd.Parameters.AddWithValue("@DefaultAmount", _pendingRentals.Sum(x => x.DefaultAmount));
+        cmd.Parameters.AddWithValue("@ActualAmount", _pendingRentals.Sum(x => x.ActualAmount));
         cmd.Parameters.AddWithValue("@Canceled", canceled);
         cmd.ExecuteNonQuery();
         _connection.Close();
