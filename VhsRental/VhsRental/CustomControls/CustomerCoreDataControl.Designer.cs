@@ -28,370 +28,370 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtEMail = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtPhone = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtCity = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtZipCode = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtAddress2 = new System.Windows.Forms.TextBox();
-            this.txtAddress1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtSsn = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtLastActivity = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtCassettesOutNow = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtTotalNumberOfRentals = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtLastMovieTitle = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtCassetteLastCustomerName = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtCassetteEan = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.chkBlocked = new System.Windows.Forms.CheckBox();
-            this.txtCustomerNumber = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.SuspendLayout();
+            groupBox1 = new GroupBox();
+            txtEMail = new TextBox();
+            label7 = new Label();
+            txtPhone = new TextBox();
+            label6 = new Label();
+            txtCity = new TextBox();
+            label4 = new Label();
+            txtZipCode = new TextBox();
+            label5 = new Label();
+            txtAddress2 = new TextBox();
+            txtAddress1 = new TextBox();
+            label3 = new Label();
+            txtSsn = new TextBox();
+            label2 = new Label();
+            txtName = new TextBox();
+            label1 = new Label();
+            groupBox2 = new GroupBox();
+            txtLastActivity = new TextBox();
+            label14 = new Label();
+            txtCassettesOutNow = new TextBox();
+            label13 = new Label();
+            txtTotalNumberOfRentals = new TextBox();
+            label12 = new Label();
+            txtLastMovieTitle = new TextBox();
+            label11 = new Label();
+            txtCassetteLastCustomerName = new TextBox();
+            label10 = new Label();
+            txtCassetteEan = new TextBox();
+            label9 = new Label();
+            chkBlocked = new CheckBox();
+            txtCustomerNumber = new TextBox();
+            label8 = new Label();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtEMail);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.txtPhone);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txtCity);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtZipCode);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtAddress2);
-            this.groupBox1.Controls.Add(this.txtAddress1);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtSsn);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtName);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(424, 252);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Customer contact information";
+            groupBox1.Controls.Add(txtEMail);
+            groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(txtPhone);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(txtCity);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(txtZipCode);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(txtAddress2);
+            groupBox1.Controls.Add(txtAddress1);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(txtSsn);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(txtName);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Location = new Point(0, 0);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(424, 252);
+            groupBox1.TabIndex = 0;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Customer contact information";
             // 
             // txtEMail
             // 
-            this.txtEMail.Location = new System.Drawing.Point(8, 224);
-            this.txtEMail.MaxLength = 100;
-            this.txtEMail.Name = "txtEMail";
-            this.txtEMail.Size = new System.Drawing.Size(408, 23);
-            this.txtEMail.TabIndex = 14;
+            txtEMail.Location = new Point(8, 224);
+            txtEMail.MaxLength = 100;
+            txtEMail.Name = "txtEMail";
+            txtEMail.Size = new Size(408, 23);
+            txtEMail.TabIndex = 14;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 208);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(44, 15);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "E-mail:";
+            label7.AutoSize = true;
+            label7.Location = new Point(8, 208);
+            label7.Name = "label7";
+            label7.Size = new Size(44, 15);
+            label7.TabIndex = 13;
+            label7.Text = "E-mail:";
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(8, 184);
-            this.txtPhone.MaxLength = 50;
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(408, 23);
-            this.txtPhone.TabIndex = 12;
+            txtPhone.Location = new Point(8, 184);
+            txtPhone.MaxLength = 50;
+            txtPhone.Name = "txtPhone";
+            txtPhone.Size = new Size(408, 23);
+            txtPhone.TabIndex = 12;
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 168);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(44, 15);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Phone:";
+            label6.AutoSize = true;
+            label6.Location = new Point(8, 168);
+            label6.Name = "label6";
+            label6.Size = new Size(44, 15);
+            label6.TabIndex = 11;
+            label6.Text = "Phone:";
             // 
             // txtCity
             // 
-            this.txtCity.Location = new System.Drawing.Point(104, 144);
-            this.txtCity.MaxLength = 50;
-            this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(312, 23);
-            this.txtCity.TabIndex = 10;
+            txtCity.Location = new Point(104, 144);
+            txtCity.MaxLength = 50;
+            txtCity.Name = "txtCity";
+            txtCity.Size = new Size(312, 23);
+            txtCity.TabIndex = 10;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(104, 128);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 15);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "City:";
+            label4.AutoSize = true;
+            label4.Location = new Point(104, 128);
+            label4.Name = "label4";
+            label4.Size = new Size(31, 15);
+            label4.TabIndex = 9;
+            label4.Text = "City:";
             // 
             // txtZipCode
             // 
-            this.txtZipCode.Location = new System.Drawing.Point(8, 144);
-            this.txtZipCode.MaxLength = 10;
-            this.txtZipCode.Name = "txtZipCode";
-            this.txtZipCode.Size = new System.Drawing.Size(92, 23);
-            this.txtZipCode.TabIndex = 8;
+            txtZipCode.Location = new Point(8, 144);
+            txtZipCode.MaxLength = 10;
+            txtZipCode.Name = "txtZipCode";
+            txtZipCode.Size = new Size(92, 23);
+            txtZipCode.TabIndex = 8;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 128);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 15);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Zip code:";
+            label5.AutoSize = true;
+            label5.Location = new Point(8, 128);
+            label5.Name = "label5";
+            label5.Size = new Size(56, 15);
+            label5.TabIndex = 7;
+            label5.Text = "Zip code:";
             // 
             // txtAddress2
             // 
-            this.txtAddress2.Location = new System.Drawing.Point(8, 104);
-            this.txtAddress2.MaxLength = 50;
-            this.txtAddress2.Name = "txtAddress2";
-            this.txtAddress2.Size = new System.Drawing.Size(408, 23);
-            this.txtAddress2.TabIndex = 6;
+            txtAddress2.Location = new Point(8, 104);
+            txtAddress2.MaxLength = 50;
+            txtAddress2.Name = "txtAddress2";
+            txtAddress2.Size = new Size(408, 23);
+            txtAddress2.TabIndex = 6;
             // 
             // txtAddress1
             // 
-            this.txtAddress1.Location = new System.Drawing.Point(8, 76);
-            this.txtAddress1.MaxLength = 50;
-            this.txtAddress1.Name = "txtAddress1";
-            this.txtAddress1.Size = new System.Drawing.Size(408, 23);
-            this.txtAddress1.TabIndex = 5;
+            txtAddress1.Location = new Point(8, 76);
+            txtAddress1.MaxLength = 50;
+            txtAddress1.Name = "txtAddress1";
+            txtAddress1.Size = new Size(408, 23);
+            txtAddress1.TabIndex = 5;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 60);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 15);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Address:";
+            label3.AutoSize = true;
+            label3.Location = new Point(8, 60);
+            label3.Name = "label3";
+            label3.Size = new Size(52, 15);
+            label3.TabIndex = 4;
+            label3.Text = "Address:";
             // 
             // txtSsn
             // 
-            this.txtSsn.Location = new System.Drawing.Point(280, 36);
-            this.txtSsn.MaxLength = 50;
-            this.txtSsn.Name = "txtSsn";
-            this.txtSsn.Size = new System.Drawing.Size(136, 23);
-            this.txtSsn.TabIndex = 3;
+            txtSsn.Location = new Point(280, 36);
+            txtSsn.MaxLength = 50;
+            txtSsn.Name = "txtSsn";
+            txtSsn.Size = new Size(136, 23);
+            txtSsn.TabIndex = 3;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(280, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Social security number:";
+            label2.AutoSize = true;
+            label2.Location = new Point(280, 20);
+            label2.Name = "label2";
+            label2.Size = new Size(130, 15);
+            label2.TabIndex = 2;
+            label2.Text = "Social security number:";
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(8, 36);
-            this.txtName.MaxLength = 50;
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(268, 23);
-            this.txtName.TabIndex = 1;
+            txtName.Location = new Point(8, 36);
+            txtName.MaxLength = 50;
+            txtName.Name = "txtName";
+            txtName.Size = new Size(268, 23);
+            txtName.TabIndex = 1;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Name:";
+            label1.AutoSize = true;
+            label1.Location = new Point(8, 20);
+            label1.Name = "label1";
+            label1.Size = new Size(42, 15);
+            label1.TabIndex = 0;
+            label1.Text = "Name:";
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.txtLastActivity);
-            this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.txtCassettesOutNow);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.txtTotalNumberOfRentals);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.txtLastMovieTitle);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.txtCassetteLastCustomerName);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.txtCassetteEan);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.chkBlocked);
-            this.groupBox2.Controls.Add(this.txtCustomerNumber);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Location = new System.Drawing.Point(432, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(336, 252);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Other information";
+            groupBox2.Controls.Add(txtLastActivity);
+            groupBox2.Controls.Add(label14);
+            groupBox2.Controls.Add(txtCassettesOutNow);
+            groupBox2.Controls.Add(label13);
+            groupBox2.Controls.Add(txtTotalNumberOfRentals);
+            groupBox2.Controls.Add(label12);
+            groupBox2.Controls.Add(txtLastMovieTitle);
+            groupBox2.Controls.Add(label11);
+            groupBox2.Controls.Add(txtCassetteLastCustomerName);
+            groupBox2.Controls.Add(label10);
+            groupBox2.Controls.Add(txtCassetteEan);
+            groupBox2.Controls.Add(label9);
+            groupBox2.Controls.Add(chkBlocked);
+            groupBox2.Controls.Add(txtCustomerNumber);
+            groupBox2.Controls.Add(label8);
+            groupBox2.Location = new Point(432, 0);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(336, 252);
+            groupBox2.TabIndex = 1;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Other information";
             // 
             // txtLastActivity
             // 
-            this.txtLastActivity.Location = new System.Drawing.Point(208, 224);
-            this.txtLastActivity.MaxLength = 50;
-            this.txtLastActivity.Name = "txtLastActivity";
-            this.txtLastActivity.ReadOnly = true;
-            this.txtLastActivity.Size = new System.Drawing.Size(120, 23);
-            this.txtLastActivity.TabIndex = 14;
-            this.txtLastActivity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtLastActivity.Location = new Point(208, 224);
+            txtLastActivity.MaxLength = 50;
+            txtLastActivity.Name = "txtLastActivity";
+            txtLastActivity.ReadOnly = true;
+            txtLastActivity.Size = new Size(120, 23);
+            txtLastActivity.TabIndex = 14;
+            txtLastActivity.TextAlign = HorizontalAlignment.Center;
             // 
             // label14
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(8, 228);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(72, 15);
-            this.label14.TabIndex = 13;
-            this.label14.Text = "Last activity:";
+            label14.AutoSize = true;
+            label14.Location = new Point(8, 228);
+            label14.Name = "label14";
+            label14.Size = new Size(72, 15);
+            label14.TabIndex = 13;
+            label14.Text = "Last activity:";
             // 
             // txtCassettesOutNow
             // 
-            this.txtCassettesOutNow.Location = new System.Drawing.Point(208, 196);
-            this.txtCassettesOutNow.MaxLength = 50;
-            this.txtCassettesOutNow.Name = "txtCassettesOutNow";
-            this.txtCassettesOutNow.ReadOnly = true;
-            this.txtCassettesOutNow.Size = new System.Drawing.Size(120, 23);
-            this.txtCassettesOutNow.TabIndex = 12;
-            this.txtCassettesOutNow.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            txtCassettesOutNow.Location = new Point(208, 196);
+            txtCassettesOutNow.MaxLength = 50;
+            txtCassettesOutNow.Name = "txtCassettesOutNow";
+            txtCassettesOutNow.ReadOnly = true;
+            txtCassettesOutNow.Size = new Size(120, 23);
+            txtCassettesOutNow.TabIndex = 12;
+            txtCassettesOutNow.TextAlign = HorizontalAlignment.Right;
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(8, 200);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(147, 15);
-            this.label13.TabIndex = 11;
-            this.label13.Text = "Number of current rentals:";
+            label13.AutoSize = true;
+            label13.Location = new Point(8, 200);
+            label13.Name = "label13";
+            label13.Size = new Size(147, 15);
+            label13.TabIndex = 11;
+            label13.Text = "Number of current rentals:";
             // 
             // txtTotalNumberOfRentals
             // 
-            this.txtTotalNumberOfRentals.Location = new System.Drawing.Point(208, 168);
-            this.txtTotalNumberOfRentals.MaxLength = 50;
-            this.txtTotalNumberOfRentals.Name = "txtTotalNumberOfRentals";
-            this.txtTotalNumberOfRentals.ReadOnly = true;
-            this.txtTotalNumberOfRentals.Size = new System.Drawing.Size(120, 23);
-            this.txtTotalNumberOfRentals.TabIndex = 10;
-            this.txtTotalNumberOfRentals.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            txtTotalNumberOfRentals.Location = new Point(208, 168);
+            txtTotalNumberOfRentals.MaxLength = 50;
+            txtTotalNumberOfRentals.Name = "txtTotalNumberOfRentals";
+            txtTotalNumberOfRentals.ReadOnly = true;
+            txtTotalNumberOfRentals.Size = new Size(120, 23);
+            txtTotalNumberOfRentals.TabIndex = 10;
+            txtTotalNumberOfRentals.TextAlign = HorizontalAlignment.Right;
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(8, 172);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(132, 15);
-            this.label12.TabIndex = 9;
-            this.label12.Text = "Total number of rentals:";
+            label12.AutoSize = true;
+            label12.Location = new Point(8, 172);
+            label12.Name = "label12";
+            label12.Size = new Size(133, 15);
+            label12.TabIndex = 9;
+            label12.Text = "Total number of rentals:";
             // 
             // txtLastMovieTitle
             // 
-            this.txtLastMovieTitle.Location = new System.Drawing.Point(8, 128);
-            this.txtLastMovieTitle.MaxLength = 50;
-            this.txtLastMovieTitle.Name = "txtLastMovieTitle";
-            this.txtLastMovieTitle.ReadOnly = true;
-            this.txtLastMovieTitle.Size = new System.Drawing.Size(320, 23);
-            this.txtLastMovieTitle.TabIndex = 8;
+            txtLastMovieTitle.Location = new Point(8, 128);
+            txtLastMovieTitle.MaxLength = 50;
+            txtLastMovieTitle.Name = "txtLastMovieTitle";
+            txtLastMovieTitle.ReadOnly = true;
+            txtLastMovieTitle.Size = new Size(320, 23);
+            txtLastMovieTitle.TabIndex = 8;
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(8, 112);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(66, 15);
-            this.label11.TabIndex = 7;
-            this.label11.Text = "Movie title:";
+            label11.AutoSize = true;
+            label11.Location = new Point(8, 112);
+            label11.Name = "label11";
+            label11.Size = new Size(66, 15);
+            label11.TabIndex = 7;
+            label11.Text = "Movie title:";
             // 
             // txtCassetteLastCustomerName
             // 
-            this.txtCassetteLastCustomerName.Location = new System.Drawing.Point(120, 88);
-            this.txtCassetteLastCustomerName.MaxLength = 50;
-            this.txtCassetteLastCustomerName.Name = "txtCassetteLastCustomerName";
-            this.txtCassetteLastCustomerName.ReadOnly = true;
-            this.txtCassetteLastCustomerName.Size = new System.Drawing.Size(208, 23);
-            this.txtCassetteLastCustomerName.TabIndex = 6;
+            txtCassetteLastCustomerName.Location = new Point(120, 88);
+            txtCassetteLastCustomerName.MaxLength = 50;
+            txtCassetteLastCustomerName.Name = "txtCassetteLastCustomerName";
+            txtCassetteLastCustomerName.ReadOnly = true;
+            txtCassetteLastCustomerName.Size = new Size(208, 23);
+            txtCassetteLastCustomerName.TabIndex = 6;
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(120, 72);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(170, 15);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "Last customer on that cassette:";
+            label10.AutoSize = true;
+            label10.Location = new Point(120, 72);
+            label10.Name = "label10";
+            label10.Size = new Size(170, 15);
+            label10.TabIndex = 5;
+            label10.Text = "Last customer on that cassette:";
             // 
             // txtCassetteEan
             // 
-            this.txtCassetteEan.Location = new System.Drawing.Point(8, 88);
-            this.txtCassetteEan.MaxLength = 50;
-            this.txtCassetteEan.Name = "txtCassetteEan";
-            this.txtCassetteEan.ReadOnly = true;
-            this.txtCassetteEan.Size = new System.Drawing.Size(108, 23);
-            this.txtCassetteEan.TabIndex = 4;
+            txtCassetteEan.Location = new Point(8, 88);
+            txtCassetteEan.MaxLength = 50;
+            txtCassetteEan.Name = "txtCassetteEan";
+            txtCassetteEan.ReadOnly = true;
+            txtCassetteEan.Size = new Size(108, 23);
+            txtCassetteEan.TabIndex = 4;
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 72);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(76, 15);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "Last cassette:";
+            label9.AutoSize = true;
+            label9.Location = new Point(8, 72);
+            label9.Name = "label9";
+            label9.Size = new Size(76, 15);
+            label9.TabIndex = 3;
+            label9.Text = "Last cassette:";
             // 
             // chkBlocked
             // 
-            this.chkBlocked.AutoSize = true;
-            this.chkBlocked.Location = new System.Drawing.Point(172, 32);
-            this.chkBlocked.Name = "chkBlocked";
-            this.chkBlocked.Size = new System.Drawing.Size(68, 19);
-            this.chkBlocked.TabIndex = 2;
-            this.chkBlocked.Text = "Blocked";
-            this.chkBlocked.UseVisualStyleBackColor = true;
+            chkBlocked.AutoSize = true;
+            chkBlocked.Location = new Point(172, 32);
+            chkBlocked.Name = "chkBlocked";
+            chkBlocked.Size = new Size(68, 19);
+            chkBlocked.TabIndex = 2;
+            chkBlocked.Text = "Blocked";
+            chkBlocked.UseVisualStyleBackColor = true;
             // 
             // txtCustomerNumber
             // 
-            this.txtCustomerNumber.Location = new System.Drawing.Point(8, 30);
-            this.txtCustomerNumber.MaxLength = 12;
-            this.txtCustomerNumber.Name = "txtCustomerNumber";
-            this.txtCustomerNumber.ReadOnly = true;
-            this.txtCustomerNumber.Size = new System.Drawing.Size(152, 23);
-            this.txtCustomerNumber.TabIndex = 1;
+            txtCustomerNumber.Location = new Point(8, 30);
+            txtCustomerNumber.MaxLength = 12;
+            txtCustomerNumber.Name = "txtCustomerNumber";
+            txtCustomerNumber.ReadOnly = true;
+            txtCustomerNumber.Size = new Size(152, 23);
+            txtCustomerNumber.TabIndex = 1;
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 14);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(107, 15);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Customer number:";
+            label8.AutoSize = true;
+            label8.Location = new Point(8, 14);
+            label8.Name = "label8";
+            label8.Size = new Size(107, 15);
+            label8.TabIndex = 0;
+            label8.Text = "Customer number:";
             // 
             // CustomerCoreDataControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Name = "CustomerCoreDataControl";
-            this.Size = new System.Drawing.Size(771, 252);
-            this.Resize += new System.EventHandler(this.CustomerCoreDataControl_Resize);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
+            Name = "CustomerCoreDataControl";
+            Size = new Size(771, 252);
+            Resize += CustomerCoreDataControl_Resize;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            ResumeLayout(false);
 
         }
 

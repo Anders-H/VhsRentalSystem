@@ -28,150 +28,142 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnHome = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.lv = new SelectListLibrary.SelectList();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
+            panel1 = new Panel();
+            btnHome = new Button();
+            btnAdd = new Button();
+            txtSearch = new TextBox();
+            btnSearch = new Button();
+            lv = new SelectListLibrary.SelectList();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
+            columnHeader5 = new ColumnHeader();
+            columnHeader6 = new ColumnHeader();
+            columnHeader7 = new ColumnHeader();
+            panel1.SuspendLayout();
+            SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnHome);
-            this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Controls.Add(this.txtSearch);
-            this.panel1.Controls.Add(this.btnSearch);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(668, 32);
-            this.panel1.TabIndex = 0;
+            panel1.Controls.Add(btnHome);
+            panel1.Controls.Add(btnAdd);
+            panel1.Controls.Add(txtSearch);
+            panel1.Controls.Add(btnSearch);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(668, 32);
+            panel1.TabIndex = 0;
             // 
             // btnHome
             // 
-            this.btnHome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnHome.Location = new System.Drawing.Point(588, 4);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(75, 23);
-            this.btnHome.TabIndex = 3;
-            this.btnHome.Text = "Home";
-            this.btnHome.UseVisualStyleBackColor = true;
-            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            btnHome.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnHome.Location = new Point(588, 4);
+            btnHome.Name = "btnHome";
+            btnHome.Size = new Size(75, 23);
+            btnHome.TabIndex = 3;
+            btnHome.Text = "Home";
+            btnHome.UseVisualStyleBackColor = true;
+            btnHome.Click += btnHome_Click;
             // 
             // btnAdd
             // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(508, 4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.Text = "Add...";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            btnAdd.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnAdd.Location = new Point(508, 4);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(75, 23);
+            btnAdd.TabIndex = 2;
+            btnAdd.Text = "Add...";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // txtSearch
             // 
-            this.txtSearch.AcceptsReturn = true;
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Location = new System.Drawing.Point(4, 4);
-            this.txtSearch.MaxLength = 200;
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(420, 23);
-            this.txtSearch.TabIndex = 0;
-            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
+            txtSearch.AcceptsReturn = true;
+            txtSearch.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtSearch.Location = new Point(4, 4);
+            txtSearch.MaxLength = 200;
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(420, 23);
+            txtSearch.TabIndex = 0;
+            txtSearch.KeyDown += txtSearch_KeyDown;
             // 
             // btnSearch
             // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Location = new System.Drawing.Point(428, 4);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 1;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            btnSearch.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnSearch.Location = new Point(428, 4);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(75, 23);
+            btnSearch.TabIndex = 1;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // lv
             // 
-            this.lv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7});
-            this.lv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lv.FullRowSelect = true;
-            this.lv.Location = new System.Drawing.Point(0, 32);
-            this.lv.MultiSelect = false;
-            this.lv.Name = "lv";
-            this.lv.SelectedItem = null;
-            this.lv.Size = new System.Drawing.Size(668, 347);
-            this.lv.TabIndex = 1;
-            this.lv.UseCompatibleStateImageBehavior = false;
-            this.lv.View = System.Windows.Forms.View.Details;
-            this.lv.ItemSelected += new SelectListLibrary.ItemSelectedHandler(this.lv_ItemSelected);
+            lv.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6, columnHeader7 });
+            lv.Dock = DockStyle.Fill;
+            lv.FullRowSelect = true;
+            lv.Location = new Point(0, 32);
+            lv.MultiSelect = false;
+            lv.Name = "lv";
+            lv.SelectedItem = null;
+            lv.Size = new Size(668, 347);
+            lv.TabIndex = 1;
+            lv.UseCompatibleStateImageBehavior = false;
+            lv.View = View.Details;
+            lv.ItemSelected += lv_ItemSelected;
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = 150;
+            columnHeader1.Text = "Name";
+            columnHeader1.Width = 150;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Social Security Number";
-            this.columnHeader2.Width = 140;
+            columnHeader2.Text = "Social Security Number";
+            columnHeader2.Width = 140;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "Blocked";
-            this.columnHeader3.Width = 55;
+            columnHeader3.Text = "Blocked";
+            columnHeader3.Width = 55;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "Last movie";
-            this.columnHeader4.Width = 80;
+            columnHeader4.Text = "Last movie";
+            columnHeader4.Width = 80;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Rentals";
-            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            columnHeader5.Text = "Rentals";
+            columnHeader5.TextAlign = HorizontalAlignment.Center;
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "Out now";
-            this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            columnHeader6.Text = "Out now";
+            columnHeader6.TextAlign = HorizontalAlignment.Center;
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "Last activity";
-            this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader7.Width = 80;
+            columnHeader7.Text = "Last activity";
+            columnHeader7.TextAlign = HorizontalAlignment.Center;
+            columnHeader7.Width = 80;
             // 
             // CustomersScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.AutoScrollMargin = new System.Drawing.Size(4, 4);
-            this.Controls.Add(this.lv);
-            this.Controls.Add(this.panel1);
-            this.Name = "CustomersScreen";
-            this.Size = new System.Drawing.Size(668, 379);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
+            AutoScrollMargin = new Size(4, 4);
+            Controls.Add(lv);
+            Controls.Add(panel1);
+            Name = "CustomersScreen";
+            Size = new Size(668, 379);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ResumeLayout(false);
 
         }
 

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            customerCoreDataControl1 = new CustomControls.CustomerCoreDataControl();
+            customerCoreDataControl1 = new VhsRental.CustomControls.CustomerCoreDataControl();
             btnOk = new Button();
             btnCancel = new Button();
             txtCustomerSsn = new TextBox();

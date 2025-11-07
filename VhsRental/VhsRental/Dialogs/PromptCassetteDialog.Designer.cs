@@ -28,113 +28,108 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PromptCassetteDialog));
-            this.lv = new SelectListLibrary.SelectList();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.btnOk = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            lv = new SelectListLibrary.SelectList();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
+            columnHeader5 = new ColumnHeader();
+            imageList1 = new ImageList(components);
+            btnOk = new Button();
+            btnCancel = new Button();
+            SuspendLayout();
             // 
             // lv
             // 
-            this.lv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5});
-            this.lv.FullRowSelect = true;
-            this.lv.GridLines = true;
-            this.lv.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lv.Location = new System.Drawing.Point(4, 4);
-            this.lv.MultiSelect = false;
-            this.lv.Name = "lv";
-            this.lv.SelectedItem = null;
-            this.lv.Size = new System.Drawing.Size(508, 208);
-            this.lv.SmallImageList = this.imageList1;
-            this.lv.TabIndex = 0;
-            this.lv.UseCompatibleStateImageBehavior = false;
-            this.lv.View = System.Windows.Forms.View.Details;
-            this.lv.ItemSelected += new SelectListLibrary.ItemSelectedHandler(this.lv_ItemSelected);
+            lv.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
+            lv.FullRowSelect = true;
+            lv.GridLines = true;
+            lv.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            lv.Location = new Point(4, 4);
+            lv.MultiSelect = false;
+            lv.Name = "lv";
+            lv.SelectedItem = null;
+            lv.Size = new Size(508, 208);
+            lv.SmallImageList = imageList1;
+            lv.TabIndex = 0;
+            lv.UseCompatibleStateImageBehavior = false;
+            lv.View = View.Details;
+            lv.ItemSelected += lv_ItemSelected;
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Cassette ID";
-            this.columnHeader1.Width = 75;
+            columnHeader1.Text = "Cassette ID";
+            columnHeader1.Width = 75;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Movie title";
-            this.columnHeader2.Width = 200;
+            columnHeader2.Text = "Movie title";
+            columnHeader2.Width = 200;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "Year";
-            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            columnHeader3.Text = "Year";
+            columnHeader3.TextAlign = HorizontalAlignment.Center;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "Customer price";
-            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader4.Width = 70;
+            columnHeader4.Text = "Customer price";
+            columnHeader4.TextAlign = HorizontalAlignment.Right;
+            columnHeader4.Width = 70;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Copies";
-            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader5.Width = 65;
+            columnHeader5.Text = "Copies";
+            columnHeader5.TextAlign = HorizontalAlignment.Center;
+            columnHeader5.Width = 65;
             // 
             // imageList1
             // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "tape.png");
+            imageList1.ColorDepth = ColorDepth.Depth32Bit;
+            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
+            imageList1.TransparentColor = Color.Transparent;
+            imageList1.Images.SetKeyName(0, "tape.png");
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(356, 216);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 1;
-            this.btnOk.Text = "OK";
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            btnOk.Location = new Point(356, 216);
+            btnOk.Name = "btnOk";
+            btnOk.Size = new Size(75, 23);
+            btnOk.TabIndex = 1;
+            btnOk.Text = "OK";
+            btnOk.UseVisualStyleBackColor = true;
+            btnOk.Click += btnOk_Click;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(436, 216);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Location = new Point(436, 216);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(75, 23);
+            btnCancel.TabIndex = 2;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
             // 
             // PromptCassetteDialog
             // 
-            this.AcceptButton = this.btnOk;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(517, 243);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.lv);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "PromptCassetteDialog";
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Select a cassette";
-            this.Load += new System.EventHandler(this.PromptCassetteDialog_Load);
-            this.ResumeLayout(false);
+            AcceptButton = btnOk;
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnCancel;
+            ClientSize = new Size(517, 243);
+            Controls.Add(btnCancel);
+            Controls.Add(btnOk);
+            Controls.Add(lv);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "PromptCassetteDialog";
+            ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Select a cassette";
+            Load += PromptCassetteDialog_Load;
+            ResumeLayout(false);
 
         }
 

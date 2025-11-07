@@ -28,122 +28,122 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtEan = new System.Windows.Forms.TextBox();
-            this.txtTitle = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtYear = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtDescription = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnContinue = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            label1 = new Label();
+            txtEan = new TextBox();
+            txtTitle = new TextBox();
+            label2 = new Label();
+            txtYear = new TextBox();
+            label3 = new Label();
+            txtDescription = new TextBox();
+            label4 = new Label();
+            btnContinue = new Button();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "EAN:";
+            label1.AutoSize = true;
+            label1.Location = new Point(8, 8);
+            label1.Name = "label1";
+            label1.Size = new Size(33, 15);
+            label1.TabIndex = 0;
+            label1.Text = "EAN:";
             // 
             // txtEan
             // 
-            this.txtEan.Location = new System.Drawing.Point(8, 24);
-            this.txtEan.Name = "txtEan";
-            this.txtEan.ReadOnly = true;
-            this.txtEan.Size = new System.Drawing.Size(132, 23);
-            this.txtEan.TabIndex = 1;
-            this.txtEan.TabStop = false;
+            txtEan.Location = new Point(8, 24);
+            txtEan.Name = "txtEan";
+            txtEan.ReadOnly = true;
+            txtEan.Size = new Size(132, 23);
+            txtEan.TabIndex = 1;
+            txtEan.TabStop = false;
             // 
             // txtTitle
             // 
-            this.txtTitle.Location = new System.Drawing.Point(144, 24);
-            this.txtTitle.Name = "txtTitle";
-            this.txtTitle.ReadOnly = true;
-            this.txtTitle.Size = new System.Drawing.Size(296, 23);
-            this.txtTitle.TabIndex = 3;
-            this.txtTitle.TabStop = false;
+            txtTitle.Location = new Point(144, 24);
+            txtTitle.Name = "txtTitle";
+            txtTitle.ReadOnly = true;
+            txtTitle.Size = new Size(296, 23);
+            txtTitle.TabIndex = 3;
+            txtTitle.TabStop = false;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(144, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Title:";
+            label2.AutoSize = true;
+            label2.Location = new Point(144, 8);
+            label2.Name = "label2";
+            label2.Size = new Size(33, 15);
+            label2.TabIndex = 2;
+            label2.Text = "Title:";
             // 
             // txtYear
             // 
-            this.txtYear.Location = new System.Drawing.Point(444, 24);
-            this.txtYear.Name = "txtYear";
-            this.txtYear.ReadOnly = true;
-            this.txtYear.Size = new System.Drawing.Size(64, 23);
-            this.txtYear.TabIndex = 5;
-            this.txtYear.TabStop = false;
+            txtYear.Location = new Point(444, 24);
+            txtYear.Name = "txtYear";
+            txtYear.ReadOnly = true;
+            txtYear.Size = new Size(64, 23);
+            txtYear.TabIndex = 5;
+            txtYear.TabStop = false;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(444, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 15);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Year:";
+            label3.AutoSize = true;
+            label3.Location = new Point(444, 8);
+            label3.Name = "label3";
+            label3.Size = new Size(32, 15);
+            label3.TabIndex = 4;
+            label3.Text = "Year:";
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(8, 64);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(500, 23);
-            this.txtDescription.TabIndex = 7;
+            txtDescription.Location = new Point(8, 64);
+            txtDescription.Name = "txtDescription";
+            txtDescription.Size = new Size(500, 23);
+            txtDescription.TabIndex = 7;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 48);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 15);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Ocular inspection:";
+            label4.AutoSize = true;
+            label4.Location = new Point(8, 48);
+            label4.Name = "label4";
+            label4.Size = new Size(103, 15);
+            label4.TabIndex = 6;
+            label4.Text = "Ocular inspection:";
             // 
             // btnContinue
             // 
-            this.btnContinue.Location = new System.Drawing.Point(432, 100);
-            this.btnContinue.Name = "btnContinue";
-            this.btnContinue.Size = new System.Drawing.Size(75, 23);
-            this.btnContinue.TabIndex = 8;
-            this.btnContinue.Text = "Continue";
-            this.btnContinue.UseVisualStyleBackColor = true;
-            this.btnContinue.Click += new System.EventHandler(this.btnContinue_Click);
+            btnContinue.Location = new Point(432, 100);
+            btnContinue.Name = "btnContinue";
+            btnContinue.Size = new Size(75, 23);
+            btnContinue.TabIndex = 8;
+            btnContinue.Text = "Continue";
+            btnContinue.UseVisualStyleBackColor = true;
+            btnContinue.Click += btnContinue_Click;
             // 
             // ReturnOnTheFlyDialog
             // 
-            this.AcceptButton = this.btnContinue;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 129);
-            this.Controls.Add(this.btnContinue);
-            this.Controls.Add(this.txtDescription);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtYear);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtTitle);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtEan);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "ReturnOnTheFlyDialog";
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Cassette is out";
-            this.Load += new System.EventHandler(this.ReturnOnTheFlyDialog_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AcceptButton = btnContinue;
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(516, 129);
+            Controls.Add(btnContinue);
+            Controls.Add(txtDescription);
+            Controls.Add(label4);
+            Controls.Add(txtYear);
+            Controls.Add(label3);
+            Controls.Add(txtTitle);
+            Controls.Add(label2);
+            Controls.Add(txtEan);
+            Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "ReturnOnTheFlyDialog";
+            ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Cassette is out";
+            Load += ReturnOnTheFlyDialog_Load;
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 

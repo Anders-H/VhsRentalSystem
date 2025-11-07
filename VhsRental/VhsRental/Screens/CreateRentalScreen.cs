@@ -183,6 +183,56 @@ public partial class CreateRentalScreen : UserControl, IScreen
     private void txtPrice5_Validated(object sender, EventArgs e) =>
         UpdatePrice(true);
 
+    private bool CheckPrices()
+    {
+        if (!string.IsNullOrWhiteSpace(txtCassetteEan1.Text))
+        {
+            if (!decimal.TryParse(txtPrice1.Text, NumberStyles.Any, CultureInfo.CurrentCulture, out _))
+            {
+                txtPrice1.Focus();
+                return false;
+            }
+        }
+
+        if (!string.IsNullOrWhiteSpace(txtCassetteEan2.Text))
+        {
+            if (!decimal.TryParse(txtPrice2.Text, NumberStyles.Any, CultureInfo.CurrentCulture, out _))
+            {
+                txtPrice2.Focus();
+                return false;
+            }
+        }
+
+        if (!string.IsNullOrWhiteSpace(txtCassetteEan3.Text))
+        {
+            if (!decimal.TryParse(txtPrice3.Text, NumberStyles.Any, CultureInfo.CurrentCulture, out _))
+            {
+                txtPrice3.Focus();
+                return false;
+            }
+        }
+
+        if (!string.IsNullOrWhiteSpace(txtCassetteEan4.Text))
+        {
+            if (!decimal.TryParse(txtPrice4.Text, NumberStyles.Any, CultureInfo.CurrentCulture, out _))
+            {
+                txtPrice4.Focus();
+                return false;
+            }
+        }
+
+        if (!string.IsNullOrWhiteSpace(txtCassetteEan5.Text))
+        {
+            if (!decimal.TryParse(txtPrice5.Text, NumberStyles.Any, CultureInfo.CurrentCulture, out _))
+            {
+                txtPrice5.Focus();
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private void txtCassetteEan1_Enter(object sender, EventArgs e) =>
         txtCassetteEan1.GetTag().OriginalText = txtCassetteEan1.Text;
 
@@ -220,19 +270,27 @@ public partial class CreateRentalScreen : UserControl, IScreen
         || txtCassetteEan4.GetTag().EntityId > 0
         || txtCassetteEan5.GetTag().EntityId > 0;
 
-    private IEnumerable<int> GetCassetteIds()
+    
+
+    private IEnumerable<CassetteIdAndGivenPrice> GetCassettesFromGui()
     {
-        var s = new List<int>();
+        var s = new List<CassetteIdAndGivenPrice>();
+
         if (txtCassetteEan1.GetTag().EntityId > 0)
-            s.Add(txtCassetteEan1.GetTag().EntityId);
+            s.Add(new CassetteIdAndGivenPrice(txtCassetteEan1.GetTag().EntityId, ValidatePrice(txtPrice1, txtCassetteEan1, false)));
+        
         if (txtCassetteEan2.GetTag().EntityId > 0)
-            s.Add(txtCassetteEan2.GetTag().EntityId);
+            s.Add(new CassetteIdAndGivenPrice(txtCassetteEan2.GetTag().EntityId, ValidatePrice(txtPrice2, txtCassetteEan2, false)));
+
         if (txtCassetteEan3.GetTag().EntityId > 0)
-            s.Add(txtCassetteEan3.GetTag().EntityId);
+            s.Add(new CassetteIdAndGivenPrice(txtCassetteEan3.GetTag().EntityId, ValidatePrice(txtPrice3, txtCassetteEan3, false)));
+
         if (txtCassetteEan4.GetTag().EntityId > 0)
-            s.Add(txtCassetteEan4.GetTag().EntityId);
+            s.Add(new CassetteIdAndGivenPrice(txtCassetteEan4.GetTag().EntityId, ValidatePrice(txtPrice4, txtCassetteEan4, false)));
+
         if (txtCassetteEan5.GetTag().EntityId > 0)
-            s.Add(txtCassetteEan5.GetTag().EntityId);
+            s.Add(new CassetteIdAndGivenPrice(txtCassetteEan5.GetTag().EntityId, ValidatePrice(txtPrice5, txtCassetteEan5, false)));
+
         return s;
     }
 
@@ -289,17 +347,17 @@ public partial class CreateRentalScreen : UserControl, IScreen
 
         this.SetToWaitMode(true);
 
-        var cassettes = GetCassetteIds().ToList();
+        var cassettes = GetCassettesFromGui().ToList();
         using var cassetteService = new CassetteService();
 
-        foreach (var cassetteId in cassettes)
+        foreach (var c in cassettes)
         {
-            if (cassetteService.CassetteIsOut(cassetteId))
+            if (cassetteService.CassetteIsOut(c.CassetteId))
             {
-                var cassetteBasic = cassetteService.GetBasicCassetteInformation(cassetteId);
+                var cassetteBasic = cassetteService.GetBasicCassetteInformation(c.CassetteId);
                 if (cassetteBasic == null)
                 {
-                    RentalService.ReturnCassette(cassetteId, Context.CurrentStaff?.Id ?? 0, "");
+                    RentalService.ReturnCassette(c.CassetteId, Context.CurrentStaff?.Id ?? 0, "");
                 }
                 else
                 {
@@ -310,16 +368,23 @@ public partial class CreateRentalScreen : UserControl, IScreen
                     if (x.ShowDialog(this) == DialogResult.OK)
                         description = x.Description;
 
-                    RentalService.ReturnCassette(cassetteId, Context.CurrentStaff?.Id ?? 0, description);
+                    RentalService.ReturnCassette(c.CassetteId, Context.CurrentStaff?.Id ?? 0, description);
                 }
             }
         }
 
+        if (!CheckPrices())
+        {
+            MessageBox.Show(this, @"Could not parse all prices.", Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
         var cassettesToRental = new List<RentalCassette>();
 
-        foreach (var cassetteId in cassettes)
+        foreach (var c in cassettes)
         {
-            var cassette = cassetteService.GetCassetteForRental(cassetteId);
+            var cassette = cassetteService.GetCassetteForRental(c.CassetteId);
+            cassette.ActualPrice = c.EnteredPrice;
             cassettesToRental.Add(cassette);
         }
 
@@ -398,6 +463,9 @@ public partial class CreateRentalScreen : UserControl, IScreen
         rentalService.CloseTransaction(false);
         this.SetToWaitMode(false);
         ((MainWindow)ParentForm!).GetScreen<MainMenuScreen>();
+        using var summary = new RentalTransactionDialog();
+        summary.RentalEventTransactionId = rentalService.TransactionId;
+        summary.ShowDialog();
     }
 
     private void CreateRentalScreen_Load(object sender, EventArgs e)
